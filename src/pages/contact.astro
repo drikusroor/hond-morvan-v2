@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getEntry } from 'astro:content';
+
+const page = await getEntry('pages', 'contact');
+const { Content } = await page.render();
+---
+
+<BaseLayout title={page.data.title} description={page.data.description}>
+  <article class="content">
+    <Content />
+  </article>
+</BaseLayout>
+
+<style>
+  .content {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+</style>
