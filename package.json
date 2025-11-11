@@ -1,16 +1,17 @@
 {
-  "name": "hond-morvan-v2",
-  "module": "index.ts",
+  "name": "virtual-velocity",
   "type": "module",
-  "private": true,
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "website-scraper": "^6.0.0",
-    "website-scraper-puppeteer": "^2.0.0"
+    "@astrojs/mdx": "^4.3.10",
+    "@astrojs/sitemap": "^3.6.0",
+    "astro": "^5.15.5",
+    "decap-cms-app": "^3.9.0"
   }
 }

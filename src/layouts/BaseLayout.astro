@@ -1,0 +1,250 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Vakantiehuis voor hond en baas in de Morvan, Frankrijk" } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} - HondMorvan</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <h1 class="site-title">
+            <a href="/">🐕 HondMorvan</a>
+          </h1>
+          <nav>
+            <ul>
+              <li><a href="/" class={currentPath === "/" ? "active" : ""}>Home</a></li>
+              <li><a href="/kaart" class={currentPath === "/kaart" ? "active" : ""}>Kaart</a></li>
+              <li><a href="/gastenboek" class={currentPath === "/gastenboek" ? "active" : ""}>Gastenboek</a></li>
+              <li><a href="/tarieven" class={currentPath === "/tarieven" ? "active" : ""}>Tarieven</a></li>
+              <li><a href="/links" class={currentPath === "/links" ? "active" : ""}>Links</a></li>
+              <li><a href="/contact" class={currentPath === "/contact" ? "active" : ""}>Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <slot />
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; {new Date().getFullYear()} HondMorvan - Vakantiehuis in de Morvan</p>
+        <p>
+          <a href="mailto:info@hondmorvan.nl">info@hondmorvan.nl</a> | 
+          <a href="tel:+31651121073">+31 6 51121073</a>
+        </p>
+      </div>
+    </footer>
+
+    <style is:global>
+      :root {
+        --color-background: #FFC58A;
+        --color-primary: #993300;
+        --color-text: #2c3e50;
+        --color-text-light: #666;
+        --color-white: #ffffff;
+        --color-accent: #FFFF00;
+        
+        --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        
+        --spacing-xs: 0.5rem;
+        --spacing-sm: 1rem;
+        --spacing-md: 1.5rem;
+        --spacing-lg: 2rem;
+        --spacing-xl: 3rem;
+        
+        --max-width: 1200px;
+        --border-radius: 8px;
+      }
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: var(--font-family);
+        line-height: 1.6;
+        color: var(--color-text);
+        background-color: var(--color-background);
+      }
+      
+      .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 var(--spacing-md);
+      }
+      
+      /* Header */
+      header {
+        background-color: var(--color-white);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--spacing-sm) 0;
+      }
+      
+      .site-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--color-primary);
+      }
+      
+      .site-title a {
+        text-decoration: none;
+        color: inherit;
+      }
+      
+      /* Navigation */
+      nav ul {
+        display: flex;
+        gap: var(--spacing-md);
+        list-style: none;
+      }
+      
+      nav a {
+        text-decoration: none;
+        color: var(--color-text);
+        font-weight: 500;
+        padding: var(--spacing-xs) var(--spacing-sm);
+        border-radius: var(--border-radius);
+        transition: all 0.2s ease;
+      }
+      
+      nav a:hover,
+      nav a.active {
+        background-color: var(--color-primary);
+        color: var(--color-white);
+      }
+      
+      /* Main Content */
+      main {
+        min-height: calc(100vh - 200px);
+        padding: var(--spacing-xl) 0;
+      }
+      
+      /* Typography */
+      h1 {
+        font-size: 2.5rem;
+        color: var(--color-primary);
+        margin-bottom: var(--spacing-md);
+      }
+      
+      h2 {
+        font-size: 2rem;
+        color: var(--color-primary);
+        margin-top: var(--spacing-lg);
+        margin-bottom: var(--spacing-md);
+      }
+      
+      h3 {
+        font-size: 1.5rem;
+        color: var(--color-primary);
+        margin-top: var(--spacing-md);
+        margin-bottom: var(--spacing-sm);
+      }
+      
+      p {
+        margin-bottom: var(--spacing-md);
+      }
+      
+      a {
+        color: var(--color-primary);
+        text-decoration: underline;
+      }
+      
+      a:hover {
+        color: #661100;
+      }
+      
+      strong {
+        color: var(--color-primary);
+      }
+      
+      em {
+        font-style: italic;
+      }
+      
+      /* Lists */
+      ul, ol {
+        margin-left: var(--spacing-lg);
+        margin-bottom: var(--spacing-md);
+      }
+      
+      li {
+        margin-bottom: var(--spacing-xs);
+      }
+      
+      /* Footer */
+      footer {
+        background-color: var(--color-primary);
+        color: var(--color-white);
+        padding: var(--spacing-lg) 0;
+        text-align: center;
+      }
+      
+      footer a {
+        color: var(--color-white);
+        text-decoration: none;
+      }
+      
+      footer a:hover {
+        text-decoration: underline;
+      }
+      
+      /* Responsive */
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: column;
+          gap: var(--spacing-sm);
+        }
+        
+        nav ul {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: var(--spacing-sm);
+        }
+        
+        h1 {
+          font-size: 2rem;
+        }
+        
+        h2 {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </body>
+</html>
