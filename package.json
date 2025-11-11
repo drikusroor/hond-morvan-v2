@@ -1,0 +1,16 @@
+{
+  "name": "hond-morvan-v2",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "website-scraper": "^6.0.0",
+    "website-scraper-puppeteer": "^2.0.0"
+  }
+}
