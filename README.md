@@ -1,6 +1,6 @@
 # Hond Morvan V2
 
-Hond Morvan V2 is the project to rebuild the original Hond Morvan website, which had been made using "Web Page Maker" that seems to be no longer available. The goal is to download / scrape the original website, its pages, images, etc. and use this as a basis for a WordPress theme + content, or for a Static Site Generator tool.
+Hond Morvan V2 is the project to rebuild the original Hond Morvan website, which had been made using "Web Page Maker" that seems to be no longer available. The goal is to download / scrape the original website, its pages, images, etc. and [use this as a basis](./WEBSITE_ANALYSIS.md) for a WordPress theme + content, or for a Static Site Generator tool.
 
 ## Getting started
 
