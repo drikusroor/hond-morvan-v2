@@ -1,0 +1,161 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface SidebarImage {
+  src: string;
+  alt?: string;
+  width?: number;
+  height?: number;
+}
+
+interface Props {
+  title: string;
+  description?: string;
+  leftSidebar?: SidebarImage[];
+  rightSidebar?: SidebarImage[];
+}
+
+const { 
+  title, 
+  description,
+  leftSidebar = [],
+  rightSidebar = []
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="page-with-sidebars">
+    {leftSidebar.length > 0 && (
+      <aside class="sidebar sidebar-left">
+        {leftSidebar.map((image) => (
+          <div class="sidebar-image">
+            <img 
+              src={image.src} 
+              alt={image.alt || "Sidebar image"}
+              width={image.width}
+              height={image.height}
+            />
+          </div>
+        ))}
+      </aside>
+    )}
+    
+    <main class="content-main">
+      <slot />
+    </main>
+    
+    {rightSidebar.length > 0 && (
+      <aside class="sidebar sidebar-right">
+        {rightSidebar.map((image) => (
+          <div class="sidebar-image">
+            <img 
+              src={image.src} 
+              alt={image.alt || "Sidebar image"}
+              width={image.width}
+              height={image.height}
+            />
+          </div>
+        ))}
+      </aside>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .page-with-sidebars {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .sidebar-left {
+    width: 180px;
+  }
+
+  .sidebar-right {
+    width: 420px;
+  }
+
+  .sidebar-image {
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background: white;
+  }
+
+  .sidebar-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .content-main {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-height: 600px;
+  }
+
+  .content-main :global(h1) {
+    margin-top: 0;
+  }
+
+  .content-main :global(h1),
+  .content-main :global(h2),
+  .content-main :global(h3) {
+    color: var(--color-primary);
+  }
+
+  .content-main :global(p) {
+    line-height: 1.6;
+    color: var(--color-text);
+  }
+
+  .content-main :global(a) {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+  .content-main :global(a:hover) {
+    color: #661100;
+  }
+
+  /* Responsive */
+  @media (max-width: 1200px) {
+    .page-with-sidebars {
+      grid-template-columns: 1fr;
+    }
+
+    .sidebar-left,
+    .sidebar-right {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .page-with-sidebars {
+      gap: 1rem;
+    }
+
+    .content-main {
+      padding: 1rem;
+    }
+
+    .sidebar-left,
+    .sidebar-right {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+</style>

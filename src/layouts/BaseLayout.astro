@@ -42,7 +42,7 @@ const currentPath = Astro.url.pathname;
       </nav>
     </header>
 
-    <main>
+    <main class="base-layout-main">
       <div class="container">
         <slot />
       </div>
@@ -150,6 +150,11 @@ const currentPath = Astro.url.pathname;
         color: var(--color-white);
       }
       main {
+        min-height: calc(100vh - 200px);
+        padding: var(--spacing-xl) 0;
+      }
+      
+      .base-layout-main {
         min-height: calc(100vh - 200px);
         padding: var(--spacing-xl) 0;
       }

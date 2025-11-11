@@ -1,22 +1,31 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import PageWithSidebars from '../layouts/PageWithSidebars.astro';
 import { getEntry } from 'astro:content';
 
 const page = await getEntry('pages', 'contact');
 const { Content } = await page.render();
+
+const leftSidebar = [
+  { src: '/images/hondmorvan-contactlinks1.png', alt: 'HondMorvan contact links 1' },
+  { src: '/images/hondmorvan-contactlinks2.png', alt: 'HondMorvan contact links 2' }
+];
+
+const rightSidebar = [
+  { src: '/images/hondmorvan-contactrechts1.png', alt: 'HondMorvan contact rechts 1' },
+  { src: '/images/hondmorvan-contactrechts2.png', alt: 'HondMorvan contact rechts 2' },
+  { src: '/images/hondmorvan-contactrechts3.png', alt: 'HondMorvan contact rechts 3' },
+  { src: '/images/hondmorvan-contactrechts4.png', alt: 'HondMorvan contact rechts 4' }
+];
 ---
 
-<BaseLayout title={page.data.title} description={page.data.description}>
+<PageWithSidebars title={page.data.title} description={page.data.description} leftSidebar={leftSidebar} rightSidebar={rightSidebar}>
   <article class="content">
     <Content />
   </article>
-</BaseLayout>
+</PageWithSidebars>
 
 <style>
   .content {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 0;
   }
 </style>

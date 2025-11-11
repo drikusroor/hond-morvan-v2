@@ -1,22 +1,31 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import PageWithSidebars from '../layouts/PageWithSidebars.astro';
 import { getEntry } from 'astro:content';
 
 const page = await getEntry('pages', 'tarieven');
 const { Content } = await page.render();
+
+const leftSidebar = [
+  { src: '/images/hondmorvan-tarievenlinks1.png', alt: 'HondMorvan tarieven links 1' },
+  { src: '/images/hondmorvan-tarievenlinks2.png', alt: 'HondMorvan tarieven links 2' }
+];
+
+const rightSidebar = [
+  { src: '/images/hondmorvan-tarievenrechts1.png', alt: 'HondMorvan tarieven rechts 1' },
+  { src: '/images/hondmorvan-tarievenrechts2.png', alt: 'HondMorvan tarieven rechts 2' },
+  { src: '/images/hondmorvan-tarievenrechts4.png', alt: 'HondMorvan tarieven rechts 4' },
+  { src: '/images/hondmorvan-tarievenrechts5.png', alt: 'HondMorvan tarieven rechts 5' }
+];
 ---
 
-<BaseLayout title={page.data.title} description={page.data.description}>
+<PageWithSidebars title={page.data.title} description={page.data.description} leftSidebar={leftSidebar} rightSidebar={rightSidebar}>
   <article class="content">
     <Content />
   </article>
-</BaseLayout>
+</PageWithSidebars>
 
 <style>
   .content {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 0;
   }
 </style>
