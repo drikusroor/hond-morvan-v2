@@ -2,6 +2,7 @@ backend:
   name: github
   repo: drikusroor/hond-morvan-v2
   branch: main
+  base_url: sveltia-cms-auth.drikusroor.workers.dev
   
 # Optional: Use test-repo for local development
 # backend:
