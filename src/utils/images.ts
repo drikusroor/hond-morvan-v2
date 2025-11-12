@@ -27,6 +27,7 @@ export const IMAGES = {
   HOME_RIGHT_1: '/images/hondmorvan-homerechts1.png',
   HOME_RIGHT_2: '/images/hondmorvan-homerechts2.png',
   HOME_RIGHT_3: '/images/hondmorvan-homerechts3.png',
+  HOME_BOTTOM: '/images/gite herfst.JPG',
   
   // Gastenboek page
   GASTENBOEK_LEFT_1: '/images/hondmorvan-gastenboeklinks1.png',

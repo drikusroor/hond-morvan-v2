@@ -14,13 +14,15 @@ interface Props {
   description?: string;
   leftSidebar?: SidebarImage[];
   rightSidebar?: SidebarImage[];
+  bottomImage?: SidebarImage;
 }
 
 const { 
   title, 
   description,
   leftSidebar = [],
-  rightSidebar = []
+  rightSidebar = [],
+  bottomImage
 } = Astro.props;
 ---
 
@@ -60,6 +62,18 @@ const {
       </aside>
     )}
   </div>
+
+  {bottomImage && (
+    <div class="bottom-image-section">
+      <img 
+        src={getImagePath(bottomImage.src)} 
+        alt={bottomImage.alt || "Bottom image"}
+        width={bottomImage.width}
+        height={bottomImage.height}
+        class="bottom-image"
+      />
+    </div>
+  )}
 </BaseLayout>
 
 <style>
@@ -127,6 +141,20 @@ const {
 
   .content-main :global(a:hover) {
     color: #661100;
+  }
+
+  .bottom-image-section {
+    margin-top: 2.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .bottom-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
   }
 
   /* Responsive */
