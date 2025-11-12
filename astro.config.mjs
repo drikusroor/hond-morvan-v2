@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://hondmorvan.nl',
+    site: 'https://drikusroor.github.io/hond-morvan-v2',
     integrations: [mdx(), sitemap()],
 
     // GitHub Pages deployment with custom domain
