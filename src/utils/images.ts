@@ -19,8 +19,13 @@ export const getImagePath = (imagePath: string): string => {
  * Common image paths
  */
 export const IMAGES = {
-  // Header
-  HEADER: '/images/hondmorvan-header1.png',
+  // Header images per page
+  HEADER_HOME: '/images/hondmorvan-header1.png',
+  HEADER_CONTACT: '/images/hondmorvan-contactheader1.png',
+  HEADER_GASTENBOEK: '/images/hondmorvan-gastenboekheader1.png',
+  HEADER_KAART: '/images/hondmorvan-kaartheader1.png',
+  HEADER_LINKS: '/images/hondmorvan-linksheader1.png',
+  HEADER_TARIEVEN: '/images/hondmorvan-header1.png',
   
   // Home page
   HOME_LEFT: '/images/hondmorvan-homelinks1.png',

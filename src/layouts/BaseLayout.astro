@@ -9,6 +9,18 @@ import { IMAGES, getImagePath } from '../utils/images';
 const { title, description = "Vakantiehuis voor hond en baas in de Morvan, Frankrijk" } = Astro.props;
 const currentPath = Astro.url.pathname;
 const baseUrl = import.meta.env.BASE_URL || '/';
+
+// Determine the header image based on current path
+const getHeaderImage = (path: string): string => {
+  if (path.includes('/contact')) return IMAGES.HEADER_CONTACT;
+  if (path.includes('/gastenboek')) return IMAGES.HEADER_GASTENBOEK;
+  if (path.includes('/kaart')) return IMAGES.HEADER_KAART;
+  if (path.includes('/links')) return IMAGES.HEADER_LINKS;
+  if (path.includes('/tarieven')) return IMAGES.HEADER_TARIEVEN;
+  return IMAGES.HEADER_HOME;
+};
+
+const headerImage = getHeaderImage(currentPath);
 ---
 
 <!doctype html>
@@ -29,7 +41,7 @@ const baseUrl = import.meta.env.BASE_URL || '/';
   <body>
     <header>
       <div class="header-banner">
-        <img src={getImagePath(IMAGES.HEADER)} alt="HondMorvan - Vakantiehuis in de Morvan" />
+        <img src={getImagePath(headerImage)} alt="HondMorvan - Vakantiehuis in de Morvan" />
       </div>
       <nav class="main-nav">
         <div class="container">
@@ -109,15 +121,16 @@ const baseUrl = import.meta.env.BASE_URL || '/';
       
       .header-banner {
         width: 100%;
+        height: 338px;
         overflow: hidden;
       }
       
       .header-banner img {
         display: block;
         width: 100%;
-        height: auto;
-        max-height: 400px;
+        height: 100%;
         object-fit: cover;
+        object-position: left bottom;
       }
       
       .main-nav .container {
@@ -238,6 +251,10 @@ const baseUrl = import.meta.env.BASE_URL || '/';
       
       /* Responsive */
       @media (max-width: 768px) {
+        .header-banner {
+          height: 250px;
+        }
+
         .header-banner img {
           max-height: 250px;
         }
