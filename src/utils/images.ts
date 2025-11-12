@@ -35,7 +35,10 @@ export const IMAGES = {
   GASTENBOEK_RIGHT: '/images/gastenboek-1.jpg',
   
   // Kaart page
-  KAART_LEFT: '/images/hondmorvan-kaartlinks1.png',
+  KAART_LEFT_1: '/images/hondmorvan-kaartlinks1.png',
+  KAART_LEFT_2: '/images/gite 2016 10.jpg',
+  KAART_CENTER_1: '/images/kaart.png',
+  KAART_CENTER_2: '/images/hondmorvan-kaartoverzichtmidden.png',
   KAART_RIGHT_1: '/images/hondmorvan-kaartrechts1.png',
   KAART_RIGHT_2: '/images/hondmorvan-kaartrechts4.png',
   KAART_RIGHT_3: '/images/hondmorvan-kaartrechts3.png',
