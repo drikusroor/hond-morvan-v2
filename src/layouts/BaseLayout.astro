@@ -69,6 +69,7 @@ const baseUrl = import.meta.env.BASE_URL || '/';
         --color-text-light: #666;
         --color-white: #ffffff;
         --color-accent: #FFFF00;
+        --color-baby-blue: #89CFF0;
         
         --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         
@@ -80,6 +81,7 @@ const baseUrl = import.meta.env.BASE_URL || '/';
         
         --max-width: 1200px;
         --border-radius: 8px;
+        --border-radius-rounded: 50px;
       }
       
       * {
@@ -103,7 +105,6 @@ const baseUrl = import.meta.env.BASE_URL || '/';
       
       /* Header */
       header {
-        background-color: var(--color-white);
       }
       
       .header-banner {
@@ -117,12 +118,6 @@ const baseUrl = import.meta.env.BASE_URL || '/';
         height: auto;
         max-height: 400px;
         object-fit: cover;
-      }
-      
-      /* Navigation */
-      .main-nav {
-        background-color: var(--color-white);
-        border-bottom: 3px solid var(--color-primary);
       }
       
       .main-nav .container {
@@ -142,15 +137,24 @@ const baseUrl = import.meta.env.BASE_URL || '/';
         color: var(--color-text);
         font-weight: 600;
         padding: var(--spacing-xs) var(--spacing-sm);
-        border-radius: var(--border-radius);
-        transition: all 0.2s ease;
+        border-radius: var(--border-radius-rounded);
+        border: none;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         display: inline-block;
+        position: relative;
+        overflow: hidden;
+
+        /* Liquid design with smooth gradients and organic shapes */
+        background: linear-gradient(135deg, var(--color-white) 0%, var(--color-baby-blue) 100%);
+        box-shadow: 0 4px 15px rgba(137, 207, 240, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.6);
       }
       
       .main-nav a:hover,
       .main-nav a.active {
-        background-color: var(--color-primary);
+        background: linear-gradient(135deg, var(--color-primary) 0%, #6b2400 100%);
         color: var(--color-white);
+        box-shadow: 0 8px 25px rgba(153, 51, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
       }
       main {
         min-height: calc(100vh - 200px);
