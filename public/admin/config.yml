@@ -17,6 +17,9 @@ locale: nl
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
+site_url: "https://drikusroor.github.io/hond-morvan-v2"
+display_url: "https://drikusroor.github.io/hond-morvan-v2"
+
 # Collections
 collections:
   # Pages Collection
