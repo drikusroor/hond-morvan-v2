@@ -1,6 +1,6 @@
 ---
-title: "Contact"
-description: "Neem contact op voor meer informatie en beschikbaarheid"
+title: Contact
+description: Neem contact op voor meer informatie en beschikbaarheid.
 ---
 
 # Contact
