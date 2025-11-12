@@ -3,15 +3,16 @@
  * Handles base path configuration for GitHub Pages deployment
  */
 
-// Import Astro's getImage utility for optimization
+/**
+ * Helper function to get absolute image path with base URL
+ * Astro config has base: '/hond-morvan-v2/' which needs to be applied to public images
+ * @param imagePath - The image path (e.g., '/images/filename.png')
+ * @returns Full path including base URL
+ */
 export const getImagePath = (imagePath: string): string => {
-  // Normalize the path - remove leading slash if present
-  const normalizedPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
-  
-  // In Astro, static assets in public/ are served from root
-  // The base path is handled by the Astro config for routing
-  // but public assets are served relative to the site root
-  return normalizedPath;
+  // Get base from config - for public assets on GitHub Pages
+  const BASE = '/hond-morvan-v2';
+  return `${BASE}${imagePath}`;
 };
 
 /**

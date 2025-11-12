@@ -4,7 +4,7 @@ interface Props {
   description?: string;
 }
 
-import { IMAGES } from '../utils/images';
+import { IMAGES, getImagePath } from '../utils/images';
 
 const { title, description = "Vakantiehuis voor hond en baas in de Morvan, Frankrijk" } = Astro.props;
 const currentPath = Astro.url.pathname;
@@ -28,7 +28,7 @@ const currentPath = Astro.url.pathname;
   <body>
     <header>
       <div class="header-banner">
-        <img src={IMAGES.HEADER} alt="HondMorvan - Vakantiehuis in de Morvan" />
+        <img src={getImagePath(IMAGES.HEADER)} alt="HondMorvan - Vakantiehuis in de Morvan" />
       </div>
       <nav class="main-nav">
         <div class="container">

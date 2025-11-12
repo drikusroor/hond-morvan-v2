@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import { getImagePath } from '../utils/images';
 
 interface SidebarImage {
   src: string;
@@ -30,7 +31,7 @@ const {
         {leftSidebar.map((image) => (
           <div class="sidebar-image">
             <img 
-              src={image.src} 
+              src={getImagePath(image.src)} 
               alt={image.alt || "Sidebar image"}
               width={image.width}
               height={image.height}
@@ -49,7 +50,7 @@ const {
         {rightSidebar.map((image) => (
           <div class="sidebar-image">
             <img 
-              src={image.src} 
+              src={getImagePath(image.src)} 
               alt={image.alt || "Sidebar image"}
               width={image.width}
               height={image.height}
