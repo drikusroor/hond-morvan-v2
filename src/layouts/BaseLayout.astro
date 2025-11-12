@@ -177,7 +177,7 @@ const headerImage = getHeaderImage(currentPath);
       
       .base-layout-main {
         min-height: calc(100vh - 200px);
-        padding: var(--spacing-xl) 0;
+        padding: 0 0 var(--spacing-xl) 0;
       }
       
       /* Typography */
@@ -261,6 +261,10 @@ const headerImage = getHeaderImage(currentPath);
         
         .main-nav ul {
           gap: var(--spacing-sm);
+        }
+
+        .main-nav li {
+          margin-bottom: 0;
         }
         
         .main-nav a {
