@@ -1,20 +1,21 @@
 ---
 import PageWithSidebars from '../layouts/PageWithSidebars.astro';
 import { getEntry } from 'astro:content';
+import { IMAGES } from '../utils/images';
 
 const page = await getEntry('pages', 'tarieven');
 const { Content } = await page.render();
 
 const leftSidebar = [
-  { src: '/images/hondmorvan-tarievenlinks1.png', alt: 'HondMorvan tarieven links 1' },
-  { src: '/images/hondmorvan-tarievenlinks2.png', alt: 'HondMorvan tarieven links 2' }
+  { src: IMAGES.TARIEVEN_LEFT_1, alt: 'HondMorvan tarieven links 1' },
+  { src: IMAGES.TARIEVEN_LEFT_2, alt: 'HondMorvan tarieven links 2' }
 ];
 
 const rightSidebar = [
-  { src: '/images/hondmorvan-tarievenrechts1.png', alt: 'HondMorvan tarieven rechts 1' },
-  { src: '/images/hondmorvan-tarievenrechts2.png', alt: 'HondMorvan tarieven rechts 2' },
-  { src: '/images/hondmorvan-tarievenrechts4.png', alt: 'HondMorvan tarieven rechts 4' },
-  { src: '/images/hondmorvan-tarievenrechts5.png', alt: 'HondMorvan tarieven rechts 5' }
+  { src: IMAGES.TARIEVEN_RIGHT_1, alt: 'HondMorvan tarieven rechts 1' },
+  { src: IMAGES.TARIEVEN_RIGHT_2, alt: 'HondMorvan tarieven rechts 2' },
+  { src: IMAGES.TARIEVEN_RIGHT_3, alt: 'HondMorvan tarieven rechts 4' },
+  { src: IMAGES.TARIEVEN_RIGHT_4, alt: 'HondMorvan tarieven rechts 5' }
 ];
 ---
 

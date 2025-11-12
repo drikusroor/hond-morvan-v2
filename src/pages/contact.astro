@@ -1,20 +1,21 @@
 ---
 import PageWithSidebars from '../layouts/PageWithSidebars.astro';
 import { getEntry } from 'astro:content';
+import { IMAGES } from '../utils/images';
 
 const page = await getEntry('pages', 'contact');
 const { Content } = await page.render();
 
 const leftSidebar = [
-  { src: '/images/hondmorvan-contactlinks1.png', alt: 'HondMorvan contact links 1' },
-  { src: '/images/hondmorvan-contactlinks2.png', alt: 'HondMorvan contact links 2' }
+  { src: IMAGES.CONTACT_LEFT_1, alt: 'HondMorvan contact links 1' },
+  { src: IMAGES.CONTACT_LEFT_2, alt: 'HondMorvan contact links 2' }
 ];
 
 const rightSidebar = [
-  { src: '/images/hondmorvan-contactrechts1.png', alt: 'HondMorvan contact rechts 1' },
-  { src: '/images/hondmorvan-contactrechts2.png', alt: 'HondMorvan contact rechts 2' },
-  { src: '/images/hondmorvan-contactrechts3.png', alt: 'HondMorvan contact rechts 3' },
-  { src: '/images/hondmorvan-contactrechts4.png', alt: 'HondMorvan contact rechts 4' }
+  { src: IMAGES.CONTACT_RIGHT_1, alt: 'HondMorvan contact rechts 1' },
+  { src: IMAGES.CONTACT_RIGHT_2, alt: 'HondMorvan contact rechts 2' },
+  { src: IMAGES.CONTACT_RIGHT_3, alt: 'HondMorvan contact rechts 3' },
+  { src: IMAGES.CONTACT_RIGHT_4, alt: 'HondMorvan contact rechts 4' }
 ];
 ---
 

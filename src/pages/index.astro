@@ -1,18 +1,19 @@
 ---
 import PageWithSidebars from '../layouts/PageWithSidebars.astro';
 import { getEntry } from 'astro:content';
+import { IMAGES } from '../utils/images';
 
 const page = await getEntry('pages', 'home');
 const { Content } = await page.render();
 
 const leftSidebar = [
-  { src: '/images/hondmorvan-homelinks1.png', alt: 'HondMorvan home links sidebar' }
+  { src: IMAGES.HOME_LEFT, alt: 'HondMorvan home links sidebar' }
 ];
 
 const rightSidebar = [
-  { src: '/images/hondmorvan-homerechts1.png', alt: 'HondMorvan home rechts 1' },
-  { src: '/images/hondmorvan-homerechts2.png', alt: 'HondMorvan home rechts 2' },
-  { src: '/images/hondmorvan-homerechts3.png', alt: 'HondMorvan home rechts 3' }
+  { src: IMAGES.HOME_RIGHT_1, alt: 'HondMorvan home rechts 1' },
+  { src: IMAGES.HOME_RIGHT_2, alt: 'HondMorvan home rechts 2' },
+  { src: IMAGES.HOME_RIGHT_3, alt: 'HondMorvan home rechts 3' }
 ];
 ---
 

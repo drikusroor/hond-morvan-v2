@@ -1,17 +1,18 @@
 ---
 import PageWithSidebars from '../layouts/PageWithSidebars.astro';
 import { getCollection } from 'astro:content';
+import { IMAGES } from '../utils/images';
 
 const testimonials = await getCollection('testimonials');
 const sortedTestimonials = testimonials.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 const leftSidebar = [
-  { src: '/images/hondmorvan-gastenboeklinks1.png', alt: 'HondMorvan gastenboek links 1' },
-  { src: '/images/hondmorvan-gastenboeklinks2.png', alt: 'HondMorvan gastenboek links 2' }
+  { src: IMAGES.GASTENBOEK_LEFT_1, alt: 'HondMorvan gastenboek links 1' },
+  { src: IMAGES.GASTENBOEK_LEFT_2, alt: 'HondMorvan gastenboek links 2' }
 ];
 
 const rightSidebar = [
-  { src: '/images/gastenboek-1.jpg', alt: 'HondMorvan gastenboek foto' }
+  { src: IMAGES.GASTENBOEK_RIGHT, alt: 'HondMorvan gastenboek foto' }
 ];
 ---
 

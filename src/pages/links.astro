@@ -1,20 +1,21 @@
 ---
 import PageWithSidebars from '../layouts/PageWithSidebars.astro';
 import { getEntry } from 'astro:content';
+import { IMAGES } from '../utils/images';
 
 const page = await getEntry('pages', 'links');
 const { Content } = await page.render();
 
 const leftSidebar = [
-  { src: '/images/hondmorvan-linklinks1.png', alt: 'HondMorvan links links 1' },
-  { src: '/images/hondmorvan-linklinks2.png', alt: 'HondMorvan links links 2' }
+  { src: IMAGES.LINKS_LEFT_1, alt: 'HondMorvan links links 1' },
+  { src: IMAGES.LINKS_LEFT_2, alt: 'HondMorvan links links 2' }
 ];
 
 const rightSidebar = [
-  { src: '/images/hondmorvan-linklrechts1.png', alt: 'HondMorvan links rechts 1' },
-  { src: '/images/hondmorvan-linklrechts4.png', alt: 'HondMorvan links rechts 4' },
-  { src: '/images/hondmorvan-linklrechts3.png', alt: 'HondMorvan links rechts 3' },
-  { src: '/images/hondmorvan-linklrechts5.png', alt: 'HondMorvan links rechts 5' }
+  { src: IMAGES.LINKS_RIGHT_1, alt: 'HondMorvan links rechts 1' },
+  { src: IMAGES.LINKS_RIGHT_2, alt: 'HondMorvan links rechts 4' },
+  { src: IMAGES.LINKS_RIGHT_3, alt: 'HondMorvan links rechts 3' },
+  { src: IMAGES.LINKS_RIGHT_4, alt: 'HondMorvan links rechts 5' }
 ];
 ---
 
