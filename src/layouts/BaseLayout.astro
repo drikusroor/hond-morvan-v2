@@ -8,6 +8,7 @@ import { IMAGES, getImagePath } from '../utils/images';
 
 const { title, description = "Vakantiehuis voor hond en baas in de Morvan, Frankrijk" } = Astro.props;
 const currentPath = Astro.url.pathname;
+const baseUrl = import.meta.env.BASE_URL || '/';
 ---
 
 <!doctype html>
@@ -33,12 +34,12 @@ const currentPath = Astro.url.pathname;
       <nav class="main-nav">
         <div class="container">
           <ul>
-            <li><a href="/" class={currentPath === "/" ? "active" : ""}>Home</a></li>
-            <li><a href="/kaart" class={currentPath === "/kaart" ? "active" : ""}>Kaart</a></li>
-            <li><a href="/gastenboek" class={currentPath === "/gastenboek" ? "active" : ""}>Gastenboek</a></li>
-            <li><a href="/tarieven" class={currentPath === "/tarieven" ? "active" : ""}>Tarieven</a></li>
-            <li><a href="/links" class={currentPath === "/links" ? "active" : ""}>Links</a></li>
-            <li><a href="/contact" class={currentPath === "/contact" ? "active" : ""}>Contact</a></li>
+            <li><a href={baseUrl} class={currentPath === "/" || currentPath === baseUrl ? "active" : ""}>Home</a></li>
+            <li><a href={`${baseUrl}kaart`} class={currentPath.includes("/kaart") ? "active" : ""}>Kaart</a></li>
+            <li><a href={`${baseUrl}gastenboek`} class={currentPath.includes("/gastenboek") ? "active" : ""}>Gastenboek</a></li>
+            <li><a href={`${baseUrl}tarieven`} class={currentPath.includes("/tarieven") ? "active" : ""}>Tarieven</a></li>
+            <li><a href={`${baseUrl}links`} class={currentPath.includes("/links") ? "active" : ""}>Links</a></li>
+            <li><a href={`${baseUrl}contact`} class={currentPath.includes("/contact") ? "active" : ""}>Contact</a></li>
           </ul>
         </div>
       </nav>
