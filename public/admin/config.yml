@@ -1,6 +1,7 @@
 backend:
   name: github
   repo: drikusroor/hond-morvan-v2
+  branch: main
   
 # Optional: Use test-repo for local development
 # backend:
