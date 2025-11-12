@@ -9,7 +9,7 @@ export default defineConfig({
     integrations: [mdx(), sitemap()],
 
     // GitHub Pages deployment with custom domain
-    base: '/',
+    base: '/hond-morvan-v2/',
 
     // Build configuration
     build: {
