@@ -194,13 +194,19 @@ const {
   @media (max-width: 768px) {
     .page-with-sidebars {
       gap: 1rem;
+      grid-template-areas:
+        "content-main content-main"
+        "sidebar-right sidebar-right";
     }
 
     .content-main {
       padding: 1rem;
     }
 
-    .sidebar-left,
+    .sidebar-left {
+      display: none;
+    }
+
     .sidebar-right {
       grid-template-columns: 1fr;
       gap: 1rem;
