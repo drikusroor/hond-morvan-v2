@@ -1,14 +1,13 @@
 backend:
   name: github
   repo: drikusroor/hond-morvan-v2
-  branch: main
   
 # Optional: Use test-repo for local development
 # backend:
 #   name: test-repo
 
 # Publish mode
-publish_mode: editorial_workflow
+# publish_mode: editorial_workflow
 
 # Localization
 locale: nl
