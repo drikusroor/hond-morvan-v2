@@ -161,14 +161,22 @@ const {
   /* Responsive */
   @media (max-width: 1200px) {
     .page-with-sidebars {
-      grid-template-columns: 1fr;
+      grid-template-columns: auto 1fr;
+      grid-template-areas:
+        "sidebar-left content-main"
+        "sidebar-right sidebar-right";
     }
 
     .sidebar-left {
-      display: none;
+      grid-area: sidebar-left;
+    }
+
+    .content-main {
+      grid-area: content-main;
     }
 
     .sidebar-right {
+      grid-area: sidebar-right;
       width: 100%;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
