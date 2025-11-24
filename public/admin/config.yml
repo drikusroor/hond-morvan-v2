@@ -72,6 +72,11 @@ collections:
     label: "Gastenboek"
     label_singular: "Review"
     folder: "src/content/testimonials"
+    # show name and date in the list view
+    summary: "{{name}} - {{date}}"
+    # sort by most testimonials first
+    sortable_fields: ['date', 'name', 'rating']
+    default_sort: 'date:desc'
     create: true
     slug: "{{year}}-{{month}}-{{slug}}"
     fields:
