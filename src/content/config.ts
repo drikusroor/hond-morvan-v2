@@ -22,6 +22,18 @@ const testimonials = defineCollection({
     }),
 });
 
+// Bookings collection - for rental availability tracking
+const bookings = defineCollection({
+    type: 'content',
+    schema: z.object({
+        guestName: z.string().optional(),
+        startDate: z.coerce.date(),
+        endDate: z.coerce.date(),
+        status: z.enum(['gereserveerd', 'bevestigd', 'geblokkeerd']).default('gereserveerd'),
+        notes: z.string().optional(),
+    }),
+});
+
 // Configuration collection - for site-wide settings
 const config = defineCollection({
     type: 'data',
@@ -51,5 +63,6 @@ const config = defineCollection({
 export const collections = {
     pages,
     testimonials,
+    bookings,
     config,
 };
