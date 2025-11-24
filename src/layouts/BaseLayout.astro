@@ -43,19 +43,20 @@ const headerImage = getHeaderImage(currentPath);
       <div class="header-banner">
         <img src={getImagePath(headerImage)} alt="HondMorvan - Vakantiehuis in de Morvan" />
       </div>
-      <nav class="main-nav">
-        <div class="container">
-          <ul>
-            <li><a href={baseUrl} class={currentPath === "/" || currentPath === baseUrl ? "active" : ""}>Home</a></li>
-            <li><a href={`${baseUrl}kaart`} class={currentPath.includes("/kaart") ? "active" : ""}>Kaart</a></li>
-            <li><a href={`${baseUrl}gastenboek`} class={currentPath.includes("/gastenboek") ? "active" : ""}>Gastenboek</a></li>
-            <li><a href={`${baseUrl}tarieven`} class={currentPath.includes("/tarieven") ? "active" : ""}>Tarieven</a></li>
-            <li><a href={`${baseUrl}links`} class={currentPath.includes("/links") ? "active" : ""}>Links</a></li>
-            <li><a href={`${baseUrl}contact`} class={currentPath.includes("/contact") ? "active" : ""}>Contact</a></li>
-          </ul>
-        </div>
-      </nav>
     </header>
+
+    <nav class="main-nav">
+      <div class="container">
+        <ul>
+          <li><a href={baseUrl} class={currentPath === "/" || currentPath === baseUrl ? "active" : ""}>Home</a></li>
+          <li><a href={`${baseUrl}kaart`} class={currentPath.includes("/kaart") ? "active" : ""}>Kaart</a></li>
+          <li><a href={`${baseUrl}gastenboek`} class={currentPath.includes("/gastenboek") ? "active" : ""}>Gastenboek</a></li>
+          <li><a href={`${baseUrl}tarieven`} class={currentPath.includes("/tarieven") ? "active" : ""}>Tarieven</a></li>
+          <li><a href={`${baseUrl}links`} class={currentPath.includes("/links") ? "active" : ""}>Links</a></li>
+          <li><a href={`${baseUrl}contact`} class={currentPath.includes("/contact") ? "active" : ""}>Contact</a></li>
+        </ul>
+      </div>
+    </nav>
 
     <main class="base-layout-main">
       <div class="container">
@@ -75,6 +76,22 @@ const headerImage = getHeaderImage(currentPath);
         </p>
       </div>
     </footer>
+
+    <script>
+      const nav = document.querySelector('.main-nav');
+      let lastScrollTop = 0;
+
+      // Detect if nav is stuck by checking if scroll is past the header
+      const header = document.querySelector('header');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > (header?.offsetHeight || 0)) {
+          nav?.classList.add('is-sticky');
+        } else {
+          nav?.classList.remove('is-sticky');
+        }
+      });
+    </script>
 
     <style is:global>
       :root {
@@ -136,8 +153,28 @@ const headerImage = getHeaderImage(currentPath);
         object-position: left bottom;
       }
       
+      .main-nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        transition-property: background-color, box-shadow, backdrop-filter;
+        transition-duration: 0.3s;
+        transition-timing-function: ease-in-out;
+      }
+
+      .main-nav.is-sticky {
+        backdrop-filter: blur(5px);
+        box-shadow: 0 2px 8px 3px rgba(0, 0, 0, 0.1);
+        background-color: rgba(255, 197, 138, 0.25);
+      }
+      
       .main-nav .container {
+        transition: padding 0.3s ease-in-out;
         padding: var(--spacing-md) 0;
+      }
+
+      .main-nav.is-sticky .container {
+        padding: var(--spacing-sm) 0;
       }
       
       .main-nav ul {
@@ -146,6 +183,12 @@ const headerImage = getHeaderImage(currentPath);
         list-style: none;
         justify-content: center;
         flex-wrap: wrap;
+        margin-bottom: 0;
+        margin-left: 0;
+      }
+
+      .main-nav ul li {
+        display: inline-flex;
         margin-bottom: 0;
       }
       
