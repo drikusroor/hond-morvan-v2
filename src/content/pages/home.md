@@ -6,7 +6,7 @@ description: Vakantiehuis voor hond en baas in de Morvan, Frankrijk
 
 In Regional Natuurpark 'Le Morvan', op 700 km van Utrecht, staat dit sfeervolle stenen huisje met WiFi-verbinding en laadpaal op een flinke lap grond. Het ligt op ruime afstand van de hoofdwoning in een eigen omheinde boomgaard, op het hoogste punt van de streek (600 m). Bekijk het filmpje: [Youtube Hond Morvan](https://www.youtube.com/watch?v=JnK0PpgrLhA)
 
-https://www.youtube.com/watch?v=JnK0PpgrLhA
+[](https://www.youtube.com/watch?v=JnK0PpgrLhA)<iframe width="560" height="315" src="https://www.youtube.com/watch?v=JnK0PpgrLhA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Op het zuiden en westen kun je heerlijk op het terras zitten of onder de bomen in het gras. Het huisje is in de rug beschut door een strookje bos. Vóór heb je een mooi uitzicht over de vallei, waar tussen de meertjes zomer en winter de charolais-koeien grazen.
 
