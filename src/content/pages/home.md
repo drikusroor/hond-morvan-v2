@@ -1,8 +1,7 @@
 ---
-title: "Honden welkom!"
-description: "Vakantiehuis voor hond en baas in de Morvan, Frankrijk"
+title: Honden welkom!
+description: Vakantiehuis voor hond en baas in de Morvan, Frankrijk
 ---
-
 # Honden welkom!
 
 In Regional Natuurpark 'Le Morvan', op 700 km van Utrecht, staat dit sfeervolle stenen huisje met WiFi-verbinding en laadpaal op een flinke lap grond. Het ligt op ruime afstand van de hoofdwoning in een eigen omheinde boomgaard, op het hoogste punt van de streek (600 m). Bekijk het filmpje: [Youtube Hondmorvan](https://www.youtube.com/watch?v=JnK0PpgrLhA)
@@ -40,3 +39,5 @@ Veel mensen, met en zonder hond(en), hebben intussen al genoten van dit heerlijk
 De weken lopen van zaterdag tot zaterdag, zie [tarieven en voorwaarden](/tarieven).
 
 *Van harte welkom in de mooie Morvan!*
+
+![](/hond-morvan-v2/images/uploads/1.-handmatige-zandwinning-rond-1900.jpg)
