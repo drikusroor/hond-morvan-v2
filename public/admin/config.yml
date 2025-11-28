@@ -3,10 +3,9 @@ backend:
   repo: drikusroor/hond-morvan-v2
   branch: main
   base_url: sveltia-cms-auth.drikusroor.workers.dev
-  
-# Optional: Use test-repo for local development
-# backend:
-#   name: test-repo
+
+# Enable local backend for development (no file changes needed!)
+local_backend: true
 
 # Publish mode
 publish_mode: editorial_workflow
