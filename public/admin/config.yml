@@ -9,7 +9,7 @@ backend:
 #   name: test-repo
 
 # Publish mode
-# publish_mode: editorial_workflow
+publish_mode: editorial_workflow
 
 # Localization
 locale: nl
