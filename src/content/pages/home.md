@@ -1,6 +1,15 @@
 ---
 title: Honden welkom!
+headerImage: /hond-morvan-v2/images/hondmorvan-header1.png
 description: Vakantiehuis voor hond en baas in de Morvan, Frankrijk
+leftColumnImages:
+  - /hond-morvan-v2/images/hondmorvan-homelinks1.png
+rightColumnImages:
+  - /hond-morvan-v2/images/hondmorvan-homerechts1.png
+  - /hond-morvan-v2/images/hondmorvan-homerechts2.png
+  - /hond-morvan-v2/images/hondmorvan-homerechts3.png
+bottomImages:
+  - /hond-morvan-v2/images/gite herfst.JPG
 ---
 # Honden welkom!
 

@@ -1,81 +1,99 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-import { getImagePath } from "../utils/images";
+import { getImagePath, globImages } from "../utils/images";
+import { Image } from "astro:assets";
 
 interface SidebarImage {
-	src: string;
-	alt?: string;
-	width?: number;
-	height?: number;
+  src: string;
+  alt?: string;
+  width: number;
+  height: number;
 }
 
 interface Props {
-	title: string;
-	description?: string;
-	headerImage?: string;
-	leftSidebar?: SidebarImage[];
-	rightSidebar?: SidebarImage[];
-	bottomImage?: SidebarImage;
+  title: string;
+  description?: string;
+  headerImage?: string;
+  leftSidebar?: SidebarImage[];
+  rightSidebar?: SidebarImage[];
+  bottomImage?: SidebarImage;
 }
 
 const {
-	title,
-	description,
-	headerImage,
-	leftSidebar = [],
-	rightSidebar = [],
-	bottomImage,
+  title,
+  description,
+  headerImage,
+  leftSidebar = [],
+  rightSidebar = [],
+  bottomImage,
 } = Astro.props;
+
+// Check if all images exist in the glob
+[leftSidebar, rightSidebar].flat().forEach((image) => {
+  if (!globImages[image.src]) {
+    // throw new Error(
+    //   `"${image.src}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif,webp}"`,
+    // );
+  }
+});
 ---
 
 <BaseLayout title={title} description={description} headerImage={headerImage}>
   <div class="page-with-sidebars">
-    {leftSidebar.length > 0 && (
-      <aside class="sidebar sidebar-left">
-        {leftSidebar.map((image) => (
-          <div class="sidebar-image">
-            <img 
-              src={getImagePath(image.src)} 
-              alt={image.alt || "Sidebar image"}
-              width={image.width}
-              height={image.height}
-            />
-          </div>
-        ))}
-      </aside>
-    )}
-    
+    {
+      leftSidebar.length > 0 && (
+        <aside class="sidebar sidebar-left">
+          {leftSidebar.map((image) => (
+            <div class="sidebar-image">
+              <Image
+                src={getImagePath(image.src)}
+                alt={image.alt || "Sidebar image"}
+                width={image.width}
+                height={image.height}
+              />
+            </div>
+          ))}
+        </aside>
+      )
+    }
+
     <main class="content-main">
       <slot />
     </main>
-    
-    {rightSidebar.length > 0 && (
-      <aside class="sidebar sidebar-right">
-        {rightSidebar.map((image) => (
-          <div class="sidebar-image">
-            <img 
-              src={getImagePath(image.src)} 
-              alt={image.alt || "Sidebar image"}
-              width={image.width}
-              height={image.height}
-            />
-          </div>
-        ))}
-      </aside>
-    )}
+
+    {
+      rightSidebar.length > 0 && (
+        <aside class="sidebar sidebar-right">
+          {rightSidebar.map((image) => {
+            return (
+              <div class="sidebar-image">
+                <Image
+                  src={getImagePath(image.src)}
+                  alt={image.alt || "Sidebar image"}
+                  width={image.width}
+                  height={image.height}
+                />
+              </div>
+            );
+          })}
+        </aside>
+      )
+    }
   </div>
 
-  {bottomImage && (
-    <div class="bottom-image-section">
-      <img 
-        src={getImagePath(bottomImage.src)} 
-        alt={bottomImage.alt || "Bottom image"}
-        width={bottomImage.width}
-        height={bottomImage.height}
-        class="bottom-image"
-      />
-    </div>
-  )}
+  {
+    bottomImage && (
+      <div class="bottom-image-section">
+        <Image
+          src={getImagePath(bottomImage.src)}
+          alt={bottomImage.alt || "Bottom image"}
+          width={bottomImage.width}
+          height={bottomImage.height}
+          class="bottom-image"
+        />
+      </div>
+    )
+  }
 </BaseLayout>
 
 <style>

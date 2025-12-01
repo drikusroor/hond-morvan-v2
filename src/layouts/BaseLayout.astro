@@ -1,12 +1,21 @@
 ---
+interface HeaderImage {
+  src: string;
+  alt?: string;
+  width: number;
+  height: number;
+}
+
 interface Props {
   title: string;
   description?: string;
-  headerImage?: string;
+  headerImage?: HeaderImage;
 }
 
-import { IMAGES, getImagePath } from "../utils/images";
+import { IMAGES, getImagePath, globImages } from "../utils/images";
 import "../styles/global.css";
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
 
 const {
   title,
@@ -16,24 +25,14 @@ const {
 const currentPath = Astro.url.pathname;
 const baseUrl = import.meta.env.BASE_URL || "/";
 
-// Determine the header image based on current path
-const getDefaultHeaderImage = (path: string): string => {
-  if (path.includes("/contact")) return IMAGES.HEADER_CONTACT;
-  if (path.includes("/gastenboek")) return IMAGES.HEADER_GASTENBOEK;
-  if (path.includes("/kaart")) return IMAGES.HEADER_KAART;
-  if (path.includes("/links")) return IMAGES.HEADER_LINKS;
-  if (path.includes("/tarieven")) return IMAGES.HEADER_TARIEVEN;
-  return IMAGES.HEADER_HOME;
-};
-
-const getNormalizedDefaultHeaderImage = (path: string): string => {
-  const defaultImage = getDefaultHeaderImage(path);
-  return getImagePath(defaultImage);
-};
-
 // Use CMS header image if provided, otherwise use default based on current path
-const finalHeaderImage =
-  headerImage || getNormalizedDefaultHeaderImage(currentPath);
+const finalHeaderImage = headerImage;
+
+// if (!globImages[finalHeaderImage]) {
+//   throw new Error(
+//     `"${finalHeaderImage}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif,webp}"`,
+//   );
+// }
 ---
 
 <!doctype html>
@@ -58,10 +57,12 @@ const finalHeaderImage =
   <body>
     <header>
       <div class="header-banner">
-        <img
-          src={finalHeaderImage}
+        <!-- <Image
+          src={globImages[finalHeaderImage.src]}
           alt="HondMorvan - Vakantiehuis in de Morvan"
-        />
+          width={finalHeaderImage.width}
+          height={finalHeaderImage.height}
+        /> -->
       </div>
     </header>
 

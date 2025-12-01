@@ -14,7 +14,7 @@ publish_mode: editorial_workflow
 locale: nl
 
 # Media and Public Folders
-media_folder: "public/images"
+media_folder: "src/assets/images"
 public_folder: "/hond-morvan-v2/images"
 
 site_url: "https://drikusroor.github.io/hond-morvan-v2"
