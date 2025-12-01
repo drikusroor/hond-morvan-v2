@@ -9,6 +9,7 @@ const pages = defineCollection({
 		headerImage: z.string().optional(),
 		leftColumnImages: z.array(z.string()).optional(),
 		rightColumnImages: z.array(z.string()).optional(),
+		bottomImages: z.array(z.string()).optional(),
 	}),
 });
 
