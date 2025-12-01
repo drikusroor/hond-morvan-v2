@@ -7,12 +7,13 @@
 		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro",
-		"decap-server": "bunx decap-server"
+		"decap-server": "bunx decap-server",
+		"clear-astro": "rm -rf node_modules/.astro"
 	},
 	"dependencies": {
-		"@astrojs/mdx": "^4.3.10",
+		"@astrojs/mdx": "^4.3.12",
 		"@astrojs/sitemap": "^3.6.0",
-		"astro": "^5.15.5"
+		"astro": "5.16.3"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.3.8"
