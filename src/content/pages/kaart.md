@@ -13,6 +13,8 @@ bottomImages:
   - /hond-morvan-v2/images/kaart.png
   - /hond-morvan-v2/images/hondmorvan-kaartoverzichtmidden.png
 ---
-Locatie van het vakantiehuis in de Morvan
 
-![Kaart van de Morvan](/hond-morvan-v2/images/kaart.png)
+
+![Kaart met routebeschrijving naar de Morvan](/hond-morvan-v2/images/kaart.png "Kaart met routebeschrijving naar de Morvan")
+
+![Kaart van de Morvan](/hond-morvan-v2/images/hondmorvan-kaartoverzichtmidden.png "Kaart van de Morvan")
