@@ -8,7 +8,7 @@ const sortedTestimonials = testimonials.sort(
 );
 
 // Get the gastenboek page data for potential CMS images
-const page = await getEntry("pages", "links");
+const page = await getEntry("pages", "gastenboek");
 
 if (!page) {
   throw new Error("Page 'gastenboek' not found");
@@ -18,6 +18,7 @@ if (!page) {
 <PageWithSidebars
   title="Gastenboek"
   description="Lees wat onze gasten zeggen over hun verblijf"
+  headerImage={page.data.headerImage}
   leftSidebar={page.data.leftColumnImages}
   rightSidebar={page.data.rightColumnImages}
 >
