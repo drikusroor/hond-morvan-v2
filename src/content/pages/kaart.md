@@ -13,8 +13,6 @@ bottomImages:
   - /hond-morvan-v2/images/kaart.png
   - /hond-morvan-v2/images/hondmorvan-kaartoverzichtmidden.png
 ---
+![Kaart met routebeschrijving naar de Morvan](../../assets/images/kaart.png "Kaart met routebeschrijving naar de Morvan")
 
-
-![Kaart met routebeschrijving naar de Morvan](/hond-morvan-v2/images/kaart.png "Kaart met routebeschrijving naar de Morvan")
-
-![Kaart van de Morvan](/hond-morvan-v2/images/hondmorvan-kaartoverzichtmidden.png "Kaart van de Morvan")
+![Kaart van de Morvan](../../assets/images/hondmorvan-kaartoverzichtmidden.png "Kaart van de Morvan")
