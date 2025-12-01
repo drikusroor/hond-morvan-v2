@@ -1,3 +1,9 @@
 {
-	"editor.formatOnSave": true
+	"editor.formatOnSave": true,
+	// Format js, ts, html, css, json files with biome
+	"editor.defaultFormatter": "biomejs.biome",
+	// Format Astro files with astro plugin
+	"[astro]": {
+		"editor.defaultFormatter": "astro-build.astro-vscode"
+	}
 }
