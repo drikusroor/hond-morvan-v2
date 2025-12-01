@@ -39,9 +39,6 @@ jobs:
       - name: Build Astro site
         run: bun run build
         
-      - name: Cleanup unused images
-        run: bash ./scripts/cleanup-unused-images.sh
-        
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
