@@ -1,6 +1,12 @@
 ---
 title: Contact
 description: Neem contact op voor meer informatie en beschikbaarheid.
+headerImage: /hond-morvan-v2/images/hondmorvan-contactheader1.png
+leftColumnImages:
+  - /hond-morvan-v2/images/hondmorvan-contactlinks1.png
+rightColumnImages:
+  - /hond-morvan-v2/images/hondmorvan-contactrechts1.png
+  - /hond-morvan-v2/images/hondmorvan-contactrechts2.png
 ---
 
 # Contact

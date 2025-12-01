@@ -1,22 +1,15 @@
 ---
+import { getImage } from "../utils/images";
 import BaseLayout from "./BaseLayout.astro";
-import { getImagePath, globImages } from "../utils/images";
 import { Image } from "astro:assets";
-
-interface SidebarImage {
-  src: string;
-  alt?: string;
-  width: number;
-  height: number;
-}
 
 interface Props {
   title: string;
   description?: string;
-  headerImage?: string;
-  leftSidebar?: SidebarImage[];
-  rightSidebar?: SidebarImage[];
-  bottomImage?: SidebarImage;
+  headerImage: string;
+  leftSidebar?: string[];
+  rightSidebar?: string[];
+  bottomImage?: string;
 }
 
 const {
@@ -27,15 +20,6 @@ const {
   rightSidebar = [],
   bottomImage,
 } = Astro.props;
-
-// Check if all images exist in the glob
-[leftSidebar, rightSidebar].flat().forEach((image) => {
-  if (!globImages[image.src]) {
-    // throw new Error(
-    //   `"${image.src}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif,webp}"`,
-    // );
-  }
-});
 ---
 
 <BaseLayout title={title} description={description} headerImage={headerImage}>
@@ -45,12 +29,7 @@ const {
         <aside class="sidebar sidebar-left">
           {leftSidebar.map((image) => (
             <div class="sidebar-image">
-              <Image
-                src={getImagePath(image.src)}
-                alt={image.alt || "Sidebar image"}
-                width={image.width}
-                height={image.height}
-              />
+              <Image src={getImage(image)} alt={"Sidebar image"} />
             </div>
           ))}
         </aside>
@@ -64,15 +43,10 @@ const {
     {
       rightSidebar.length > 0 && (
         <aside class="sidebar sidebar-right">
-          {rightSidebar.map((image) => {
+          {rightSidebar.map((imagePath) => {
             return (
               <div class="sidebar-image">
-                <Image
-                  src={getImagePath(image.src)}
-                  alt={image.alt || "Sidebar image"}
-                  width={image.width}
-                  height={image.height}
-                />
+                <Image src={getImage(imagePath)} alt={"Sidebar image"} />
               </div>
             );
           })}
@@ -85,10 +59,8 @@ const {
     bottomImage && (
       <div class="bottom-image-section">
         <Image
-          src={getImagePath(bottomImage.src)}
-          alt={bottomImage.alt || "Bottom image"}
-          width={bottomImage.width}
-          height={bottomImage.height}
+          src={getImage(bottomImage)}
+          alt={"Bottom image"}
           class="bottom-image"
         />
       </div>

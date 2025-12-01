@@ -1,6 +1,15 @@
 ---
 title: "Tarieven en Voorwaarden"
 description: "Prijzen en huurvoorwaarden voor Gîte Les Bourdeaux"
+headerImage: /hond-morvan-v2/images/hondmorvan-header1.png
+leftColumnImages:
+  - /hond-morvan-v2/images/hondmorvan-tarievenlinks1.png
+  - /hond-morvan-v2/images/hondmorvan-tarievenlinks2.png
+rightColumnImages:
+  - /hond-morvan-v2/images/hondmorvan-tarievenrechts1.png
+  - /hond-morvan-v2/images/hondmorvan-tarievenrechts2.png
+  - /hond-morvan-v2/images/hondmorvan-tarievenrechts4.png
+  - /hond-morvan-v2/images/hondmorvan-tarievenrechts5.png
 ---
 
 ## Tarieven 2025/2026

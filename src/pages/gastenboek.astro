@@ -1,7 +1,6 @@
 ---
 import PageWithSidebars from "../layouts/PageWithSidebars.astro";
 import { getCollection, getEntry } from "astro:content";
-import { IMAGES } from "../utils/images";
 
 const testimonials = await getCollection("testimonials");
 const sortedTestimonials = testimonials.sort(
@@ -10,40 +9,13 @@ const sortedTestimonials = testimonials.sort(
 
 // Get the gastenboek page data for potential CMS images
 const page = await getEntry("pages", "links");
-
-// Fallback images (hard-coded defaults)
-const fallbackLeftSidebar = [
-  { src: IMAGES.GASTENBOEK_LEFT_1, alt: "HondMorvan gastenboek links 1" },
-  { src: IMAGES.GASTENBOEK_LEFT_2, alt: "HondMorvan gastenboek links 2" },
-];
-
-const fallbackRightSidebar = [
-  { src: IMAGES.GASTENBOEK_RIGHT, alt: "HondMorvan gastenboek foto" },
-];
-
-// Use CMS images if available, otherwise fall back to hard-coded defaults
-const leftSidebar =
-  page && page.data.leftColumnImages && page.data.leftColumnImages.length > 0
-    ? page.data.leftColumnImages.map((src) => ({
-        src,
-        alt: "Gastenboek page left image",
-      }))
-    : fallbackLeftSidebar;
-
-const rightSidebar =
-  page && page.data.rightColumnImages && page.data.rightColumnImages.length > 0
-    ? page.data.rightColumnImages.map((src) => ({
-        src,
-        alt: "Gastenboek page right image",
-      }))
-    : fallbackRightSidebar;
 ---
 
 <PageWithSidebars
   title="Gastenboek"
   description="Lees wat onze gasten zeggen over hun verblijf"
-  leftSidebar={leftSidebar}
-  rightSidebar={rightSidebar}
+  leftSidebar={page.data.leftColumnImages}
+  rightSidebar={page.data.rightColumnImages}
 >
   <h1>Gastenboek</h1>
 

@@ -1,6 +1,15 @@
 ---
 title: "Nuttige Links"
 description: "Handige informatie over de Morvan en omgeving, plus ervaringen van gasten"
+headerImage: /hond-morvan-v2/images/hondmorvan-linksheader1.png
+leftColumnImages:
+  - /hond-morvan-v2/images/hondmorvan-linklinks1.png
+  - /hond-morvan-v2/images/hondmorvan-linklinks2.png
+rightColumnImages:
+  - /hond-morvan-v2/images/hondmorvan-linklrechts1.png
+  - /hond-morvan-v2/images/hondmorvan-linklrechts4.png
+  - /hond-morvan-v2/images/hondmorvan-linklrechts3.png
+  - /hond-morvan-v2/images/hondmorvan-linklrechts5.png
 ---
 
 ## Video's

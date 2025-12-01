@@ -1,48 +1,17 @@
 ---
 import PageWithSidebars from "../layouts/PageWithSidebars.astro";
 import { getEntry } from "astro:content";
-import { IMAGES } from "../utils/images";
 
 const page = await getEntry("pages", "tarieven");
 const { Content } = await page.render();
-
-// Fallback images (hard-coded defaults)
-const fallbackLeftSidebar = [
-  { src: IMAGES.TARIEVEN_LEFT_1, alt: "HondMorvan tarieven links 1" },
-  { src: IMAGES.TARIEVEN_LEFT_2, alt: "HondMorvan tarieven links 2" },
-];
-
-const fallbackRightSidebar = [
-  { src: IMAGES.TARIEVEN_RIGHT_1, alt: "HondMorvan tarieven rechts 1" },
-  { src: IMAGES.TARIEVEN_RIGHT_2, alt: "HondMorvan tarieven rechts 2" },
-  { src: IMAGES.TARIEVEN_RIGHT_3, alt: "HondMorvan tarieven rechts 4" },
-  { src: IMAGES.TARIEVEN_RIGHT_4, alt: "HondMorvan tarieven rechts 5" },
-];
-
-// Use CMS images if available, otherwise fall back to hard-coded defaults
-const leftSidebar =
-  page.data.leftColumnImages && page.data.leftColumnImages.length > 0
-    ? page.data.leftColumnImages.map((src) => ({
-        src,
-        alt: "Tarieven page left image",
-      }))
-    : fallbackLeftSidebar;
-
-const rightSidebar =
-  page.data.rightColumnImages && page.data.rightColumnImages.length > 0
-    ? page.data.rightColumnImages.map((src) => ({
-        src,
-        alt: "Tarieven page right image",
-      }))
-    : fallbackRightSidebar;
 ---
 
 <PageWithSidebars
   title={page.data.title}
   description={page.data.description}
   headerImage={page.data.headerImage}
-  leftSidebar={leftSidebar}
-  rightSidebar={rightSidebar}
+  leftSidebar={page.data.leftColumnImages}
+  rightSidebar={page.data.rightColumnImages}
 >
   <article class="content">
     <Content />

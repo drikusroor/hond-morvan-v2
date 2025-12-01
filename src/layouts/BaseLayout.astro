@@ -1,21 +1,13 @@
 ---
-interface HeaderImage {
-  src: string;
-  alt?: string;
-  width: number;
-  height: number;
-}
-
 interface Props {
   title: string;
   description?: string;
-  headerImage?: HeaderImage;
+  headerImage: string;
 }
 
-import { IMAGES, getImagePath, globImages } from "../utils/images";
 import "../styles/global.css";
-import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
+import { getImage } from "../utils/images";
 
 const {
   title,
@@ -25,14 +17,7 @@ const {
 const currentPath = Astro.url.pathname;
 const baseUrl = import.meta.env.BASE_URL || "/";
 
-// Use CMS header image if provided, otherwise use default based on current path
-const finalHeaderImage = headerImage;
-
-// if (!globImages[finalHeaderImage]) {
-//   throw new Error(
-//     `"${finalHeaderImage}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif,webp}"`,
-//   );
-// }
+const resolvedHeaderImage = getImage(headerImage);
 ---
 
 <!doctype html>
@@ -57,12 +42,10 @@ const finalHeaderImage = headerImage;
   <body>
     <header>
       <div class="header-banner">
-        <!-- <Image
-          src={globImages[finalHeaderImage.src]}
+        <Image
+          src={getImage(headerImage)}
           alt="HondMorvan - Vakantiehuis in de Morvan"
-          width={finalHeaderImage.width}
-          height={finalHeaderImage.height}
-        /> -->
+        />
       </div>
     </header>
 
