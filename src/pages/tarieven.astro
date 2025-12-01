@@ -3,6 +3,11 @@ import PageWithSidebars from "../layouts/PageWithSidebars.astro";
 import { getEntry } from "astro:content";
 
 const page = await getEntry("pages", "tarieven");
+
+if (!page) {
+  throw new Error("Page 'tarieven' not found");
+}
+
 const { Content } = await page.render();
 ---
 

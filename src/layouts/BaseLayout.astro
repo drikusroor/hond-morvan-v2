@@ -2,7 +2,7 @@
 interface Props {
   title: string;
   description?: string;
-  headerImage: string;
+  headerImage?: string;
 }
 
 import "../styles/global.css";
@@ -16,8 +16,6 @@ const {
 } = Astro.props;
 const currentPath = Astro.url.pathname;
 const baseUrl = import.meta.env.BASE_URL || "/";
-
-const resolvedHeaderImage = getImage(headerImage);
 ---
 
 <!doctype html>
@@ -42,10 +40,14 @@ const resolvedHeaderImage = getImage(headerImage);
   <body>
     <header>
       <div class="header-banner">
-        <Image
-          src={getImage(headerImage)}
-          alt="HondMorvan - Vakantiehuis in de Morvan"
-        />
+        {
+          headerImage && (
+            <Image
+              src={getImage(headerImage)}
+              alt="HondMorvan - Vakantiehuis in de Morvan"
+            />
+          )
+        }
       </div>
     </header>
 

@@ -9,6 +9,10 @@ const sortedTestimonials = testimonials.sort(
 
 // Get the gastenboek page data for potential CMS images
 const page = await getEntry("pages", "links");
+
+if (!page) {
+  throw new Error("Page 'gastenboek' not found");
+}
 ---
 
 <PageWithSidebars

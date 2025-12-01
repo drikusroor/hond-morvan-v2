@@ -3,6 +3,11 @@ import PageWithSidebars from "../layouts/PageWithSidebars.astro";
 import { getEntry } from "astro:content";
 
 const page = await getEntry("pages", "contact");
+
+if (!page) {
+	throw new Error("Page 'contact' not found");
+}
+
 const { Content } = await page.render();
 ---
 

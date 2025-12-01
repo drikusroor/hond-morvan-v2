@@ -3,32 +3,20 @@ import PageWithSidebars from "../layouts/PageWithSidebars.astro";
 import { getEntry } from "astro:content";
 
 const page = await getEntry("pages", "links");
+
+if (!page) {
+  throw new Error("Page 'links' not found");
+}
+
 const { Content } = await page.render();
-
-// Use CMS images if available, otherwise fall back to hard-coded defaults
-const leftSidebar =
-  page.data.leftColumnImages && page.data.leftColumnImages.length > 0
-    ? page.data.leftColumnImages.map((src) => ({
-        src,
-        alt: "Links page left image",
-      }))
-    : [];
-
-const rightSidebar =
-  page.data.rightColumnImages && page.data.rightColumnImages.length > 0
-    ? page.data.rightColumnImages.map((src) => ({
-        src,
-        alt: "Links page right image",
-      }))
-    : [];
 ---
 
 <PageWithSidebars
   title={page.data.title}
   description={page.data.description}
   headerImage={page.data.headerImage}
-  leftSidebar={leftSidebar}
-  rightSidebar={rightSidebar}
+  leftSidebar={page.data.leftColumnImages}
+  rightSidebar={page.data.rightColumnImages}
 >
   <article class="content">
     <Content />
