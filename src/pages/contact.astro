@@ -1,32 +1,56 @@
 ---
-import PageWithSidebars from '../layouts/PageWithSidebars.astro';
-import { getEntry } from 'astro:content';
-import { IMAGES } from '../utils/images';
+import PageWithSidebars from "../layouts/PageWithSidebars.astro";
+import { getEntry } from "astro:content";
+import { IMAGES } from "../utils/images";
 
-const page = await getEntry('pages', 'contact');
+const page = await getEntry("pages", "contact");
 const { Content } = await page.render();
 
-const leftSidebar = [
-  { src: IMAGES.CONTACT_LEFT_1, alt: 'HondMorvan contact links 1' },
-  { src: IMAGES.CONTACT_LEFT_2, alt: 'HondMorvan contact links 2' }
+// Fallback images (hard-coded defaults)
+const fallbackLeftSidebar = [
+	{ src: IMAGES.CONTACT_LEFT_1, alt: "HondMorvan contact links 1" },
+	{ src: IMAGES.CONTACT_LEFT_2, alt: "HondMorvan contact links 2" },
 ];
 
-const rightSidebar = [
-  { src: IMAGES.CONTACT_RIGHT_1, alt: 'HondMorvan contact rechts 1' },
-  { src: IMAGES.CONTACT_RIGHT_2, alt: 'HondMorvan contact rechts 2' },
-  { src: IMAGES.CONTACT_RIGHT_3, alt: 'HondMorvan contact rechts 3' },
-  { src: IMAGES.CONTACT_RIGHT_4, alt: 'HondMorvan contact rechts 4' }
+const fallbackRightSidebar = [
+	{ src: IMAGES.CONTACT_RIGHT_1, alt: "HondMorvan contact rechts 1" },
+	{ src: IMAGES.CONTACT_RIGHT_2, alt: "HondMorvan contact rechts 2" },
+	{ src: IMAGES.CONTACT_RIGHT_3, alt: "HondMorvan contact rechts 3" },
+	{ src: IMAGES.CONTACT_RIGHT_4, alt: "HondMorvan contact rechts 4" },
 ];
+
+// Use CMS images if available, otherwise fall back to hard-coded defaults
+const leftSidebar =
+	page.data.leftColumnImages && page.data.leftColumnImages.length > 0
+		? page.data.leftColumnImages.map((src) => ({
+				src,
+				alt: "Contact page left image",
+			}))
+		: fallbackLeftSidebar;
+
+const rightSidebar =
+	page.data.rightColumnImages && page.data.rightColumnImages.length > 0
+		? page.data.rightColumnImages.map((src) => ({
+				src,
+				alt: "Contact page right image",
+			}))
+		: fallbackRightSidebar;
 ---
 
-<PageWithSidebars title={page.data.title} description={page.data.description} leftSidebar={leftSidebar} rightSidebar={rightSidebar}>
-  <article class="content">
-    <Content />
-  </article>
+<PageWithSidebars
+	title={page.data.title}
+	description={page.data.description}
+	headerImage={page.data.headerImage}
+	leftSidebar={leftSidebar}
+	rightSidebar={rightSidebar}
+>
+	<article class="content">
+		<Content />
+	</article>
 </PageWithSidebars>
 
 <style>
-  .content {
-    padding: 0;
-  }
+	.content {
+		padding: 0;
+	}
 </style>

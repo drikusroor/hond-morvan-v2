@@ -1,30 +1,39 @@
 ---
 interface Props {
-	title: string;
-	description?: string;
+  title: string;
+  description?: string;
+  headerImage?: string;
 }
 
 import { IMAGES, getImagePath } from "../utils/images";
 import "../styles/global.css";
 
 const {
-	title,
-	description = "Vakantiehuis voor hond en baas in de Morvan, Frankrijk",
+  title,
+  description = "Vakantiehuis voor hond en baas in de Morvan, Frankrijk",
+  headerImage,
 } = Astro.props;
 const currentPath = Astro.url.pathname;
 const baseUrl = import.meta.env.BASE_URL || "/";
 
 // Determine the header image based on current path
-const getHeaderImage = (path: string): string => {
-	if (path.includes("/contact")) return IMAGES.HEADER_CONTACT;
-	if (path.includes("/gastenboek")) return IMAGES.HEADER_GASTENBOEK;
-	if (path.includes("/kaart")) return IMAGES.HEADER_KAART;
-	if (path.includes("/links")) return IMAGES.HEADER_LINKS;
-	if (path.includes("/tarieven")) return IMAGES.HEADER_TARIEVEN;
-	return IMAGES.HEADER_HOME;
+const getDefaultHeaderImage = (path: string): string => {
+  if (path.includes("/contact")) return IMAGES.HEADER_CONTACT;
+  if (path.includes("/gastenboek")) return IMAGES.HEADER_GASTENBOEK;
+  if (path.includes("/kaart")) return IMAGES.HEADER_KAART;
+  if (path.includes("/links")) return IMAGES.HEADER_LINKS;
+  if (path.includes("/tarieven")) return IMAGES.HEADER_TARIEVEN;
+  return IMAGES.HEADER_HOME;
 };
 
-const headerImage = getHeaderImage(currentPath);
+const getNormalizedDefaultHeaderImage = (path: string): string => {
+  const defaultImage = getDefaultHeaderImage(path);
+  return getImagePath(defaultImage);
+};
+
+// Use CMS header image if provided, otherwise use default based on current path
+const finalHeaderImage =
+  headerImage || getNormalizedDefaultHeaderImage(currentPath);
 ---
 
 <!doctype html>
@@ -37,28 +46,69 @@ const headerImage = getHeaderImage(currentPath);
 
     <meta name="generator" content={Astro.generator} />
     <title>{title} - HondMorvan</title>
-    
+
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
       <div class="header-banner">
-        <img src={getImagePath(headerImage)} alt="HondMorvan - Vakantiehuis in de Morvan" />
+        <img
+          src={finalHeaderImage}
+          alt="HondMorvan - Vakantiehuis in de Morvan"
+        />
       </div>
     </header>
 
     <nav class="main-nav">
       <div class="container">
         <ul>
-          <li><a href={baseUrl} class={currentPath === "/" || currentPath === baseUrl ? "active" : ""}>Home</a></li>
-          <li><a href={`${baseUrl}kaart`} class={currentPath.includes("/kaart") ? "active" : ""}>Kaart</a></li>
-          <li><a href={`${baseUrl}gastenboek`} class={currentPath.includes("/gastenboek") ? "active" : ""}>Gastenboek</a></li>
-          <li><a href={`${baseUrl}tarieven`} class={currentPath.includes("/tarieven") ? "active" : ""}>Tarieven</a></li>
-          <li><a href={`${baseUrl}links`} class={currentPath.includes("/links") ? "active" : ""}>Links</a></li>
-          <li><a href={`${baseUrl}contact`} class={currentPath.includes("/contact") ? "active" : ""}>Contact</a></li>
+          <li>
+            <a
+              href={baseUrl}
+              class={currentPath === "/" || currentPath === baseUrl
+                ? "active"
+                : ""}>Home</a
+            >
+          </li>
+          <li>
+            <a
+              href={`${baseUrl}kaart`}
+              class={currentPath.includes("/kaart") ? "active" : ""}>Kaart</a
+            >
+          </li>
+          <li>
+            <a
+              href={`${baseUrl}gastenboek`}
+              class={currentPath.includes("/gastenboek") ? "active" : ""}
+              >Gastenboek</a
+            >
+          </li>
+          <li>
+            <a
+              href={`${baseUrl}tarieven`}
+              class={currentPath.includes("/tarieven") ? "active" : ""}
+              >Tarieven</a
+            >
+          </li>
+          <li>
+            <a
+              href={`${baseUrl}links`}
+              class={currentPath.includes("/links") ? "active" : ""}>Links</a
+            >
+          </li>
+          <li>
+            <a
+              href={`${baseUrl}contact`}
+              class={currentPath.includes("/contact") ? "active" : ""}
+              >Contact</a
+            >
+          </li>
         </ul>
       </div>
     </nav>
@@ -71,29 +121,35 @@ const headerImage = getHeaderImage(currentPath);
 
     <footer>
       <div class="container">
-        <p>&copy; {new Date().getFullYear()} HondMorvan - Vakantiehuis in de Morvan</p>
         <p>
-          <a href="mailto:info@hondmorvan.nl">info@hondmorvan.nl</a> | 
+          &copy; {new Date().getFullYear()} HondMorvan - Vakantiehuis in de Morvan
+        </p>
+        <p>
+          <a href="mailto:info@hondmorvan.nl">info@hondmorvan.nl</a> |
           <a href="tel:+31651121073">+31 6 51121073</a>
         </p>
         <p>
-          Website door <a target="_blank" rel="noopener noreferrer" href="https://kokokoding.nl">Koko Koding</a>
+          Website door <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://kokokoding.nl">Koko Koding</a
+          >
         </p>
       </div>
     </footer>
 
     <script>
-      const nav = document.querySelector('.main-nav');
+      const nav = document.querySelector(".main-nav");
       let lastScrollTop = 0;
 
       // Detect if nav is stuck by checking if scroll is past the header
-      const header = document.querySelector('header');
-      
-      window.addEventListener('scroll', () => {
+      const header = document.querySelector("header");
+
+      window.addEventListener("scroll", () => {
         if (window.scrollY > (header?.offsetHeight || 0)) {
-          nav?.classList.add('is-sticky');
+          nav?.classList.add("is-sticky");
         } else {
-          nav?.classList.remove('is-sticky');
+          nav?.classList.remove("is-sticky");
         }
       });
     </script>

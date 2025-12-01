@@ -1,25 +1,49 @@
 ---
-import PageWithSidebars from '../layouts/PageWithSidebars.astro';
-import { getEntry } from 'astro:content';
-import { IMAGES } from '../utils/images';
+import PageWithSidebars from "../layouts/PageWithSidebars.astro";
+import { getEntry } from "astro:content";
+import { IMAGES } from "../utils/images";
 
-const page = await getEntry('pages', 'links');
+const page = await getEntry("pages", "links");
 const { Content } = await page.render();
 
-const leftSidebar = [
-  { src: IMAGES.LINKS_LEFT_1, alt: 'HondMorvan links links 1' },
-  { src: IMAGES.LINKS_LEFT_2, alt: 'HondMorvan links links 2' }
+// Fallback images (hard-coded defaults)
+const fallbackLeftSidebar = [
+  { src: IMAGES.LINKS_LEFT_1, alt: "HondMorvan links links 1" },
+  { src: IMAGES.LINKS_LEFT_2, alt: "HondMorvan links links 2" },
 ];
 
-const rightSidebar = [
-  { src: IMAGES.LINKS_RIGHT_1, alt: 'HondMorvan links rechts 1' },
-  { src: IMAGES.LINKS_RIGHT_2, alt: 'HondMorvan links rechts 4' },
-  { src: IMAGES.LINKS_RIGHT_3, alt: 'HondMorvan links rechts 3' },
-  { src: IMAGES.LINKS_RIGHT_4, alt: 'HondMorvan links rechts 5' }
+const fallbackRightSidebar = [
+  { src: IMAGES.LINKS_RIGHT_1, alt: "HondMorvan links rechts 1" },
+  { src: IMAGES.LINKS_RIGHT_2, alt: "HondMorvan links rechts 4" },
+  { src: IMAGES.LINKS_RIGHT_3, alt: "HondMorvan links rechts 3" },
+  { src: IMAGES.LINKS_RIGHT_4, alt: "HondMorvan links rechts 5" },
 ];
+
+// Use CMS images if available, otherwise fall back to hard-coded defaults
+const leftSidebar =
+  page.data.leftColumnImages && page.data.leftColumnImages.length > 0
+    ? page.data.leftColumnImages.map((src) => ({
+        src,
+        alt: "Links page left image",
+      }))
+    : fallbackLeftSidebar;
+
+const rightSidebar =
+  page.data.rightColumnImages && page.data.rightColumnImages.length > 0
+    ? page.data.rightColumnImages.map((src) => ({
+        src,
+        alt: "Links page right image",
+      }))
+    : fallbackRightSidebar;
 ---
 
-<PageWithSidebars title={page.data.title} description={page.data.description} leftSidebar={leftSidebar} rightSidebar={rightSidebar}>
+<PageWithSidebars
+  title={page.data.title}
+  description={page.data.description}
+  headerImage={page.data.headerImage}
+  leftSidebar={leftSidebar}
+  rightSidebar={rightSidebar}
+>
   <article class="content">
     <Content />
   </article>

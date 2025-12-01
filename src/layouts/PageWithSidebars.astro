@@ -1,32 +1,34 @@
 ---
-import BaseLayout from './BaseLayout.astro';
-import { getImagePath } from '../utils/images';
+import BaseLayout from "./BaseLayout.astro";
+import { getImagePath } from "../utils/images";
 
 interface SidebarImage {
-  src: string;
-  alt?: string;
-  width?: number;
-  height?: number;
+	src: string;
+	alt?: string;
+	width?: number;
+	height?: number;
 }
 
 interface Props {
-  title: string;
-  description?: string;
-  leftSidebar?: SidebarImage[];
-  rightSidebar?: SidebarImage[];
-  bottomImage?: SidebarImage;
+	title: string;
+	description?: string;
+	headerImage?: string;
+	leftSidebar?: SidebarImage[];
+	rightSidebar?: SidebarImage[];
+	bottomImage?: SidebarImage;
 }
 
-const { 
-  title, 
-  description,
-  leftSidebar = [],
-  rightSidebar = [],
-  bottomImage
+const {
+	title,
+	description,
+	headerImage,
+	leftSidebar = [],
+	rightSidebar = [],
+	bottomImage,
 } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} headerImage={headerImage}>
   <div class="page-with-sidebars">
     {leftSidebar.length > 0 && (
       <aside class="sidebar sidebar-left">

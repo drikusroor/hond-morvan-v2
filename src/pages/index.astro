@@ -1,28 +1,60 @@
 ---
-import PageWithSidebars from '../layouts/PageWithSidebars.astro';
-import { getEntry } from 'astro:content';
-import { IMAGES } from '../utils/images';
+import PageWithSidebars from "../layouts/PageWithSidebars.astro";
+import { getEntry } from "astro:content";
+import { IMAGES } from "../utils/images";
 
-const page = await getEntry('pages', 'home');
+const page = await getEntry("pages", "home");
 const { Content } = await page.render();
 
-const leftSidebar = [
-  { src: IMAGES.HOME_LEFT, alt: 'HondMorvan home links sidebar' }
+// Fallback images (hard-coded defaults)
+const fallbackLeftSidebar = [
+  { src: IMAGES.HOME_LEFT, alt: "HondMorvan home links sidebar" },
 ];
 
-const rightSidebar = [
-  { src: IMAGES.HOME_RIGHT_1, alt: 'HondMorvan home rechts 1' },
-  { src: IMAGES.HOME_RIGHT_2, alt: 'HondMorvan home rechts 2' },
-  { src: IMAGES.HOME_RIGHT_3, alt: 'HondMorvan home rechts 3' }
+const fallbackRightSidebar = [
+  { src: IMAGES.HOME_RIGHT_1, alt: "HondMorvan home rechts 1" },
+  { src: IMAGES.HOME_RIGHT_2, alt: "HondMorvan home rechts 2" },
+  { src: IMAGES.HOME_RIGHT_3, alt: "HondMorvan home rechts 3" },
 ];
 
-const bottomImage = {
+const fallbackBottomImage = {
   src: IMAGES.HOME_BOTTOM,
-  alt: 'Gîte in de herfst - HondMorvan'
+  alt: "Gîte in de herfst - HondMorvan",
 };
+
+// Use CMS images if available, otherwise fall back to hard-coded defaults
+const leftSidebar =
+  page.data.leftColumnImages && page.data.leftColumnImages.length > 0
+    ? page.data.leftColumnImages.map((src) => ({
+        src,
+        alt: "Home page left image",
+      }))
+    : fallbackLeftSidebar;
+
+const rightSidebar =
+  page.data.rightColumnImages && page.data.rightColumnImages.length > 0
+    ? page.data.rightColumnImages.map((src) => ({
+        src,
+        alt: "Home page right image",
+      }))
+    : fallbackRightSidebar;
+
+const bottomImage = page.data.bottomImage
+  ? {
+      src: page.data.bottomImage,
+      alt: page.data.bottomImageAlt || "Home page bottom image",
+    }
+  : fallbackBottomImage;
 ---
 
-<PageWithSidebars title={page.data.title} description={page.data.description} leftSidebar={leftSidebar} rightSidebar={rightSidebar} bottomImage={bottomImage}>
+<PageWithSidebars
+  title={page.data.title}
+  description={page.data.description}
+  headerImage={page.data.headerImage}
+  leftSidebar={leftSidebar}
+  rightSidebar={rightSidebar}
+  bottomImage={bottomImage}
+>
   <article class="content">
     <Content />
   </article>
