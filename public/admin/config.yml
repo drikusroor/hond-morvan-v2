@@ -2,7 +2,7 @@ backend:
   name: github
   repo: drikusroor/hond-morvan-v2
   branch: main
-  base_url: sveltia-cms-auth.drikusroor.workers.dev
+  base_url: https://sveltia-cms-auth.drikusroor.workers.dev
 
 # Enable local backend for development (no file changes needed!)
 # local_backend: true
