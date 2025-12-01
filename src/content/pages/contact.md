@@ -13,7 +13,7 @@ rightColumnImages:
 
 Bel of mail gerust voor meer informatie en beschikbare periodes met Luda.
 
-**Tel. mobiel:** +31.6.51121073 (hele jaar)
+**Tel. mobiel:** [+31.6.51121073](tel:+31.6.51121073) (hele jaar)
 
 **Email:** <info@hondmorvan.nl>
 
