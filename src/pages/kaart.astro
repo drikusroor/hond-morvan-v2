@@ -1,8 +1,6 @@
 ---
 import PageWithSidebars from "../layouts/PageWithSidebars.astro";
 import { getEntry } from "astro:content";
-import firstMapImage from "../assets/images/hondmorvan-kaartoverzichtmidden.png";
-import secondMapImage from "../assets/images/kaart.png";
 import { Image } from "astro:assets";
 
 const page = await getEntry("pages", "kaart");
@@ -22,21 +20,6 @@ const { Content } = await page.render();
   rightSidebar={page.data.rightColumnImages}
 >
   <article class="content">
-    <a
-      href="https://maps.google.nl/maps?q=Dun-les-Places,+Frankrijk&hl=nl&ie=UTF8&ll=47.262456,3.817749&spn=1.179859,3.348083&sll=52.118552,5.209717&sspn=0.533771,1.674042&oq=dun+les+places&hnear=Dun-les-Places,+Nièvre,+Bourgondië,+Frankrijk&t=m&z=9"
-      target="_blank"
-      rel="noopener noreferrer"
-      title="Link naar locatie Dun-les-Places in Google Maps"
-    >
-      <Image
-        src={firstMapImage}
-        alt="Locatie van huisje in Regionaal Natuurpark Morvan"
-      />
-    </a>
-    <Image
-      src={secondMapImage}
-      alt="Kaart van routebeschrijving van Nederland naar de Morvan"
-    />
     <Content />
   </article>
 </PageWithSidebars>
