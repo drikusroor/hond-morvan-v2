@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "decap-server": "bunx decap-server"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.10",
