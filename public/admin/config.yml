@@ -5,7 +5,7 @@ backend:
   base_url: sveltia-cms-auth.drikusroor.workers.dev
 
 # Enable local backend for development (no file changes needed!)
-local_backend: true
+# local_backend: true
 
 # Publish mode
 publish_mode: editorial_workflow
