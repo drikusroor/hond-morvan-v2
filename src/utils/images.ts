@@ -85,7 +85,6 @@ export const getImage = (imagePath: string) => {
 			`"${imagePath}" does not exist in glob: "src/assets/images/*.{jpeg,jpg,png,gif,webp}"`,
 		);
 	} else {
-		console.log("getImage - matchedKey:", matchedKey);
 		imagePath = matchedKey;
 	}
 
