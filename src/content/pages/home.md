@@ -11,11 +11,11 @@ rightColumnImages:
 bottomImages:
   - /hond-morvan-v2/images/gite herfst.JPG
 ---
-# Honden welkom!
+# Honden welkom
 
-In Regional Natuurpark 'Le Morvan', op 700 km van Utrecht, staat dit sfeervolle stenen huisje met WiFi-verbinding en laadpaal op een flinke lap grond. Het ligt op ruime afstand van de hoofdwoning in een eigen omheinde boomgaard, op het hoogste punt van de streek (600 m). Bekijk het filmpje: [Youtube Hond Morvan](https://www.youtube.com/watch?v=JnK0PpgrLhA)
+In Regional Natuurpark 'Le Morvan', op 700 km van Utrecht, staat dit sfeervolle stenen huisje met WiFi-verbinding en laadpaal op een flinke lap grond. Het ligt op ruime afstand van de hoofdwoning in een eigen omheinde boomgaard, op het hoogste punt van de streek (600 m). Bekijk het filmpje:
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=JnK0PpgrLhA" target="_blank"><img src="http://img.youtube.com/vi/JnK0PpgrLhA/0.jpg" alt="IMAGE ALT TEXT HERE" width="480" height="360" border="0" /></a>
+<https://www.youtube.com/watch?v=JnK0PpgrLhA>
 
 Op het zuiden en westen kun je heerlijk op het terras zitten of onder de bomen in het gras. Het huisje is in de rug beschut door een strookje bos. Vóór heb je een mooi uitzicht over de vallei, waar tussen de meertjes zomer en winter de charolais-koeien grazen.
 

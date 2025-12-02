@@ -14,11 +14,13 @@ rightColumnImages:
 
 ## Video's
 
-Een indruk van het dorpsleven in Dun-les-Places, vertoond op tv France3:  
-<https://www.youtube.com/watch?v=9yo3m48jbdI>
+Een indruk van het dorpsleven in Dun-les-Places, vertoond op tv France3: 
+
+https://www.youtube.com/watch?v=9yo3m48jbdI
 
 Filmpje van de dieren om het huisje (boommarter, dassenfamilie, ree, specht) opgenomen door een van onze gasten:  
-<https://youtu.be/8Sjp4uZTMyQ>
+
+https://youtu.be/8Sjp4uZTMyQ
 
 ## Wandelen
 
