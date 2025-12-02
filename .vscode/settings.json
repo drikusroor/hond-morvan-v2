@@ -5,5 +5,8 @@
 	// Format Astro files with astro plugin
 	"[astro]": {
 		"editor.defaultFormatter": "astro-build.astro-vscode"
+	},
+	"[markdown]": {
+		"editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
 	}
 }
