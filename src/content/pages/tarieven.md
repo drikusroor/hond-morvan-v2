@@ -12,7 +12,7 @@ rightColumnImages:
   - /hond-morvan-v2/images/hondmorvan-tarievenrechts5.png
 ---
 
-## Tarieven 2025/2026
+# Tarieven 2025/2026
 
 - **April, mei:** €360 per week
 - **Juni, september, oktober:** €395 per week

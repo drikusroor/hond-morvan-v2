@@ -12,15 +12,19 @@ rightColumnImages:
   - /hond-morvan-v2/images/hondmorvan-linklrechts5.png
 ---
 
+# Links en Informatie
+
+Video's, wandelinformatie en nuttige links over Dun-les-Places en de Morvan.
+
 ## Video's
 
-Een indruk van het dorpsleven in Dun-les-Places, vertoond op tv France3: 
+Een indruk van het dorpsleven in Dun-les-Places, vertoond op tv France3:
 
-https://www.youtube.com/watch?v=9yo3m48jbdI
+<https://www.youtube.com/watch?v=9yo3m48jbdI>
 
 Filmpje van de dieren om het huisje (boommarter, dassenfamilie, ree, specht) opgenomen door een van onze gasten:  
 
-https://youtu.be/8Sjp4uZTMyQ
+<https://youtu.be/8Sjp4uZTMyQ>
 
 ## Wandelen
 
