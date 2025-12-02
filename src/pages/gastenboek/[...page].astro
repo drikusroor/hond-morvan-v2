@@ -1,0 +1,275 @@
+---
+import PageWithSidebars from "../../layouts/PageWithSidebars.astro";
+import { getCollection, getEntry } from "astro:content";
+import type { GetStaticPaths } from "astro";
+
+export const getStaticPaths = (async ({ paginate }) => {
+    const testimonials = await getCollection("testimonials");
+    const sortedTestimonials = testimonials.sort(
+        (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+    );
+
+    return paginate(sortedTestimonials, { pageSize: 20 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+
+// Get the gastenboek page data for potential CMS images
+const pageData = await getEntry("pages", "gastenboek");
+
+if (!pageData) {
+    throw new Error("Page 'gastenboek' not found");
+}
+
+const { Content } = await pageData.render();
+---
+
+<PageWithSidebars
+    title="Gastenboek"
+    description="Lees wat onze gasten zeggen over hun verblijf"
+    headerImage={pageData.data.headerImage}
+    leftSidebar={pageData.data.leftColumnImages}
+    rightSidebar={pageData.data.rightColumnImages}
+>
+    <h1>Gastenboek</h1>
+
+    {
+        page.currentPage === 1 && (
+            <div class="intro-content">
+                <Content />
+            </div>
+        )
+    }
+
+    <div class="testimonials">
+        {
+            page.data.map(async (testimonial) => {
+                const { Content } = await testimonial.render();
+                return (
+                    <article class="testimonial">
+                        <div class="testimonial-header">
+                            <div>
+                                <h3>{testimonial.data.name}</h3>
+                                {testimonial.data.location && (
+                                    <p class="location">
+                                        📍 {testimonial.data.location}
+                                    </p>
+                                )}
+                            </div>
+                            <div class="meta">
+                                <p class="date">
+                                    {testimonial.data.date.toLocaleDateString(
+                                        "nl-NL",
+                                        {
+                                            year: "numeric",
+                                            month: "long",
+                                            day: "numeric",
+                                        },
+                                    )}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="testimonial-content">
+                            <Content />
+                        </div>
+                    </article>
+                );
+            })
+        }
+    </div>
+
+    <nav class="pagination" aria-label="Paginering">
+        <div class="pagination-info">
+            Pagina {page.currentPage} van {page.lastPage} ({page.total} reacties)
+        </div>
+        <div class="pagination-links">
+            {
+                page.url.prev && (
+                    <a
+                        href={page.url.prev}
+                        class="pagination-link"
+                        rel="prev"
+                        title="Vorige pagina"
+                    >
+                        ←
+                    </a>
+                )
+            }
+
+            <div class="pagination-numbers">
+                {
+                    Array.from({ length: page.lastPage }, (_, i) => i + 1).map(
+                        (num) => {
+                            const url =
+                                num === 1
+                                    ? import.meta.env.BASE_URL + "gastenboek"
+                                    : import.meta.env.BASE_URL +
+                                      `gastenboek/${num}`;
+                            return (
+                                <a
+                                    href={url}
+                                    class:list={[
+                                        "pagination-number",
+                                        { active: num === page.currentPage },
+                                    ]}
+                                    aria-current={
+                                        num === page.currentPage
+                                            ? "page"
+                                            : undefined
+                                    }
+                                >
+                                    {num}
+                                </a>
+                            );
+                        },
+                    )
+                }
+            </div>
+
+            {
+                page.url.next && (
+                    <a
+                        href={page.url.next}
+                        class="pagination-link"
+                        rel="next"
+                        title="Volgende pagina"
+                    >
+                        →
+                    </a>
+                )
+            }
+        </div>
+    </nav>
+</PageWithSidebars>
+
+<style>
+    .intro-content {
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 2px solid var(--color-border, #e5e7eb);
+    }
+
+    .testimonials {
+        display: grid;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .testimonial {
+        border-bottom: 2px dashed var(--color-primary);
+    }
+
+    .testimonial-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
+
+    .testimonial h3 {
+        color: var(--color-primary);
+        margin: 0 0 0.25rem 0;
+    }
+
+    .location {
+        color: var(--color-text-light);
+        font-size: 0.9rem;
+        margin: 0;
+    }
+
+    .meta {
+        text-align: right;
+    }
+
+    .date {
+        color: var(--color-text-light);
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .testimonial-content {
+        color: var(--color-text);
+        line-height: 1.6;
+    }
+
+    .pagination {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 2px solid var(--color-border, #e5e7eb);
+    }
+
+    .pagination-info {
+        text-align: center;
+        color: var(--color-text-light);
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .pagination-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .pagination-link {
+        padding: 0.5rem 1rem;
+        background-color: var(--color-primary);
+        color: white !important;
+        text-decoration: none !important;
+        border-radius: 0.25rem;
+        transition: background-color 0.2s;
+    }
+
+    .pagination-link:hover {
+        background-color: var(--color-primary-dark, #2c5282);
+        color: white !important;
+    }
+
+    .pagination-numbers {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .pagination-number {
+        padding: 0.5rem 0.75rem;
+        text-decoration: none !important;
+        color: var(--color-text);
+        border: 1px solid var(--color-border, #e5e7eb);
+        border-radius: 0.25rem;
+        transition: all 0.2s;
+        min-width: 2.5rem;
+        text-align: center;
+    }
+
+    .pagination-number:hover {
+        background-color: var(--color-background-light, #f9fafb);
+        border-color: var(--color-primary);
+    }
+
+    .pagination-number.active {
+        background-color: var(--color-primary);
+        color: white;
+        border-color: var(--color-primary);
+        font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+        .testimonial-header {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .meta {
+            text-align: left;
+        }
+
+        .pagination-numbers {
+            order: -1;
+            width: 100%;
+        }
+    }
+</style>
