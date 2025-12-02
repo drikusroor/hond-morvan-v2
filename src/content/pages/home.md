@@ -49,4 +49,4 @@ Veel mensen, met en zonder hond(en), hebben intussen al genoten van dit heerlijk
 
 De weken lopen van zaterdag tot zaterdag, zie [tarieven en voorwaarden](/tarieven).
 
-*Van harte welkom in de mooie Morvan!*
+#### *Van harte welkom in de mooie Morvan!*
