@@ -1,6 +1,6 @@
 ---
 guestName: Henk, Drikus & Adriana
-startDate: 01/08/2026
-endDate: 08/08/2026
-status: gereserveerd
+startDate: 2026-08-01
+endDate: 2026-08-08
+status: bevestigd
 ---

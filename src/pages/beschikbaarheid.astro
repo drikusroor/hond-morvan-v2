@@ -1,12 +1,12 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
-const bookings = await getCollection('bookings');
+const bookings = await getCollection("bookings");
 
 // Sort bookings by start date
-const sortedBookings = bookings.sort((a, b) => 
-  a.data.startDate.getTime() - b.data.startDate.getTime()
+const sortedBookings = bookings.sort(
+  (a, b) => a.data.startDate.getTime() - b.data.startDate.getTime(),
 );
 
 // Get current date
@@ -14,96 +14,117 @@ const today = new Date();
 today.setHours(0, 0, 0, 0);
 
 // Filter future and current bookings
-const upcomingBookings = sortedBookings.filter(booking => 
-  booking.data.endDate >= today
+const upcomingBookings = sortedBookings.filter(
+  (booking) => booking.data.endDate >= today,
 );
 
 // Helper function to format dates
 const formatDate = (date: Date) => {
-  return new Intl.DateTimeFormat('nl-NL', { 
-    day: '2-digit', 
-    month: 'long', 
-    year: 'numeric' 
+  return new Intl.DateTimeFormat("nl-NL", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
   }).format(date);
 };
 
 // Helper function to get status color
 const getStatusColor = (status: string) => {
-  switch(status) {
-    case 'bevestigd': return '#dc2626'; // red
-    case 'gereserveerd': return '#ea580c'; // orange
-    case 'geblokkeerd': return '#6b7280'; // gray
-    default: return '#6b7280';
+  switch (status) {
+    case "bevestigd":
+      return "#dc2626"; // red
+    case "gereserveerd":
+      return "#ea580c"; // orange
+    case "geblokkeerd":
+      return "#6b7280"; // gray
+    default:
+      return "#6b7280";
   }
 };
 
 // Helper function to get status label
 const getStatusLabel = (status: string) => {
-  switch(status) {
-    case 'bevestigd': return 'Geboekt';
-    case 'gereserveerd': return 'Gereserveerd';
-    case 'geblokkeerd': return 'Niet beschikbaar';
-    default: return status;
+  switch (status) {
+    case "bevestigd":
+      return "Geboekt";
+    case "gereserveerd":
+      return "Gereserveerd";
+    case "geblokkeerd":
+      return "Niet beschikbaar";
+    default:
+      return status;
   }
 };
 
 // Generate calendar data for next 12 months
 const generateCalendarData = () => {
   const months = [];
-  
+
   for (let i = 0; i < 12; i++) {
     const monthDate = new Date(today.getFullYear(), today.getMonth() + i, 1);
     const year = monthDate.getFullYear();
     const monthIndex = monthDate.getMonth();
-    const monthName = new Intl.DateTimeFormat('nl-NL', { month: 'long', year: 'numeric' }).format(monthDate);
-    
+    const monthName = new Intl.DateTimeFormat("nl-NL", {
+      month: "long",
+      year: "numeric",
+    }).format(monthDate);
+
     const firstDay = new Date(year, monthIndex, 1);
     const lastDay = new Date(year, monthIndex + 1, 0);
     const daysInMonth = lastDay.getDate();
     const startingDayOfWeek = firstDay.getDay();
-    
+
     const days = [];
-    
+
     // Add empty cells
-    for (let j = 0; j < (startingDayOfWeek === 0 ? 6 : startingDayOfWeek - 1); j++) {
+    for (
+      let j = 0;
+      j < (startingDayOfWeek === 0 ? 6 : startingDayOfWeek - 1);
+      j++
+    ) {
       days.push({ day: null, bookings: [] });
     }
-    
+
     // Add actual days
     for (let day = 1; day <= daysInMonth; day++) {
       const currentDate = new Date(year, monthIndex, day);
       currentDate.setHours(0, 0, 0, 0);
-      
-      const dayBookings = upcomingBookings.filter(booking => {
+
+      const dayBookings = upcomingBookings.filter((booking) => {
         const start = new Date(booking.data.startDate);
         const end = new Date(booking.data.endDate);
         start.setHours(0, 0, 0, 0);
         end.setHours(0, 0, 0, 0);
         return currentDate >= start && currentDate <= end;
       });
-      
-      days.push({ 
-        day, 
+
+      days.push({
+        day,
         bookings: dayBookings,
-        status: dayBookings.length > 0 ? dayBookings[0].data.status : null
+        status: dayBookings.length > 0 ? dayBookings[0].data.status : null,
       });
     }
-    
+
     months.push({ monthName, days });
   }
-  
+
   return months;
 };
 
 const calendarMonths = generateCalendarData();
 ---
 
-<BaseLayout title="Beschikbaarheid" description="Bekijk de beschikbaarheid van ons vakantiehuis">
+<BaseLayout
+  title="Beschikbaarheid"
+  description="Bekijk de beschikbaarheid van ons vakantiehuis"
+>
   <div class="container">
     <h1>Beschikbaarheid</h1>
-    
+
     <div class="intro">
-      <p>Hieronder ziet u de beschikbaarheid van ons vakantiehuis. De gekleurde periodes zijn al geboekt of gereserveerd.</p>
+      <p>
+        Hieronder ziet u de beschikbaarheid van ons vakantiehuis. De gekleurde
+        periodes zijn al geboekt of gereserveerd.
+      </p>
       <div class="legend">
         <div class="legend-item">
           <span class="legend-color" style="background-color: #dc2626;"></span>
@@ -123,57 +144,74 @@ const calendarMonths = generateCalendarData();
     <div class="availability-view">
       <h2>Kalenderoverzicht</h2>
       <div class="calendar-grid">
-        {calendarMonths.map(({ monthName, days }) => (
-          <div class="calendar-month">
-            <h3>{monthName}</h3>
-            <div class="calendar-days">
-              <div class="day-header">Ma</div>
-              <div class="day-header">Di</div>
-              <div class="day-header">Wo</div>
-              <div class="day-header">Do</div>
-              <div class="day-header">Vr</div>
-              <div class="day-header">Za</div>
-              <div class="day-header">Zo</div>
-              {days.map(({ day, status }) => (
-                <div 
-                  class:list={['calendar-day', { empty: !day, booked: status }]}
-                  style={status ? `background-color: ${getStatusColor(status)}; color: white;` : ''}
-                  title={status ? getStatusLabel(status) : ''}
-                >
-                  {day || ''}
-                </div>
-              ))}
+        {
+          calendarMonths.map(({ monthName, days }) => (
+            <div class="calendar-month">
+              <h3>{monthName}</h3>
+              <div class="calendar-days">
+                <div class="day-header">Ma</div>
+                <div class="day-header">Di</div>
+                <div class="day-header">Wo</div>
+                <div class="day-header">Do</div>
+                <div class="day-header">Vr</div>
+                <div class="day-header">Za</div>
+                <div class="day-header">Zo</div>
+                {days.map(({ day, status }) => (
+                  <div
+                    class:list={[
+                      "calendar-day",
+                      { empty: !day, booked: status },
+                    ]}
+                    style={
+                      status
+                        ? `background-color: ${getStatusColor(status)}; color: white;`
+                        : ""
+                    }
+                    title={status ? getStatusLabel(status) : ""}
+                  >
+                    {day || ""}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </div>
 
     <div class="bookings-list">
       <h2>Geboekte periodes</h2>
-      {upcomingBookings.length === 0 ? (
-        <p class="no-bookings">Er zijn momenteel geen boekingen.</p>
-      ) : (
-        <div class="bookings">
-          {upcomingBookings.map(booking => (
-            <div class="booking-card">
-              <div class="booking-dates">
-                <strong>{formatDate(booking.data.startDate)}</strong>
-                <span class="arrow">→</span>
-                <strong>{formatDate(booking.data.endDate)}</strong>
+      {
+        upcomingBookings.length === 0 ? (
+          <p class="no-bookings">Er zijn momenteel geen boekingen.</p>
+        ) : (
+          <div class="bookings">
+            {upcomingBookings.map((booking) => (
+              <div class="booking-card">
+                <div class="booking-dates">
+                  <strong>{formatDate(booking.data.startDate)}</strong>
+                  <span class="arrow">→</span>
+                  <strong>{formatDate(booking.data.endDate)}</strong>
+                </div>
+                <div
+                  class="booking-status"
+                  style={`color: ${getStatusColor(booking.data.status)}`}
+                >
+                  {getStatusLabel(booking.data.status)}
+                </div>
               </div>
-              <div class="booking-status" style={`color: ${getStatusColor(booking.data.status)}`}>
-                {getStatusLabel(booking.data.status)}
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+            ))}
+          </div>
+        )
+      }
     </div>
 
     <div class="contact-cta">
       <h2>Interesse in een boeking?</h2>
-      <p>Neem contact met ons op om beschikbaarheid te bespreken en uw verblijf te reserveren.</p>
+      <p>
+        Neem contact met ons op om beschikbaarheid te bespreken en uw verblijf
+        te reserveren.
+      </p>
       <a href="/hond-morvan-v2/contact" class="btn">Contacteer ons</a>
     </div>
   </div>
@@ -367,19 +405,25 @@ const calendarMonths = generateCalendarData();
   .btn {
     display: inline-block;
     padding: 0.75rem 2rem;
-    background: linear-gradient(135deg, #ffffff 0%, #89CFF0 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #89cff0 100%);
     color: #993300;
     text-decoration: none;
     border-radius: 0.375rem;
     font-weight: 600;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 15px rgba(137, 207, 240, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s;
+    box-shadow:
+      0 4px 15px rgba(137, 207, 240, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
   }
 
   .btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(153, 51, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    background: linear-gradient(135deg, #89CFF0 0%, #ffffff 100%);
+    box-shadow:
+      0 8px 25px rgba(153, 51, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    background: linear-gradient(135deg, #89cff0 0%, #ffffff 100%);
   }
 
   @media (max-width: 768px) {
