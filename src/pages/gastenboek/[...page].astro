@@ -49,7 +49,7 @@ const { Content } = await pageData.render();
                     <article class="testimonial">
                         <div class="testimonial-header">
                             <div>
-                                <h3>{testimonial.data.name}</h3>
+                                <h4>{testimonial.data.name}</h4>
                                 {testimonial.data.location && (
                                     <p class="location">
                                         📍 {testimonial.data.location}
@@ -170,8 +170,8 @@ const { Content } = await pageData.render();
         margin-bottom: 1rem;
     }
 
-    .testimonial h3 {
-        color: var(--color-primary);
+    .testimonial h4 {
+        color: var(--color-text-light);
         margin: 0 0 0.25rem 0;
     }
 
@@ -194,6 +194,7 @@ const { Content } = await pageData.render();
     .testimonial-content {
         color: var(--color-text);
         line-height: 1.6;
+        font-size: 0.825rem;
     }
 
     .pagination {
