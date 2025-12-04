@@ -64,6 +64,13 @@ const baseUrl = import.meta.env.BASE_URL || "/";
           </li>
           <li>
             <a
+              href={`${baseUrl}fotogalerij`}
+              class={currentPath.includes("/fotogalerij") ? "active" : ""}
+              >Fotogalerij</a
+            >
+          </li>
+          <li>
+            <a
               href={`${baseUrl}kaart`}
               class={currentPath.includes("/kaart") ? "active" : ""}>Kaart</a
             >

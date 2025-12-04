@@ -1,0 +1,75 @@
+---
+import { Image } from "astro:assets";
+import { getImage } from "../utils/images";
+
+interface Props {
+    images: string[];
+}
+
+const { images = [] } = Astro.props;
+---
+
+{
+    images.length > 0 && (
+        <div class="gallery">
+            {images.map((imagePath) => (
+                <div class="gallery-item">
+                    <Image
+                        src={getImage(imagePath)}
+                        alt="Gallery image"
+                        class="gallery-image"
+                    />
+                </div>
+            ))}
+        </div>
+    )
+}
+
+<style>
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+        padding: 1rem 0;
+    }
+
+    .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        background: white;
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+
+    .gallery-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .gallery-image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        aspect-ratio: 4 / 3;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .gallery {
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 0.75rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .gallery {
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+        }
+    }
+</style>

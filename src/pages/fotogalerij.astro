@@ -1,0 +1,32 @@
+---
+import PageWithSidebars from "../layouts/PageWithSidebars.astro";
+import Gallery from "../components/Gallery.astro";
+import { getEntry } from "astro:content";
+
+const page = await getEntry("pages", "fotogalerij");
+
+if (!page) {
+  throw new Error("Page 'fotogalerij' not found");
+}
+
+const { Content } = await page.render();
+---
+
+<PageWithSidebars
+  title={page.data.title}
+  description={page.data.description}
+  headerImage={page.data.headerImage}
+  leftSidebar={page.data.leftColumnImages}
+  rightSidebar={page.data.rightColumnImages}
+>
+  <article class="content">
+    <Content />
+    {page.data.galleryImages && <Gallery images={page.data.galleryImages} />}
+  </article>
+</PageWithSidebars>
+
+<style>
+  .content {
+    padding: 0;
+  }
+</style>

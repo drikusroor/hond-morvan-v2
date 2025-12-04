@@ -38,6 +38,19 @@ collections:
           - {label: "Foto's rechterkolom", name: "rightColumnImages", widget: "list", required: false, min: 0, max: 5, field: {label: "Afbeelding", name: "image", widget: "image"}}
           - {label: "Onderste afbeelding(en)", name: "bottomImages", widget: "list", required: false, min: 0, max: 5, field: {label: "Afbeelding", name: "image", widget: "image"}}
       
+      - label: "Fotogalerij"
+        name: "fotogalerij"
+        file: "src/content/pages/fotogalerij.md"
+        fields:
+          - {label: "Titel", name: "title", widget: "string"}
+          - {label: "Header afbeelding", name: "headerImage", widget: "image", required: false}
+          - {label: "Beschrijving", name: "description", widget: "text", required: false}
+          - {label: "Inhoud", name: "body", widget: "markdown"}
+          - {label: "Galerij foto's", name: "galleryImages", widget: "list", required: false, field: {label: "Afbeelding", name: "image", widget: "image"}}
+          - {label: "Foto's linkerkolom", name: "leftColumnImages", widget: "list", required: false, min: 0, max: 5, field: {label: "Afbeelding", name: "image", widget: "image"}}
+          - {label: "Foto's rechterkolom", name: "rightColumnImages", widget: "list", required: false, min: 0, max: 5, field: {label: "Afbeelding", name: "image", widget: "image"}}
+          - {label: "Onderste afbeelding(en)", name: "bottomImages", widget: "list", required: false, min: 0, max: 5, field: {label: "Afbeelding", name: "image", widget: "image"}}
+
       - label: "Kaart"
         name: "kaart"
         file: "src/content/pages/kaart.md"
