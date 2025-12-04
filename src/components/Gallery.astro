@@ -35,7 +35,9 @@ const { images = [] } = Astro.props;
 <script>
     const gallery = document.getElementById("gallery");
     const lightbox = document.getElementById("lightbox");
-    const lightboxImage = lightbox?.querySelector(".lightbox-image") as HTMLImageElement;
+    const lightboxImage = lightbox?.querySelector(
+        ".lightbox-image",
+    ) as HTMLImageElement;
     const closeBtn = lightbox?.querySelector(".lightbox-close");
     const prevBtn = lightbox?.querySelector(".lightbox-prev");
     const nextBtn = lightbox?.querySelector(".lightbox-next");
@@ -49,7 +51,7 @@ const { images = [] } = Astro.props;
         gallery.addEventListener("click", (e) => {
             const target = e.target as HTMLElement;
             const item = target.closest(".gallery-item") as HTMLElement;
-            
+
             if (item) {
                 currentIndex = parseInt(item.dataset.index || "0");
                 showLightbox();
@@ -59,7 +61,7 @@ const { images = [] } = Astro.props;
 
     function showLightbox() {
         if (!images || !lightbox || !lightboxImage) return;
-        
+
         const img = images[currentIndex];
         lightboxImage.src = img.src;
         lightbox.style.display = "flex";
