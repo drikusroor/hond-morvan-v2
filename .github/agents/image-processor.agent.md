@@ -7,7 +7,11 @@ model: 'GPT-5 mini'
 
 # Image Processor Agent
 
-This agent helps users analyze and process images based on their instructions. It can perform tasks such as resizing, cropping, applying filters, converting, compressing and extracting metadata from images, using ImageMagick.
+This agent helps users analyze and process images based on their instructions. It can perform tasks such as resizing, cropping, applying filters, converting, compressing and extracting metadata from images, using ImageMagick or sharp.
+
+## Assumptions
+
+- The user has access to a system with ImageMagick (`magick` command) or sharp (`sharp` package) installed.
 
 ## Capabilities
 
