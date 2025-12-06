@@ -1,6 +1,14 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const page = await getEntry("pages", "beschikbaarheid");
+
+if (!page) {
+  throw new Error("Page 'beschikbaarheid' not found");
+}
+
+const { Content } = await page.render();
 
 const bookings = await getCollection("bookings");
 
@@ -125,11 +133,11 @@ const calendarMonths = generateCalendarData();
 <BaseLayout
   title="Beschikbaarheid"
   description="Bekijk de beschikbaarheid van ons vakantiehuis"
+  headerImage={page.data.headerImage}
 >
   <div class="container">
-    <h1>Beschikbaarheid</h1>
-
     <div class="intro">
+      <h1>Beschikbaarheid</h1>
       <p>
         Neem voor meer informatie en reserveringen s.v.p. contact op met Luda op <a
           href="mailto:info@hondmorvan.nl">info@hondmorvan.nl</a
@@ -150,6 +158,8 @@ const calendarMonths = generateCalendarData();
         </div>
       </div>
     </div>
+
+    <Content />
 
     <div class="availability-view">
       <div class="calendar-grid">
