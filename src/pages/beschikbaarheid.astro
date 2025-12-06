@@ -30,9 +30,9 @@ const formatDate = (date: Date) => {
 // Helper function to get status color
 const getStatusColor = (status: string) => {
   switch (status) {
-    case "bevestigd":
-      return "#dc2626"; // red
     case "gereserveerd":
+      return "#dc2626"; // red
+    case "optie":
       return "#fbbf24"; // yellow
     case "geblokkeerd":
       return "#4b5563"; // dark gray
@@ -44,9 +44,9 @@ const getStatusColor = (status: string) => {
 // Helper function to get status label
 const getStatusLabel = (status: string) => {
   switch (status) {
-    case "bevestigd":
-      return "Gereserveerd";
     case "gereserveerd":
+      return "Gereserveerd";
+    case "optie":
       return "Optie";
     case "geblokkeerd":
       return "Niet beschikbaar";

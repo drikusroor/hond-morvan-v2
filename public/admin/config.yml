@@ -145,5 +145,5 @@ collections:
       - {label: "Gast naam (optioneel)", name: "guestName", widget: "string", required: false, hint: "Laat leeg als u anoniem wilt blijven"}
       - {label: "Start datum", name: "startDate", widget: "datetime", format: "YYYY-MM-DD", time_format: false}
       - {label: "Eind datum", name: "endDate", widget: "datetime", format: "YYYY-MM-DD", time_format: false}
-      - {label: "Status", name: "status", widget: "select", options: ["gereserveerd", "bevestigd", "geblokkeerd"], default: "gereserveerd", hint: "Gereserveerd = voorlopige boeking, Bevestigd = definitieve boeking, Geblokkeerd = niet beschikbaar"}
+      - {label: "Status", name: "status", widget: "select", options: ["gereserveerd", "optie", "geblokkeerd"], default: "optie", hint: "Gereserveerd = definitieve reservering, Optie = voorlopige boeking, Geblokkeerd = niet beschikbaar"}
       - {label: "Notities (privé)", name: "notes", widget: "text", required: false, hint: "Deze notities zijn alleen voor u zichtbaar"}

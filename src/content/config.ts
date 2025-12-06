@@ -33,9 +33,7 @@ const bookings = defineCollection({
 		guestName: z.string().optional(),
 		startDate: z.coerce.date(),
 		endDate: z.coerce.date(),
-		status: z
-			.enum(["gereserveerd", "bevestigd", "geblokkeerd"])
-			.default("gereserveerd"),
+		status: z.enum(["gereserveerd", "optie", "geblokkeerd"]).default("optie"),
 		notes: z.string().optional(),
 	}),
 });
