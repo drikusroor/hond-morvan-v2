@@ -131,8 +131,9 @@ const calendarMonths = generateCalendarData();
 ---
 
 <BaseLayout
-  title="Beschikbaarheid"
-  description="Bekijk de beschikbaarheid van ons vakantiehuis"
+  title={page.data.title || "Beschikbaarheid"}
+  description={page.data.description ||
+    "Bekijk de beschikbaarheid van ons vakantiehuis"}
   headerImage={page.data.headerImage}
 >
   <div class="container">
@@ -212,7 +213,6 @@ const calendarMonths = generateCalendarData();
   h1 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
-    color: #1f2937;
   }
 
   h2 {
