@@ -1,7 +1,7 @@
 ---
-title: "Tarieven en Voorwaarden"
-description: "Prijzen en huurvoorwaarden voor Gîte Les Bourdeaux"
-headerImage: /images/hondmorvan-header1.png
+title: Tarieven en Voorwaarden
+headerImage: /hond-morvan-v2/images/hondmorvan-header1.png
+description: Prijzen en huurvoorwaarden voor Gîte Les Bourdeaux
 leftColumnImages:
   - /images/hondmorvan-tarievenlinks1.png
   - /images/hondmorvan-tarievenlinks2.png
@@ -12,11 +12,11 @@ rightColumnImages:
   - /images/hondmorvan-tarievenrechts5.png
 ---
 
-# Tarieven 2025/2026
+# Tarieven 2026
 
-- **April, mei:** €360 per week
-- **Juni, september, oktober:** €395 per week
-- **Juli en augustus:** €425 per week
+* **April, mei:** €360 per week
+* **Juni, september, oktober:** €395 per week
+* **Juli en augustus:** €425 per week
 
 Voor het linnengoed (bedlinnen, bad- en keukendoeken) komt er €25 (€35) per week voor 2 (4) personen bij. Maar u mag het ook zelf meenemen.
 
