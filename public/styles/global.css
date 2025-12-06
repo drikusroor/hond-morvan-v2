@@ -34,6 +34,18 @@ body {
 	background-color: var(--color-background);
 }
 
+/** Utility Classes **/
+
+.text-center {
+	text-align: center;
+}
+
+.italic {
+	font-style: italic;
+}
+
+/** END: Utility Classes **/
+
 .container {
 	max-width: var(--max-width);
 	margin: 0 auto;
