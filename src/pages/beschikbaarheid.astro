@@ -33,11 +33,11 @@ const getStatusColor = (status: string) => {
     case "bevestigd":
       return "#dc2626"; // red
     case "gereserveerd":
-      return "#ea580c"; // orange
+      return "#fbbf24"; // yellow
     case "geblokkeerd":
-      return "#6b7280"; // gray
+      return "#4b5563"; // dark gray
     default:
-      return "#6b7280";
+      return "#4b5563";
   }
 };
 
@@ -45,9 +45,9 @@ const getStatusColor = (status: string) => {
 const getStatusLabel = (status: string) => {
   switch (status) {
     case "bevestigd":
-      return "Geboekt";
-    case "gereserveerd":
       return "Gereserveerd";
+    case "gereserveerd":
+      return "Optie";
     case "geblokkeerd":
       return "Niet beschikbaar";
     default:
@@ -55,12 +55,21 @@ const getStatusLabel = (status: string) => {
   }
 };
 
-// Generate calendar data for next 12 months
+// Generate calendar data for April through November
 const generateCalendarData = () => {
   const months = [];
 
-  for (let i = 0; i < 12; i++) {
-    const monthDate = new Date(today.getFullYear(), today.getMonth() + i, 1);
+  // Determine which year's season to show
+  // If we're in Dec-March, show the upcoming season (next year)
+  // If we're in Apr-Nov, show current year's season
+  const currentMonth = today.getMonth();
+  const currentYear = today.getFullYear();
+  const startYear =
+    currentMonth >= 11 || currentMonth < 3 ? currentYear + 1 : currentYear;
+
+  // Generate April (3) through November (10) = 8 months
+  for (let m = 3; m <= 10; m++) {
+    const monthDate = new Date(startYear, m, 1);
     const year = monthDate.getFullYear();
     const monthIndex = monthDate.getMonth();
     const monthName = new Intl.DateTimeFormat("nl-NL", {
@@ -122,27 +131,27 @@ const calendarMonths = generateCalendarData();
 
     <div class="intro">
       <p>
-        Hieronder ziet u de beschikbaarheid van ons vakantiehuis. De gekleurde
-        periodes zijn al geboekt of gereserveerd.
+        Neem voor meer informatie en reserveringen s.v.p. contact op met Luda op <a
+          href="mailto:info@hondmorvan.nl">info@hondmorvan.nl</a
+        > of <a href="tel:+31651121073">+31.651121073</a>.
       </p>
       <div class="legend">
         <div class="legend-item">
           <span class="legend-color" style="background-color: #dc2626;"></span>
-          <span>Geboekt (definitief)</span>
+          <span>Gereserveerd</span>
         </div>
         <div class="legend-item">
-          <span class="legend-color" style="background-color: #ea580c;"></span>
-          <span>Gereserveerd (optie)</span>
+          <span class="legend-color" style="background-color: #fbbf24;"></span>
+          <span>Optie</span>
         </div>
         <div class="legend-item">
-          <span class="legend-color" style="background-color: #6b7280;"></span>
+          <span class="legend-color" style="background-color: #4b5563;"></span>
           <span>Niet beschikbaar</span>
         </div>
       </div>
     </div>
 
     <div class="availability-view">
-      <h2>Kalenderoverzicht</h2>
       <div class="calendar-grid">
         {
           calendarMonths.map(({ monthName, days }) => (
@@ -177,42 +186,6 @@ const calendarMonths = generateCalendarData();
           ))
         }
       </div>
-    </div>
-
-    <div class="bookings-list">
-      <h2>Geboekte periodes</h2>
-      {
-        upcomingBookings.length === 0 ? (
-          <p class="no-bookings">Er zijn momenteel geen boekingen.</p>
-        ) : (
-          <div class="bookings">
-            {upcomingBookings.map((booking) => (
-              <div class="booking-card">
-                <div class="booking-dates">
-                  <strong>{formatDate(booking.data.startDate)}</strong>
-                  <span class="arrow">→</span>
-                  <strong>{formatDate(booking.data.endDate)}</strong>
-                </div>
-                <div
-                  class="booking-status"
-                  style={`color: ${getStatusColor(booking.data.status)}`}
-                >
-                  {getStatusLabel(booking.data.status)}
-                </div>
-              </div>
-            ))}
-          </div>
-        )
-      }
-    </div>
-
-    <div class="contact-cta">
-      <h2>Interesse in een boeking?</h2>
-      <p>
-        Neem contact met ons op om beschikbaarheid te bespreken en uw verblijf
-        te reserveren.
-      </p>
-      <a href="/hond-morvan-v2/contact" class="btn">Contacteer ons</a>
     </div>
   </div>
 </BaseLayout>
@@ -274,8 +247,8 @@ const calendarMonths = generateCalendarData();
 
   .calendar-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
     margin-top: 1.5rem;
   }
 
@@ -283,12 +256,12 @@ const calendarMonths = generateCalendarData();
     background: white;
     border: 1px solid #e5e7eb;
     border-radius: 0.5rem;
-    padding: 1rem;
+    padding: 0.75rem;
   }
 
   .calendar-month h3 {
-    font-size: 1.125rem;
-    margin-bottom: 1rem;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
     color: #1f2937;
     text-align: center;
   }
