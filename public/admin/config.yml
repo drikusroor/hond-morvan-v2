@@ -17,8 +17,8 @@ locale: nl
 media_folder: "src/assets/images"
 public_folder: "../../assets/images"
 
-site_url: "https://drikusroor.github.io/hond-morvan-v2"
-display_url: "https://drikusroor.github.io/hond-morvan-v2"
+site_url: "https://hondmorvan.nl"
+display_url: "https://hondmorvan.nl"
 
 # Collections
 collections:

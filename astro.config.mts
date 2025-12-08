@@ -7,11 +7,11 @@ import { youtubeEmbed } from "./src/plugins/youtubeEmbed";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://drikusroor.github.io/hond-morvan-v2",
+	site: "https://hondmorvan.nl",
 	integrations: [mdx(), sitemap()],
 
 	// GitHub Pages deployment with custom domain
-	base: "/hond-morvan-v2/",
+	base: "/",
 
 	// Build configuration
 	build: {
@@ -20,10 +20,7 @@ export default defineConfig({
 
 	// Markdown configuration
 	markdown: {
-		rehypePlugins: [
-			[targetBlank, { domain: ["drikusroor.github.io"] }],
-			youtubeEmbed,
-		],
+		rehypePlugins: [[targetBlank, { domain: ["hondmorvan.nl"] }], youtubeEmbed],
 		shikiConfig: {
 			theme: "github-light",
 		},
