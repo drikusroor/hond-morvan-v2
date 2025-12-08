@@ -1,6 +1,6 @@
 ---
-import PageWithSidebars from "../layouts/PageWithSidebars.astro";
-import { getEntry } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const page = await getEntry("pages", "contact");
 
@@ -9,22 +9,317 @@ if (!page) {
 }
 
 const { Content } = await page.render();
+
+const bookings = await getCollection("bookings");
+
+// Sort bookings by start date
+const sortedBookings = bookings.sort(
+	(a, b) => a.data.startDate.getTime() - b.data.startDate.getTime(),
+);
+
+// Get current date
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+
+// Filter future and current bookings
+const upcomingBookings = sortedBookings.filter(
+	(booking) => booking.data.endDate >= today,
+);
+
+// Helper function to get status color
+const getStatusColor = (status: string) => {
+	switch (status) {
+		case "gereserveerd":
+			return "#dc2626"; // red
+		case "optie":
+			return "#fbbf24"; // yellow
+		case "geblokkeerd":
+			return "#4b5563"; // dark gray
+		default:
+			return "#4b5563";
+	}
+};
+
+// Helper function to get status label
+const getStatusLabel = (status: string) => {
+	switch (status) {
+		case "gereserveerd":
+			return "Gereserveerd";
+		case "optie":
+			return "Optie";
+		case "geblokkeerd":
+			return "Niet beschikbaar";
+		default:
+			return status;
+	}
+};
+
+// Generate calendar data for April through November
+const generateCalendarData = () => {
+	const months = [];
+
+	// Determine which year's season to show
+	// If we're in Dec-March, show the upcoming season (next year)
+	// If we're in Apr-Nov, show current year's season
+	const currentMonth = today.getMonth();
+	const currentYear = today.getFullYear();
+	const startYear =
+		currentMonth >= 11 || currentMonth < 3 ? currentYear + 1 : currentYear;
+
+	// Generate April (3) through November (10) = 8 months
+	for (let m = 3; m <= 10; m++) {
+		const monthDate = new Date(startYear, m, 1);
+		const year = monthDate.getFullYear();
+		const monthIndex = monthDate.getMonth();
+		const monthName = new Intl.DateTimeFormat("nl-NL", {
+			month: "long",
+			year: "numeric",
+		}).format(monthDate);
+
+		const firstDay = new Date(year, monthIndex, 1);
+		const lastDay = new Date(year, monthIndex + 1, 0);
+		const daysInMonth = lastDay.getDate();
+		const startingDayOfWeek = firstDay.getDay();
+
+		const days = [];
+
+		// Add empty cells
+		for (
+			let j = 0;
+			j < (startingDayOfWeek === 0 ? 6 : startingDayOfWeek - 1);
+			j++
+		) {
+			days.push({ day: null, bookings: [] });
+		}
+
+		// Add actual days
+		for (let day = 1; day <= daysInMonth; day++) {
+			const currentDate = new Date(year, monthIndex, day);
+			currentDate.setHours(0, 0, 0, 0);
+
+			const dayBookings = upcomingBookings.filter((booking) => {
+				const start = new Date(booking.data.startDate);
+				const end = new Date(booking.data.endDate);
+				start.setHours(0, 0, 0, 0);
+				end.setHours(0, 0, 0, 0);
+				return currentDate >= start && currentDate <= end;
+			});
+
+			days.push({
+				day,
+				bookings: dayBookings,
+				status:
+					dayBookings.length > 0 ? dayBookings[0].data.status : null,
+			});
+		}
+
+		months.push({ monthName, days });
+	}
+
+	return months;
+};
+
+const calendarMonths = generateCalendarData();
 ---
 
-<PageWithSidebars
-	title={page.data.title}
-	description={page.data.description}
+<BaseLayout
+	title={page.data.title || "Contact"}
+	description={page.data.description ||
+		"Neem contact op voor meer informatie en beschikbaarheid"}
 	headerImage={page.data.headerImage}
-	leftSidebar={page.data.leftColumnImages}
-	rightSidebar={page.data.rightColumnImages}
 >
-	<article class="content">
-		<Content />
-	</article>
-</PageWithSidebars>
+	<div class="container">
+		<div class="intro-block">
+			<article class="content">
+				<Content />
+			</article>
+
+			<div class="legend">
+				<div class="legend-item">
+					<span
+						class="legend-color"
+						style="background-color: #dc2626;"></span>
+					<span>Gereserveerd</span>
+				</div>
+				<div class="legend-item">
+					<span
+						class="legend-color"
+						style="background-color: #fbbf24;"></span>
+					<span>Optie</span>
+				</div>
+				<div class="legend-item">
+					<span
+						class="legend-color"
+						style="background-color: #4b5563;"></span>
+					<span>Niet beschikbaar</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="availability-view">
+			<div class="calendar-grid">
+				{
+					calendarMonths.map(({ monthName, days }) => (
+						<div class="calendar-month">
+							<h3>{monthName}</h3>
+							<div class="calendar-days">
+								<div class="day-header">Ma</div>
+								<div class="day-header">Di</div>
+								<div class="day-header">Wo</div>
+								<div class="day-header">Do</div>
+								<div class="day-header">Vr</div>
+								<div class="day-header">Za</div>
+								<div class="day-header">Zo</div>
+								{days.map(({ day, status }) => (
+									<div
+										class:list={[
+											"calendar-day",
+											{ empty: !day, booked: status },
+										]}
+										style={
+											status
+												? `background-color: ${getStatusColor(status)}; color: white;`
+												: ""
+										}
+										title={
+											status ? getStatusLabel(status) : ""
+										}
+									>
+										{day || ""}
+									</div>
+								))}
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</div>
+
+		<h3 class="text-center italic">Welkom in de mooie Morvan!</h3>
+	</div>
+</BaseLayout>
 
 <style>
-	.content {
-		padding: 0;
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 2rem 1rem;
+		.intro-block {
+			background-color: #ffffff;
+			border: 1px solid #e5e7eb;
+			border-radius: 0.5rem;
+			padding: 2rem;
+			margin-bottom: 2rem;
+		}
+
+		.content {
+			padding: 0;
+			margin-bottom: 1.5rem;
+		}
+
+		.legend {
+			display: flex;
+			gap: 2rem;
+			flex-wrap: wrap;
+			padding-top: 1.5rem;
+			border-top: 1px solid #e5e7eb;
+		}
+		border-radius: 0.5rem;
+		margin-bottom: 2rem;
+	}
+
+	.legend-item {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.legend-color {
+		width: 24px;
+		height: 24px;
+		border-radius: 4px;
+		display: inline-block;
+	}
+
+	.availability-view {
+		margin: 2rem 0;
+	}
+
+	.calendar-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1rem;
+		margin-top: 1.5rem;
+	}
+
+	.calendar-month {
+		background: white;
+		border: 1px solid #e5e7eb;
+		border-radius: 0.5rem;
+		padding: 0.75rem;
+	}
+
+	.calendar-month h3 {
+		font-size: 1rem;
+		margin-bottom: 0.75rem;
+		color: #1f2937;
+		text-align: center;
+	}
+
+	.calendar-days {
+		display: grid;
+		grid-template-columns: repeat(7, 1fr);
+		gap: 2px;
+	}
+
+	.day-header {
+		text-align: center;
+		font-weight: 600;
+		font-size: 0.875rem;
+		color: #6b7280;
+		padding: 0.5rem 0;
+	}
+
+	.calendar-day {
+		aspect-ratio: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 0.875rem;
+		background-color: #f9fafb;
+		border-radius: 4px;
+		cursor: default;
+		transition: all 0.2s;
+	}
+
+	.calendar-day.empty {
+		background-color: transparent;
+	}
+
+	.calendar-day.booked {
+		font-weight: 600;
+	}
+
+	.calendar-day:not(.empty):not(.booked):hover {
+		background-color: #e5e7eb;
+	}
+
+	.text-center {
+		text-align: center;
+	}
+
+	.italic {
+		font-style: italic;
+	}
+
+	@media (max-width: 768px) {
+		.calendar-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.legend {
+			flex-direction: column;
+			gap: 0.75rem;
+		}
 	}
 </style>
