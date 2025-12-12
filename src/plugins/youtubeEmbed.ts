@@ -27,6 +27,36 @@ export const youtubeEmbed: RehypePlugin = () => {
 					if (match) {
 						const videoId = match[1];
 
+						// Parse URL to extract query parameters
+						const url = new URL(href);
+						const embedParams = new URLSearchParams();
+
+						// Map common YouTube watch parameters to embed parameters
+						const paramMap: Record<string, string> = {
+							t: "start", // YouTube uses 't' in watch URLs
+							start: "start",
+							end: "end",
+							rel: "rel",
+							autoplay: "autoplay",
+							controls: "controls",
+							loop: "loop",
+							mute: "mute",
+							playlist: "playlist",
+						};
+
+						// Transfer relevant parameters
+						for (const [watchParam, embedParam] of Object.entries(paramMap)) {
+							const value = url.searchParams.get(watchParam);
+							if (value !== null) {
+								embedParams.set(embedParam, value);
+							}
+						}
+
+						// Build embed URL with parameters
+						const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}${
+							embedParams.toString() ? `?${embedParams.toString()}` : ""
+						}`;
+
 						// Replace the paragraph with an iframe embed
 						const iframe: Element = {
 							type: "element",
@@ -41,7 +71,7 @@ export const youtubeEmbed: RehypePlugin = () => {
 									type: "element",
 									tagName: "iframe",
 									properties: {
-										src: `https://www.youtube-nocookie.com/embed/${videoId}`,
+										src: embedUrl,
 										frameborder: "0",
 										allow:
 											"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
