@@ -1,7 +1,7 @@
 ---
 title: Tarieven en Voorwaarden
 headerImage: /images/hondmorvan-header1.png
-description: Prijzen en huurvoorwaarden voor Gîte Les Bourdeaux
+description: Prijzen en huurvoorwaarden voor Gîte Les Bourdeaux.
 leftColumnImages:
   - /images/hondmorvan-tarievenlinks1.png
   - /images/hondmorvan-tarievenlinks2.png
