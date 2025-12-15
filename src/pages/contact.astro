@@ -105,11 +105,35 @@ const generateCalendarData = () => {
 				return currentDate >= start && currentDate <= end;
 			});
 
+			// Check if this day is a changeover day (start or end of booking)
+			const isStartDate = upcomingBookings.some((booking) => {
+				const start = new Date(booking.data.startDate);
+				start.setHours(0, 0, 0, 0);
+				return currentDate.getTime() === start.getTime();
+			});
+
+			const isEndDate = upcomingBookings.some((booking) => {
+				const end = new Date(booking.data.endDate);
+				end.setHours(0, 0, 0, 0);
+				return currentDate.getTime() === end.getTime();
+			});
+
+			// Determine changeover type
+			let changeoverType = null;
+			if (isStartDate && isEndDate) {
+				changeoverType = "both";
+			} else if (isStartDate) {
+				changeoverType = "start";
+			} else if (isEndDate) {
+				changeoverType = "end";
+			}
+
 			days.push({
 				day,
 				bookings: dayBookings,
 				status:
 					dayBookings.length > 0 ? dayBookings[0].data.status : null,
+				changeoverType,
 			});
 		}
 
@@ -153,6 +177,13 @@ const calendarMonths = generateCalendarData();
 						style="background-color: #4b5563;"></span>
 					<span>Niet beschikbaar</span>
 				</div>
+				<div class="legend-item">
+					<span
+						class="legend-color legend-diagonal"
+						style="background: linear-gradient(to top left, #dc2626 50%, #f9fafb 50%);"
+					></span>
+					<span>Wisseldag (aan-/vertrek)</span>
+				</div>
 			</div>
 		</div>
 
@@ -170,17 +201,27 @@ const calendarMonths = generateCalendarData();
 								<div class="day-header">Vr</div>
 								<div class="day-header">Za</div>
 								<div class="day-header">Zo</div>
-								{days.map(({ day, status }) => (
+								{days.map(({ day, status, changeoverType }) => (
 									<div
 										class:list={[
 											"calendar-day",
-											{ empty: !day, booked: status },
+											{
+												empty: !day,
+												booked: status,
+												"changeover-start":
+													changeoverType === "start",
+												"changeover-end":
+													changeoverType === "end",
+												"changeover-both":
+													changeoverType === "both",
+											},
 										]}
 										style={
-											status
+											status && !changeoverType
 												? `background-color: ${getStatusColor(status)}; color: white;`
 												: ""
 										}
+										data-status={status}
 										title={
 											status ? getStatusLabel(status) : ""
 										}
@@ -290,6 +331,7 @@ const calendarMonths = generateCalendarData();
 		border-radius: 4px;
 		cursor: default;
 		transition: all 0.2s;
+		position: relative;
 	}
 
 	.calendar-day.empty {
@@ -298,6 +340,143 @@ const calendarMonths = generateCalendarData();
 
 	.calendar-day.booked {
 		font-weight: 600;
+	}
+
+	/* Changeover days - triangle backgrounds */
+
+	/* End date (checkout) - triangle in top-left */
+	.calendar-day.changeover-end {
+		color: white !important;
+		-webkit-text-stroke: 0.75px rgba(0, 0, 0, 0.35);
+	}
+
+	.calendar-day.changeover-end[data-status="gereserveerd"] {
+		background: linear-gradient(
+			to bottom right,
+			var(--color-reserved) 50%,
+			var(--color-calendar-background) 50%
+		) !important;
+	}
+
+	.calendar-day.changeover-end[data-status="optie"] {
+		background: linear-gradient(
+			to bottom right,
+			var(--color-option) 50%,
+			var(--color-calendar-background) 50%
+		) !important;
+	}
+
+	.calendar-day.changeover-end[data-status="geblokkeerd"] {
+		/* background: linear-gradient(
+			to bottom right,
+			#4b5563 50%,
+			#f9fafb 50%
+		) !important; */
+		background: var(--color-blocked);
+	}
+
+	/* Start date (checkin) - triangle in bottom-right */
+	.calendar-day.changeover-start {
+		color: white !important;
+		-webkit-text-stroke: 0.75px rgba(0, 0, 0, 0.35);
+	}
+
+	.calendar-day.changeover-start[data-status="gereserveerd"] {
+		background: linear-gradient(
+			to top left,
+			var(--color-reserved) 50%,
+			var(--color-calendar-background) 50%
+		) !important;
+	}
+
+	.calendar-day.changeover-start[data-status="optie"] {
+		background: linear-gradient(
+			to top left,
+			var(--color-option) 50%,
+			var(--color-calendar-background) 50%
+		) !important;
+	}
+
+	.calendar-day.changeover-start[data-status="geblokkeerd"] {
+		/* background: linear-gradient(
+			to top left,
+			var(--color-blocked) 50%,
+			var(--color-calendar-background) 50%
+		) !important; */
+		background: var(--color-blocked);
+	}
+
+	/* Both start and end (same day checkout and checkin) - two triangles */
+	.calendar-day.changeover-both {
+		color: white !important;
+		-webkit-text-stroke: 0.75px rgba(0, 0, 0, 0.35);
+	}
+
+	.calendar-day.changeover-both[data-status="gereserveerd"] {
+		background:
+			linear-gradient(
+				to bottom right,
+				var(--color-reserved) 47%,
+				transparent 47%
+			),
+			linear-gradient(
+				to top left,
+				var(--color-reserved) 47%,
+				transparent 47%
+			),
+			var(--color-calendar-background) !important;
+	}
+
+	.calendar-day.changeover-both[data-status="optie"] {
+		background:
+			linear-gradient(
+				to bottom right,
+				var(--color-option) 47%,
+				transparent 47%
+			),
+			linear-gradient(
+				to top left,
+				var(--color-option) 47%,
+				transparent 47%
+			),
+			var(--color-calendar-background) !important;
+	}
+
+	.calendar-day.changeover-both[data-status="geblokkeerd"] {
+		background:
+			linear-gradient(
+				to bottom right,
+				var(--color-blocked) 47%,
+				transparent 47%
+			),
+			linear-gradient(
+				to top left,
+				var(--color-blocked) 47%,
+				transparent 47%
+			),
+			var(--color-calendar-background) !important;
+	}
+
+	/* Full booked days (not changeover) get solid color */
+	.calendar-day.booked:not(.changeover-start):not(.changeover-end):not(
+			.changeover-both
+		)[data-status="gereserveerd"] {
+		background-color: var(--color-reserved);
+		color: white;
+	}
+
+	.calendar-day.booked:not(.changeover-start):not(.changeover-end):not(
+			.changeover-both
+		)[data-status="optie"] {
+		background-color: var(--color-option);
+		color: white;
+	}
+
+	.calendar-day.booked:not(.changeover-start):not(.changeover-end):not(
+			.changeover-both
+		)[data-status="geblokkeerd"] {
+		background-color: var(--color-blocked);
+		color: white;
 	}
 
 	.calendar-day:not(.empty):not(.booked):hover {

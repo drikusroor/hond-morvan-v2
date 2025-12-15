@@ -7,6 +7,11 @@
 	--color-accent: #ffff00;
 	--color-baby-blue: #89cff0;
 
+	--color-reserved: #dc2626;
+	--color-option: #fbbf24;
+	--color-blocked: #4b5563;
+	--color-calendar-background: #f9fafb;
+
 	--font-family:
 		"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
