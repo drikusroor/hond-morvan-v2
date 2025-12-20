@@ -223,6 +223,7 @@ footer a {
 }
 
 footer a:hover {
+	color: var(--color-white);
 	text-decoration: underline;
 }
 
