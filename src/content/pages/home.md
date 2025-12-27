@@ -1,7 +1,7 @@
 ---
 title: Honden welkom!
 headerImage: /images/hondmorvan-header1.png
-description: Vakantiehuis voor hond en baas in de Morvan, Frankrijk
+description: Vakantiehuis gastenhuis huisje hond honden welkom in de Morvan, Frankrijk
 leftColumnImages:
   - /images/hondmorvan-homelinks1.png
 rightColumnImages:
@@ -19,7 +19,7 @@ In Regional Natuurpark 'Le Morvan', op 700 km van Utrecht, staat dit sfeervolle 
 
 Op het zuiden en westen kun je heerlijk op het terras zitten of onder de bomen in het gras. Het huisje is in de rug beschut door een strookje bos. Vóór heb je een mooi uitzicht over de vallei, waar tussen de meertjes zomer en winter de charolais-koeien grazen.
 
-Het dorpje Dun-les-Places (ca. 350 inwoners) ligt op tien minuten lopen. Hier vind je een **kruidenierswinkeltje** en een **bakkerij** met vers brood en patisserie, verder is er een restaurant met een authentiek Bourgondische keuken. In de omliggende plaatsen vind je nog veel meer goede eetgelegenheden.
+Het dorpje Dun-les-Places (ca. 360 inwoners) ligt op tien minuten lopen. Hier vind je een **kruidenierswinkeltje** en een **bakkerij** met vers brood en patisserie, verder is er een restaurant met een authentiek Bourgondische keuken. In de omliggende plaatsen vind je nog veel meer goede eetgelegenheden.
 
 ## Rust en natuur
 
