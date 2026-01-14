@@ -59,12 +59,11 @@ const generateCalendarData = () => {
 	const months = [];
 
 	// Determine which year's season to show
-	// If we're in Dec-March, show the upcoming season (next year)
-	// If we're in Apr-Nov, show current year's season
+	// If we're in December, show the upcoming season (next year)
+	// Otherwise show current year's season (April-November)
 	const currentMonth = today.getMonth();
 	const currentYear = today.getFullYear();
-	const startYear =
-		currentMonth >= 11 || currentMonth < 3 ? currentYear + 1 : currentYear;
+	const startYear = currentMonth === 11 ? currentYear + 1 : currentYear;
 
 	// Generate April (3) through November (10) = 8 months
 	for (let m = 3; m <= 10; m++) {
