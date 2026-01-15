@@ -7,6 +7,6 @@ leftColumnImages:
   - /images/hondmorvan-gastenboeklinks2.png
 rightColumnImages:
   - /images/gastenboek-1.jpg
-  - ../../assets/images/gite5.webp
+  - /assets/images/gite5.webp
 ---
 .
