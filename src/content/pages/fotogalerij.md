@@ -43,8 +43,6 @@ galleryImages:
   - /images/IMG_7294.webp
   - /images/gite-herfst.jpg
   - /images/gite-beeldje.jpg
-rightColumnImages:
-  - /images/hondmorvan-linklrechts1.png
-  - /images/20200626_111619-kopie.jpg
+rightColumnImages: []
 ---
 .
