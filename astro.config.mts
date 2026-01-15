@@ -15,7 +15,7 @@ export default defineConfig({
 
 	// Build configuration
 	build: {
-		assets: "assets",
+		assets: "images",
 	},
 
 	// Markdown configuration
@@ -23,6 +23,16 @@ export default defineConfig({
 		rehypePlugins: [[targetBlank, { domain: ["hondmorvan.nl"] }], youtubeEmbed],
 		shikiConfig: {
 			theme: "github-light",
+		},
+	},
+
+	vite: {
+		build: {
+			rollupOptions: {
+				output: {
+					assetFileNames: "images/[name][extname]",
+				},
+			},
 		},
 	},
 });

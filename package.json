@@ -4,7 +4,9 @@
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "astro dev",
-		"build": "astro build",
+		"build": "astro build && bun run remove-image-hashes",
+		"build:raw": "astro build",
+		"remove-image-hashes": "bun run scripts/remove-image-hashes.ts",
 		"preview": "astro preview",
 		"astro": "astro",
 		"decap-server": "bunx decap-server",
