@@ -9,7 +9,7 @@ rightColumnImages:
   - /images/hondmorvan-linklrechts1.png
   - /images/hondmorvan-linklrechts4.png
   - /images/hondmorvan-linklrechts3.png
-  - ../../assets/images/FB_IMG_1757580700458.webp
+  - /images/FB_IMG_1757580700458.webp
 ---
 
 # Links en Informatie
