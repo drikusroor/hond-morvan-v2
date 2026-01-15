@@ -5,9 +5,9 @@ description: Vakantiehuis gastenhuis huisje hond honden welkom in de Morvan, Fra
 leftColumnImages:
   - /images/hondmorvan-homelinks1.png
 rightColumnImages:
-  - /images/hondmorvan-homerechts1.png
-  - /images/hondmorvan-homerechts2.png
-  - /images/hondmorvan-homerechts3.png
+  - ../../assets/images/20250823_184350.webp
+  - ../../assets/images/20250906_141128.webp
+  - ../../assets/images/IMG-20250911-WA0014.webp
 bottomImages:
   - /images/gite herfst.JPG
 ---
