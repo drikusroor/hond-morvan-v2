@@ -42,5 +42,6 @@ galleryImages:
   - /images/IMG-20250911-WA0014.webp
   - /images/IMG_7294.webp
   - ../../assets/images/gite-herfst.png.jpg
+  - ../../assets/images/gite-beeldje.jpg
 ---
 .
