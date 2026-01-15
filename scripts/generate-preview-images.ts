@@ -18,6 +18,8 @@ const IMAGES_DIR = join(DIST_DIR, "images");
 // Low quality settings for preview images
 const JPEG_QUALITY = 30;
 const PNG_COMPRESSION_LEVEL = 9; // Max compression (0-9)
+const MAX_WIDTH = 400;
+const MAX_HEIGHT = 400;
 
 async function getWebpFilesRecursively(dir: string): Promise<string[]> {
 	const webpFiles: string[] = [];
@@ -51,9 +53,13 @@ async function generatePreviewImage(webpPath: string): Promise<void> {
 		const image = sharp(webpPath);
 		const metadata = await image.metadata();
 
-		// Resize to max 400px width for preview while maintaining aspect ratio
+		// Resize to fit within max dimensions while maintaining aspect ratio
 		const resizeOptions =
-			metadata.width && metadata.width > 400 ? { width: 400 } : {};
+			metadata.width &&
+			metadata.height &&
+			(metadata.width > MAX_WIDTH || metadata.height > MAX_HEIGHT)
+				? { width: MAX_WIDTH, height: MAX_HEIGHT, fit: "inside" as const }
+				: {};
 
 		// Generate low quality JPG
 		await sharp(webpPath)
