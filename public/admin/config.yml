@@ -15,7 +15,7 @@ locale: nl
 
 # Media and Public Folders
 media_folder: "src/assets/images"
-public_folder: "../../assets/images"
+public_folder: "/images"
 
 site_url: "https://hondmorvan.nl"
 display_url: "https://hondmorvan.nl"
