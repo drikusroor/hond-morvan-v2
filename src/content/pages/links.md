@@ -8,7 +8,6 @@ leftColumnImages:
 rightColumnImages:
   - /images/hondmorvan-linklrechts1.png
   - /images/hondmorvan-linklrechts4.png
-  - /images/hondmorvan-linklrechts3.png
   - /images/FB_IMG_1757580700458.webp
 ---
 
