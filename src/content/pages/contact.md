@@ -1,7 +1,7 @@
 ---
 title: Contact beschikbaarheid reserveren boeken
 headerImage: /images/hondmorvan-contactheader1.png
-description: Neem contact op voor meer informatie.
+description: Neem contact op voor meer informatie. Kalender. Nog vrij. Beschikbaarheid.
 ---
 # Contact
 
