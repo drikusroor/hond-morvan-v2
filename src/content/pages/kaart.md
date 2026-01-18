@@ -4,7 +4,6 @@ headerImage: /images/hondmorvan-header1.png
 description: Locatie van het vakantiehuis in de Morvan
 leftColumnImages:
   - /images/hondmorvan-kaartlinks1.png
-  - /images/gite 2016 10.jpg
 rightColumnImages:
   - /images/hondmorvan-kaartrechts1.png
   - /images/hondmorvan-kaartrechts4.png
