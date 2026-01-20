@@ -9,7 +9,7 @@ rightColumnImages:
   - /images/20250906_141128.webp
   - /images/IMG-20250911-WA0014.webp
 bottomImages:
-  - /images/gite herfst.JPG
+  - /images/gite-herfst.jpg
 ---
 # Honden welkom
 

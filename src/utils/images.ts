@@ -59,6 +59,19 @@ export const images = import.meta.glob<{ default: ImageMetadata }>(
 	"/src/assets/images/*.{jpeg,jpg,png,gif,webp}",
 );
 
+/**
+ * Normalize a filename for fuzzy matching:
+ * - Lowercase the entire path
+ * - Replace spaces with hyphens
+ * - Normalize common extension variations (jpeg -> jpg)
+ */
+const normalizeForMatching = (path: string): string => {
+	return path
+		.toLowerCase()
+		.replace(/\s+/g, "-") // spaces to hyphens
+		.replace(/\.jpeg$/, ".jpg"); // normalize jpeg to jpg
+};
+
 export const getImage = (imagePath: string) => {
 	if (!imagePath) {
 		throw new Error("getImage - imagePath is undefined or empty");
@@ -68,35 +81,35 @@ export const getImage = (imagePath: string) => {
 	imagePath = imagePath.replace(import.meta.env.BASE_URL, "");
 
 	// Normalize path to start with /src/assets
-
 	const normalizedImagePath = "/src/assets/" + imagePath;
-	imagePath = normalizedImagePath;
 
 	const keys = Object.keys(images);
-	const re = new RegExp(`^${imagePath}$`);
-	const matchedKey = keys.find((key) => re.test(key));
+
+	// First try exact match
+	let matchedKey = keys.find((key) => key === normalizedImagePath);
+
+	// If no exact match, try fuzzy matching (case-insensitive, spaces/hyphens interchangeable)
+	if (!matchedKey) {
+		const normalizedInput = normalizeForMatching(normalizedImagePath);
+		matchedKey = keys.find(
+			(key) => normalizeForMatching(key) === normalizedInput,
+		);
+	}
 
 	if (!matchedKey) {
 		console.warn(
-			`getImage - No match found for imagePath: "${imagePath}" in images keys:`,
+			`getImage - No match found for imagePath: "${normalizedImagePath}" in images keys:`,
 			keys,
 		);
 		throw new Error(
-			`"${imagePath}" does not exist in glob: "src/assets/images/*.{jpeg,jpg,png,gif,webp}"`,
+			`"${normalizedImagePath}" does not exist in glob: "src/assets/images/*.{jpeg,jpg,png,gif,webp}"`,
 		);
-	} else {
-		imagePath = matchedKey;
 	}
 
-	// Strip base path if present
-	if (imagePath.startsWith(import.meta.env.BASE_URL)) {
-		imagePath = imagePath.slice(import.meta.env.BASE_URL.length - 1);
-	}
-
-	const image = images[imagePath]();
+	const image = images[matchedKey]();
 	if (!image) {
 		throw new Error(
-			`"${imagePath}" does not exist in glob: "src/assets/images/*.{jpeg,jpg,png,gif,webp}"`,
+			`"${matchedKey}" does not exist in glob: "src/assets/images/*.{jpeg,jpg,png,gif,webp}"`,
 		);
 	}
 	return image;

@@ -1,6 +1,6 @@
 ---
 title: Fotogalerij
-headerImage: /images/gite herfst.JPG
+headerImage: /images/gite-herfst.jpg
 description: Een verzameling foto's van het huisje en de omgeving in de Morvan
 galleryImages:
   - /images/20240525111521.webp
