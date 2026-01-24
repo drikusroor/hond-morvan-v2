@@ -1,0 +1,118 @@
+name: Site Health Check
+
+on:
+  # Run every 6 hours
+  schedule:
+    - cron: "0 */6 * * *"
+  # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      verbose:
+        description: "Enable verbose output"
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Run Health Check
+        id: health
+        env:
+          SITE_URL: https://hondmorvan.nl
+        run: |
+          if [ "${{ inputs.verbose }}" = "true" ]; then
+            bun run scripts/health-check.ts --verbose
+          else
+            bun run scripts/health-check.ts
+          fi
+        continue-on-error: true
+
+      - name: Check from different region (EU)
+        id: health-eu
+        env:
+          SITE_URL: https://hondmorvan.nl
+        run: |
+          echo "🌍 Secondary check (same region, different timing)"
+          sleep 5
+          bun run scripts/health-check.ts
+        continue-on-error: true
+
+      - name: Create issue on failure
+        if: steps.health.outcome == 'failure' || steps.health-eu.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = `🔴 Health Check Failed - ${new Date().toISOString().split('T')[0]}`;
+
+            // Check if there's already an open issue
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'health-check'
+            });
+
+            if (issues.data.length === 0) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: title,
+                body: `## Health Check Failure Report
+
+            **Timestamp:** ${new Date().toISOString()}
+            **Workflow Run:** [${context.runId}](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})
+
+            The automated health check detected issues with the site. Please investigate:
+
+            1. Check the [workflow run logs](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})
+            2. Manually verify https://hondmorvan.nl
+            3. Check GitHub Pages status: https://www.githubstatus.com/
+            4. Check Cloudflare status: https://www.cloudflarestatus.com/
+
+            ### Possible Causes
+            - GitHub Pages rate limiting
+            - DNS propagation issues
+            - Build/deployment failure
+            - Temporary infrastructure issues
+
+            Close this issue once resolved.`,
+                labels: ['health-check', 'bug']
+              });
+              console.log('Created new health check issue');
+            } else {
+              // Add comment to existing issue
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issues.data[0].number,
+                body: `Health check still failing at ${new Date().toISOString()}\n\nWorkflow run: https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`
+              });
+              console.log('Added comment to existing issue');
+            }
+
+      - name: Summary
+        run: |
+          echo "## Health Check Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.health.outcome }}" = "success" ]; then
+            echo "✅ Primary check: **PASSED**" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ Primary check: **FAILED**" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [ "${{ steps.health-eu.outcome }}" = "success" ]; then
+            echo "✅ Secondary check: **PASSED**" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ Secondary check: **FAILED**" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Run manually: \`bun run scripts/health-check.ts\`" >> $GITHUB_STEP_SUMMARY

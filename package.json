@@ -11,7 +11,8 @@
 		"preview": "astro preview",
 		"astro": "astro",
 		"decap-server": "bunx decap-server",
-		"clear-astro": "rm -rf node_modules/.astro"
+		"clear-astro": "rm -rf node_modules/.astro",
+		"health-check": "bun run scripts/health-check.ts"
 	},
 	"dependencies": {
 		"@astrojs/mdx": "^4.3.12",
