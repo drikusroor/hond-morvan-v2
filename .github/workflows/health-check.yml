@@ -4,6 +4,11 @@ on:
   # Run every 6 hours
   schedule:
     - cron: "0 */6 * * *"
+  # Run after deployment completes
+  workflow_run:
+    workflows: ["Deploy to GitHub Pages"]
+    types:
+      - completed
   # Allow manual trigger
   workflow_dispatch:
     inputs:
@@ -16,7 +21,24 @@ on:
 jobs:
   health-check:
     runs-on: ubuntu-latest
+    # Skip if deploy workflow failed (no point checking a failed deploy)
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     steps:
+      - name: Show trigger context
+        run: |
+          echo "Trigger: ${{ github.event_name }}"
+          if [ "${{ github.event_name }}" = "workflow_run" ]; then
+            echo "Triggered by: ${{ github.event.workflow_run.name }}"
+            echo "Deploy status: ${{ github.event.workflow_run.conclusion }}"
+          fi
+
+      - name: Wait for GitHub Pages propagation
+        if: github.event_name == 'workflow_run'
+        run: |
+          echo "⏳ Waiting 60 seconds for GitHub Pages CDN propagation..."
+          sleep 60
+          echo "✅ Propagation wait complete"
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -52,7 +74,10 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const title = `🔴 Health Check Failed - ${new Date().toISOString().split('T')[0]}`;
+            const isPostDeploy = context.eventName === 'workflow_run';
+            const title = isPostDeploy
+              ? `🔴 Post-Deploy Health Check Failed - ${new Date().toISOString().split('T')[0]}`
+              : `🔴 Health Check Failed - ${new Date().toISOString().split('T')[0]}`;
 
             // Check if there's already an open issue
             const issues = await github.rest.issues.listForRepo({
@@ -104,6 +129,10 @@ jobs:
         run: |
           echo "## Health Check Results" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ github.event_name }}" = "workflow_run" ]; then
+            echo "🚀 **Triggered by:** Deploy to GitHub Pages" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
           if [ "${{ steps.health.outcome }}" = "success" ]; then
             echo "✅ Primary check: **PASSED**" >> $GITHUB_STEP_SUMMARY
           else
