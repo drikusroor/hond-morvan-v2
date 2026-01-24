@@ -29,7 +29,12 @@ const {
         <aside class="sidebar sidebar-left">
           {leftSidebar.map((image) => (
             <div class="sidebar-image">
-              <Image src={getImage(image)} alt={"Sidebar image"} />
+              <Image
+                src={getImage(image)}
+                alt={"Sidebar image"}
+                widths={[180, 360]}
+                sizes="180px"
+              />
             </div>
           ))}
         </aside>
@@ -46,7 +51,12 @@ const {
           {rightSidebar.map((imagePath) => {
             return (
               <div class="sidebar-image">
-                <Image src={getImage(imagePath)} alt={"Sidebar image"} />
+                <Image
+                  src={getImage(imagePath)}
+                  alt={"Sidebar image"}
+                  widths={[420, 640, 840]}
+                  sizes="(max-width: 768px) 100vw, 420px"
+                />
               </div>
             );
           })}
@@ -62,6 +72,8 @@ const {
           src={getImage(bottomImage)}
           alt={"Bottom image"}
           class="bottom-image"
+          widths={[640, 1024, 1400]}
+          sizes="100vw"
         />
       </div>
     )
