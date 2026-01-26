@@ -11,7 +11,6 @@ rightColumnImages:
   - /images/hondmorvan-tarievenrechts4.png
   - /images/hondmorvan-tarievenrechts5.png
 ---
-
 # Tarieven 2026
 
 * **April, mei:** €360 per week
@@ -38,7 +37,7 @@ Eventuele extra energiekosten worden achteraf verrekend.
 
 **Niet inbegrepen** zijn eventueel gebruik van linnengoed, kosten van de eindschoonmaak, laadkosten van uw auto (11 kWh-lader aanwezig) en gebruik van elektra boven de 4 kWh per dag.
 
-Het huisje is eenvoudig maar gezellig en compleet ingericht. Zo is er een koelkast met apart vriesgedeelte, radio/cd-speler, oven/grill, magnetron, mixer, senseo, waterkoker, tv met dvd-speler en ontvangst van BVN (Wereldomroep) + de commerciële zenders van de Astra-schotel. Verder zijn er specerijen, suiker, thee e.d. Er liggen (wandel)kaarten en er is allerlei toeristische informatie; evenals tientallen boeken (detectives, romans, natuur). Buiten staan tuinstoelen, tafels en ligbanken met kussens.
+Het huisje is eenvoudig maar gezellig en compleet ingericht. Zo is er een koelkast met apart vriesgedeelte, radio/cd-speler, oven/grill, magnetron, mixer, senseo, waterkoker, tv met dvd-speler en ontvangst van de commerciële zenders van de Astra-schotel. Verder zijn er specerijen, suiker, thee e.d. Er liggen (wandel)kaarten en er is allerlei toeristische informatie; evenals tientallen boeken (detectives, romans, natuur). Buiten staan tuinstoelen, tafels en ligbanken met kussens.
 
 Neem stevige wandelschoenen mee, een warme trui én een extra zaklamp, want de nachten in de Morvan zijn donker, vandaar dat je volop kunt genieten van de sterrenhemel! Er staan vier eenpersoonsbedden, waarvan twee identieke (lits-jumeaux) die 210 cm lang zijn. Verder twee van 200 cm met Nasa-schuimmatrassen. Ook is er een inklap baby/peuterbedje van Prénatal beschikbaar.
 
@@ -46,7 +45,7 @@ Neem stevige wandelschoenen mee, een warme trui én een extra zaklamp, want de n
 
 Het huisje is toegerust voor 4 personen, maar voor een vijfde persoon is ruimte. Bij boeking graag het aantal personen en huisdieren opgeven. Eventueel kan er een bed worden bijgeplaatst of een tentje in de boomgaard opgezet. Bij meer dan 4 personen en/of meer dan 2 huisdieren geldt een toeslag van €25 per week p.p.
 
-Probeer te vermijden dat uw huisdieren hun behoefte doen op het terrein en ruim eventuele uitwerpselen meteen op. Vergeet niet tijdig uw dierenarts te raadplegen of er wellicht inentingen nodig zijn voor Midden-Frankrijk, dat verschilt per jaar.
+Probeer te vermijden dat uw huisdieren hun behoefte doen op het terrein en ruim eventuele uitwerpselen meteen op. Vergeet niet tijdig uw dierenarts te raadplegen of er inentingen nodig zijn voor Midden-Frankrijk, dat verschilt per jaar.
 
 ## Schoonmaak en schoonmaakmiddelen
 
