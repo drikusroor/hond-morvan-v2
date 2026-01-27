@@ -19,11 +19,16 @@ const sortedBookings = bookings.sort(
 
 // Get current date
 const today = new Date();
-today.setHours(0, 0, 0, 0);
+
+// Normalize dates to UTC day keys to avoid timezone shifts
+const toDayKey = (date: Date) =>
+	Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
+
+const todayKey = toDayKey(today);
 
 // Filter future and current bookings
 const upcomingBookings = sortedBookings.filter(
-	(booking) => booking.data.endDate >= today,
+	(booking) => toDayKey(booking.data.endDate) >= todayKey,
 );
 
 // Helper function to get status color
@@ -93,29 +98,25 @@ const generateCalendarData = () => {
 
 		// Add actual days
 		for (let day = 1; day <= daysInMonth; day++) {
-			const currentDate = new Date(year, monthIndex, day);
-			currentDate.setHours(0, 0, 0, 0);
+			const currentDayKey = Date.UTC(year, monthIndex, day);
 
 			const dayBookings = upcomingBookings.filter((booking) => {
-				const start = new Date(booking.data.startDate);
-				const end = new Date(booking.data.endDate);
-				start.setHours(0, 0, 0, 0);
-				end.setHours(0, 0, 0, 0);
-				return currentDate >= start && currentDate <= end;
+				const startKey = toDayKey(booking.data.startDate);
+				const endKey = toDayKey(booking.data.endDate);
+				return currentDayKey >= startKey && currentDayKey <= endKey;
 			});
 
 			// Check if this day is a changeover day (start or end of booking)
-			const isStartDate = upcomingBookings.some((booking) => {
-				const start = new Date(booking.data.startDate);
-				start.setHours(0, 0, 0, 0);
-				return currentDate.getTime() === start.getTime();
-			});
+			const startBooking = upcomingBookings.find(
+				(booking) => toDayKey(booking.data.startDate) === currentDayKey,
+			);
 
-			const isEndDate = upcomingBookings.some((booking) => {
-				const end = new Date(booking.data.endDate);
-				end.setHours(0, 0, 0, 0);
-				return currentDate.getTime() === end.getTime();
-			});
+			const endBooking = upcomingBookings.find(
+				(booking) => toDayKey(booking.data.endDate) === currentDayKey,
+			);
+
+			const isStartDate = Boolean(startBooking);
+			const isEndDate = Boolean(endBooking);
 
 			// Determine changeover type
 			let changeoverType = null;
@@ -133,6 +134,8 @@ const generateCalendarData = () => {
 				status:
 					dayBookings.length > 0 ? dayBookings[0].data.status : null,
 				changeoverType,
+				startStatus: startBooking?.data.status ?? null,
+				endStatus: endBooking?.data.status ?? null,
 			});
 		}
 
@@ -200,34 +203,61 @@ const calendarMonths = generateCalendarData();
 								<div class="day-header">Vr</div>
 								<div class="day-header">Za</div>
 								<div class="day-header">Zo</div>
-								{days.map(({ day, status, changeoverType }) => (
-									<div
-										class:list={[
-											"calendar-day",
-											{
-												empty: !day,
-												booked: status,
-												"changeover-start":
-													changeoverType === "start",
-												"changeover-end":
-													changeoverType === "end",
-												"changeover-both":
-													changeoverType === "both",
-											},
-										]}
-										style={
-											status && !changeoverType
-												? `background-color: ${getStatusColor(status)}; color: white;`
-												: ""
-										}
-										data-status={status}
-										title={
-											status ? getStatusLabel(status) : ""
-										}
-									>
-										{day || ""}
-									</div>
-								))}
+								{days.map(
+									({
+										day,
+										status,
+										changeoverType,
+										startStatus,
+										endStatus,
+									}) => (
+										<div
+											class:list={[
+												"calendar-day",
+												{
+													empty: !day,
+													booked: status,
+													"changeover-start":
+														changeoverType ===
+														"start",
+													"changeover-end":
+														changeoverType ===
+														"end",
+													"changeover-both":
+														changeoverType ===
+														"both",
+												},
+											]}
+											style={
+												changeoverType === "both" &&
+												startStatus &&
+												endStatus
+													? `--changeover-end: ${getStatusColor(
+															endStatus,
+														)}; --changeover-start: ${getStatusColor(
+															startStatus,
+														)}; color: white;`
+													: status && !changeoverType
+														? `background-color: ${getStatusColor(status)}; color: white;`
+														: ""
+											}
+											data-status={status}
+											title={
+												changeoverType === "both" &&
+												startStatus &&
+												endStatus
+													? `Vertrek: ${getStatusLabel(
+															endStatus,
+														)} • Aankomst: ${getStatusLabel(startStatus)}`
+													: status
+														? getStatusLabel(status)
+														: ""
+											}
+										>
+											{day || ""}
+										</div>
+									),
+								)}
 							</div>
 						</div>
 					))
@@ -409,48 +439,15 @@ const calendarMonths = generateCalendarData();
 	.calendar-day.changeover-both {
 		color: white !important;
 		-webkit-text-stroke: 0.75px rgba(0, 0, 0, 0.35);
-	}
-
-	.calendar-day.changeover-both[data-status="gereserveerd"] {
 		background:
 			linear-gradient(
 				to bottom right,
-				var(--color-reserved) 47%,
+				var(--changeover-end, var(--color-reserved)) 47%,
 				transparent 47%
 			),
 			linear-gradient(
 				to top left,
-				var(--color-reserved) 47%,
-				transparent 47%
-			),
-			var(--color-calendar-background) !important;
-	}
-
-	.calendar-day.changeover-both[data-status="optie"] {
-		background:
-			linear-gradient(
-				to bottom right,
-				var(--color-option) 47%,
-				transparent 47%
-			),
-			linear-gradient(
-				to top left,
-				var(--color-option) 47%,
-				transparent 47%
-			),
-			var(--color-calendar-background) !important;
-	}
-
-	.calendar-day.changeover-both[data-status="geblokkeerd"] {
-		background:
-			linear-gradient(
-				to bottom right,
-				var(--color-blocked) 47%,
-				transparent 47%
-			),
-			linear-gradient(
-				to top left,
-				var(--color-blocked) 47%,
+				var(--changeover-start, var(--color-reserved)) 47%,
 				transparent 47%
 			),
 			var(--color-calendar-background) !important;
