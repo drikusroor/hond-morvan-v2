@@ -1,5 +1,11 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
+Disallow: /tarieven.html
+Disallow: /contact.html
+Disallow: /kaart.html
+Disallow: /links.html
+Disallow: /gastenboek.html
+Disallow: /fotogalerij.html
 
 Sitemap: https://hondmorvan.nl/sitemap-index.xml
