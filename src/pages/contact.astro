@@ -60,7 +60,7 @@ const getStatusLabel = (status: string) => {
 };
 
 // Generate calendar data for April through November
-const generateCalendarData = () => {
+const generateCalendarData = (targetYear?: number) => {
 	const months = [];
 
 	// Determine which year's season to show
@@ -68,7 +68,15 @@ const generateCalendarData = () => {
 	// Otherwise show current year's season (April-November)
 	const currentMonth = today.getMonth();
 	const currentYear = today.getFullYear();
-	const startYear = currentMonth === 11 ? currentYear + 1 : currentYear;
+	const defaultYear = currentMonth === 11 ? currentYear + 1 : currentYear;
+	const startYear = targetYear ?? defaultYear;
+
+	// Filter bookings for the target year's rental season (April-November)
+	const yearBookings = upcomingBookings.filter((booking) => {
+		const bookingYear = booking.data.startDate.getUTCFullYear();
+		// Include bookings that start in the target year during rental season
+		return bookingYear === startYear;
+	});
 
 	// Generate April (3) through November (10) = 8 months
 	for (let m = 3; m <= 10; m++) {
@@ -100,18 +108,18 @@ const generateCalendarData = () => {
 		for (let day = 1; day <= daysInMonth; day++) {
 			const currentDayKey = Date.UTC(year, monthIndex, day);
 
-			const dayBookings = upcomingBookings.filter((booking) => {
+			const dayBookings = yearBookings.filter((booking) => {
 				const startKey = toDayKey(booking.data.startDate);
 				const endKey = toDayKey(booking.data.endDate);
 				return currentDayKey >= startKey && currentDayKey <= endKey;
 			});
 
 			// Check if this day is a changeover day (start or end of booking)
-			const startBooking = upcomingBookings.find(
+			const startBooking = yearBookings.find(
 				(booking) => toDayKey(booking.data.startDate) === currentDayKey,
 			);
 
-			const endBooking = upcomingBookings.find(
+			const endBooking = yearBookings.find(
 				(booking) => toDayKey(booking.data.endDate) === currentDayKey,
 			);
 
@@ -145,7 +153,22 @@ const generateCalendarData = () => {
 	return months;
 };
 
-const calendarMonths = generateCalendarData();
+// Determine the default year to display
+const currentMonth = today.getMonth();
+const currentYear = today.getFullYear();
+const defaultYear = currentMonth === 11 ? currentYear + 1 : currentYear;
+
+// Check if there are bookings for the next year
+const hasNextYearBookings = upcomingBookings.some((booking) => {
+	const bookingYear = booking.data.startDate.getUTCFullYear();
+	return bookingYear === defaultYear + 1;
+});
+
+// Generate calendar data for both years
+const currentYearCalendar = generateCalendarData(defaultYear);
+const nextYearCalendar = hasNextYearBookings
+	? generateCalendarData(defaultYear + 1)
+	: null;
 ---
 
 <BaseLayout
@@ -190,9 +213,28 @@ const calendarMonths = generateCalendarData();
 		</div>
 
 		<div class="availability-view">
-			<div class="calendar-grid">
+			{
+				nextYearCalendar && (
+					<div class="year-toggle">
+						<button
+							class="year-button active"
+							data-year={defaultYear}
+						>
+							{defaultYear}
+						</button>
+						<button
+							class="year-button"
+							data-year={defaultYear + 1}
+						>
+							{defaultYear + 1}
+						</button>
+					</div>
+				)
+			}
+
+			<div class="calendar-grid" data-year={defaultYear}>
 				{
-					calendarMonths.map(({ monthName, days }) => (
+					currentYearCalendar.map(({ monthName, days }) => (
 						<div class="calendar-month">
 							<h3>{monthName}</h3>
 							<div class="calendar-days">
@@ -263,6 +305,87 @@ const calendarMonths = generateCalendarData();
 					))
 				}
 			</div>
+
+			{
+				nextYearCalendar && (
+					<div class="calendar-grid hidden" data-year={defaultYear + 1}>
+						{nextYearCalendar.map(({ monthName, days }) => (
+							<div class="calendar-month">
+								<h3>{monthName}</h3>
+								<div class="calendar-days">
+									<div class="day-header">Ma</div>
+									<div class="day-header">Di</div>
+									<div class="day-header">Wo</div>
+									<div class="day-header">Do</div>
+									<div class="day-header">Vr</div>
+									<div class="day-header">Za</div>
+									<div class="day-header">Zo</div>
+									{days.map(
+										({
+											day,
+											status,
+											changeoverType,
+											startStatus,
+											endStatus,
+										}) => (
+											<div
+												class:list={[
+													"calendar-day",
+													{
+														empty: !day,
+														booked: status,
+														"changeover-start":
+															changeoverType ===
+															"start",
+														"changeover-end":
+															changeoverType ===
+															"end",
+														"changeover-both":
+															changeoverType ===
+															"both",
+													},
+												]}
+												style={
+													changeoverType ===
+														"both" &&
+													startStatus &&
+													endStatus
+														? `--changeover-end: ${getStatusColor(
+																endStatus,
+															)}; --changeover-start: ${getStatusColor(
+																startStatus,
+															)}; color: white;`
+														: status &&
+															  !changeoverType
+															? `background-color: ${getStatusColor(status)}; color: white;`
+															: ""
+												}
+												data-status={status}
+												title={
+													changeoverType ===
+														"both" &&
+													startStatus &&
+													endStatus
+														? `Vertrek: ${getStatusLabel(
+																endStatus,
+															)} • Aankomst: ${getStatusLabel(startStatus)}`
+														: status
+															? getStatusLabel(
+																	status,
+																)
+															: ""
+												}
+											>
+												{day || ""}
+											</div>
+										),
+									)}
+								</div>
+							</div>
+						))}
+					</div>
+				)
+			}
 		</div>
 
 		<h3 class="text-center italic">Welkom in de mooie Morvan!</h3>
@@ -487,6 +610,40 @@ const calendarMonths = generateCalendarData();
 		font-style: italic;
 	}
 
+	.year-toggle {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.year-button {
+		padding: 0.75rem 1.5rem;
+		border: 2px solid #e5e7eb;
+		border-radius: 0.5rem;
+		background-color: #ffffff;
+		color: #4b5563;
+		font-size: 1rem;
+		font-weight: 600;
+		cursor: pointer;
+		transition: all 0.2s;
+	}
+
+	.year-button:hover {
+		border-color: #9ca3af;
+		background-color: #f9fafb;
+	}
+
+	.year-button.active {
+		border-color: #3b82f6;
+		background-color: #3b82f6;
+		color: white;
+	}
+
+	.hidden {
+		display: none;
+	}
+
 	@media (max-width: 768px) {
 		.calendar-grid {
 			grid-template-columns: 1fr;
@@ -498,3 +655,46 @@ const calendarMonths = generateCalendarData();
 		}
 	}
 </style>
+
+<script>
+	function toggleYear(year: number) {
+		// Update button states
+		const buttons = document.querySelectorAll<HTMLElement>(".year-button");
+		buttons.forEach((button) => {
+			const yearAttr = button.getAttribute("data-year");
+			const buttonYear = yearAttr ? Number(yearAttr) : null;
+			if (buttonYear === year) {
+				button.classList.add("active");
+			} else {
+				button.classList.remove("active");
+			}
+		});
+
+		// Update calendar visibility
+		const calendars =
+			document.querySelectorAll<HTMLElement>(".calendar-grid");
+		calendars.forEach((calendar) => {
+			const yearAttr = calendar.getAttribute("data-year");
+			const calendarYear = yearAttr ? Number(yearAttr) : null;
+			if (calendarYear === year) {
+				calendar.classList.remove("hidden");
+			} else {
+				calendar.classList.add("hidden");
+			}
+		});
+	}
+
+	// Attach event listeners to year buttons
+	document.addEventListener("DOMContentLoaded", () => {
+		const buttons = document.querySelectorAll<HTMLElement>(".year-button");
+		buttons.forEach((button) => {
+			button.addEventListener("click", () => {
+				const yearAttr = button.getAttribute("data-year");
+				const year = yearAttr ? Number(yearAttr) : null;
+				if (year !== null && !isNaN(year)) {
+					toggleYear(year);
+				}
+			});
+		});
+	});
+</script>
