@@ -661,7 +661,8 @@ const nextYearCalendar = hasNextYearBookings
 		// Update button states
 		const buttons = document.querySelectorAll<HTMLElement>(".year-button");
 		buttons.forEach((button) => {
-			const buttonYear = Number(button.getAttribute("data-year"));
+			const yearAttr = button.getAttribute("data-year");
+			const buttonYear = yearAttr ? Number(yearAttr) : null;
 			if (buttonYear === year) {
 				button.classList.add("active");
 			} else {
@@ -673,7 +674,8 @@ const nextYearCalendar = hasNextYearBookings
 		const calendars =
 			document.querySelectorAll<HTMLElement>(".calendar-grid");
 		calendars.forEach((calendar) => {
-			const calendarYear = Number(calendar.getAttribute("data-year"));
+			const yearAttr = calendar.getAttribute("data-year");
+			const calendarYear = yearAttr ? Number(yearAttr) : null;
 			if (calendarYear === year) {
 				calendar.classList.remove("hidden");
 			} else {
@@ -687,8 +689,9 @@ const nextYearCalendar = hasNextYearBookings
 		const buttons = document.querySelectorAll<HTMLElement>(".year-button");
 		buttons.forEach((button) => {
 			button.addEventListener("click", () => {
-				const year = Number(button.getAttribute("data-year"));
-				if (year) {
+				const yearAttr = button.getAttribute("data-year");
+				const year = yearAttr ? Number(yearAttr) : null;
+				if (year !== null && !isNaN(year)) {
 					toggleYear(year);
 				}
 			});
