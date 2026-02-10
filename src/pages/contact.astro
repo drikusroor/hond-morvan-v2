@@ -219,14 +219,12 @@ const nextYearCalendar = hasNextYearBookings
 						<button
 							class="year-button active"
 							data-year={defaultYear}
-							onclick={`toggleYear(${defaultYear})`}
 						>
 							{defaultYear}
 						</button>
 						<button
 							class="year-button"
 							data-year={defaultYear + 1}
-							onclick={`toggleYear(${defaultYear + 1})`}
 						>
 							{defaultYear + 1}
 						</button>
@@ -661,11 +659,9 @@ const nextYearCalendar = hasNextYearBookings
 <script>
 	function toggleYear(year: number) {
 		// Update button states
-		const buttons = document.querySelectorAll(".year-button");
+		const buttons = document.querySelectorAll<HTMLElement>(".year-button");
 		buttons.forEach((button) => {
-			const buttonYear = parseInt(
-				button.getAttribute("data-year") || "0",
-			);
+			const buttonYear = Number(button.getAttribute("data-year"));
 			if (buttonYear === year) {
 				button.classList.add("active");
 			} else {
@@ -674,11 +670,10 @@ const nextYearCalendar = hasNextYearBookings
 		});
 
 		// Update calendar visibility
-		const calendars = document.querySelectorAll(".calendar-grid");
+		const calendars =
+			document.querySelectorAll<HTMLElement>(".calendar-grid");
 		calendars.forEach((calendar) => {
-			const calendarYear = parseInt(
-				calendar.getAttribute("data-year") || "0",
-			);
+			const calendarYear = Number(calendar.getAttribute("data-year"));
 			if (calendarYear === year) {
 				calendar.classList.remove("hidden");
 			} else {
@@ -687,6 +682,16 @@ const nextYearCalendar = hasNextYearBookings
 		});
 	}
 
-	// Make function available globally
-	(window as any).toggleYear = toggleYear;
+	// Attach event listeners to year buttons
+	document.addEventListener("DOMContentLoaded", () => {
+		const buttons = document.querySelectorAll<HTMLElement>(".year-button");
+		buttons.forEach((button) => {
+			button.addEventListener("click", () => {
+				const year = Number(button.getAttribute("data-year"));
+				if (year) {
+					toggleYear(year);
+				}
+			});
+		});
+	});
 </script>
