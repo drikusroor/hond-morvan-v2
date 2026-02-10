@@ -59,25 +59,20 @@ const getStatusLabel = (status: string) => {
 	}
 };
 
-// Generate calendar data for April through November
-const generateCalendarData = () => {
-	const months = [];
+// Settings
+// Set to true to only show the next year's calendar when it has bookings
+const onlyShowNextYearWhenBooked = false;
 
-	// Determine which year's season to show
-	// If we're in December, show the upcoming season (next year)
-	// Otherwise show current year's season (April-November)
-	const currentMonth = today.getMonth();
-	const currentYear = today.getFullYear();
-	const startYear = currentMonth === 11 ? currentYear + 1 : currentYear;
+// Generate calendar data for April through November of a given year
+const generateCalendarData = (year: number) => {
+	const months = [];
 
 	// Generate April (3) through November (10) = 8 months
 	for (let m = 3; m <= 10; m++) {
-		const monthDate = new Date(startYear, m, 1);
-		const year = monthDate.getFullYear();
+		const monthDate = new Date(year, m, 1);
 		const monthIndex = monthDate.getMonth();
 		const monthName = new Intl.DateTimeFormat("nl-NL", {
 			month: "long",
-			year: "numeric",
 		}).format(monthDate);
 
 		const firstDay = new Date(year, monthIndex, 1);
@@ -145,7 +140,29 @@ const generateCalendarData = () => {
 	return months;
 };
 
-const calendarMonths = generateCalendarData();
+// Determine which years to show
+// If we're in December, start from next year; otherwise start from current year
+const currentMonth = today.getMonth();
+const currentYear = today.getFullYear();
+const primaryYear = currentMonth === 11 ? currentYear + 1 : currentYear;
+const nextYear = primaryYear + 1;
+
+// Check if next year has any bookings
+const nextYearHasBookings = upcomingBookings.some((booking) => {
+	const startYear = booking.data.startDate.getUTCFullYear();
+	const endYear = booking.data.endDate.getUTCFullYear();
+	return startYear === nextYear || endYear === nextYear;
+});
+
+const showNextYear = !onlyShowNextYearWhenBooked || nextYearHasBookings;
+
+// Build calendar years array
+const calendarYears = [
+	{ year: primaryYear, months: generateCalendarData(primaryYear) },
+	...(showNextYear
+		? [{ year: nextYear, months: generateCalendarData(nextYear) }]
+		: []),
+];
 ---
 
 <BaseLayout
@@ -189,10 +206,11 @@ const calendarMonths = generateCalendarData();
 			</div>
 		</div>
 
-		<div class="availability-view">
-			<div class="calendar-grid">
-				{
-					calendarMonths.map(({ monthName, days }) => (
+		{calendarYears.map(({ year, months }) => (
+			<div class="availability-view">
+				<h2 class="calendar-year-heading">{year}</h2>
+				<div class="calendar-grid">
+					{months.map(({ monthName, days }) => (
 						<div class="calendar-month">
 							<h3>{monthName}</h3>
 							<div class="calendar-days">
@@ -260,10 +278,10 @@ const calendarMonths = generateCalendarData();
 								)}
 							</div>
 						</div>
-					))
-				}
+					))}
+				</div>
 			</div>
-		</div>
+		))}
 
 		<h3 class="text-center italic">Welkom in de mooie Morvan!</h3>
 	</div>
@@ -313,6 +331,13 @@ const calendarMonths = generateCalendarData();
 
 	.availability-view {
 		margin: 2rem 0;
+	}
+
+	.calendar-year-heading {
+		font-size: 1.5rem;
+		color: #1f2937;
+		text-align: center;
+		margin-bottom: 0.5rem;
 	}
 
 	.calendar-grid {
