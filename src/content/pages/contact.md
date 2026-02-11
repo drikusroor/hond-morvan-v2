@@ -7,12 +7,10 @@ description: Neem contact op voor meer informatie. Kalender. Nog vrij. Beschikba
 
 Neem voor meer informatie en reserveringen s.v.p. contact op met Luda.
 
-**Tel. mobiel:** [+31.6.51121073](tel:+31.6.51121073) (hele jaar)
+**Tel. mobiel:** [+31.6.51121073](tel:+31.6.51121073) 
 
 **Email:** [info@hondmorvan.nl](mailto:info@hondmorvan.nl)
 
-Huisdieren welkom.
-
-## Beschikbaarheid 2026
+## Beschikbaarheid
 
 *Let op: Deze data kunnen nog wijzigen. Er kunnen nog weken vrijkomen. Ik kan je noteren op de 'reservelijst'.*
