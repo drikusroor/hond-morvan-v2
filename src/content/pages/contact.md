@@ -4,11 +4,11 @@ headerImage: /images/hondmorvan-contactheader1.png
 description: Neem contact op voor meer informatie. Kalender. Nog vrij.
   Beschikbaarheid. Reserveren
 ---
-# Contact
+# Contact en reservering
 
 Neem voor meer informatie en reserveringen s.v.p. contact op met Luda.
 
-**Tel. mobiel:** [+31.6.51121073](tel:+31.6.51121073) 
+**Tel.:** [+31.6.51121073](tel:+31.6.51121073) 
 
 **Email:** [info@hondmorvan.nl](mailto:info@hondmorvan.nl)
 
