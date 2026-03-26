@@ -11,7 +11,9 @@ rightColumnImages:
 bottomImages:
   - /images/gite-herfst.jpg
 ---
-# *Kijk naar de beschikbare weken bij 'contact'*
+# *Nog enkele weken beschikbaar, zie 'contact'*
+
+
 
 # Honden welkom
 
