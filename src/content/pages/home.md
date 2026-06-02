@@ -15,7 +15,7 @@ bottomImages:
 
 # Honden welkom
 
-In Regional Natuurpark 'Le Morvan', op 700 km van Utrecht, staat dit sfeervolle stenen huisje met WiFi-verbinding en laadpaal op een flinke lap grond. Het ligt op ruime afstand van de hoofdwoning in een eigen omheinde boomgaard, op het hoogste punt van de streek (600 m). Bekijk het filmpje:
+In Regional Natuurpark 'Le Morvan', op 700 km van Utrecht, staat dit sfeervolle stenen huisje met WiFi-verbinding en laadpaal op een flinke lap grond. Het ligt op ruime afstand van de hoofdwoning in een **eigen omheinde boomgaard**, op het hoogste punt van de streek (600 m). Bekijk het filmpje:
 
 <https://www.youtube.com/watch?v=JnK0PpgrLhA&rel=0>
 
