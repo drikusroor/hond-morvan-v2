@@ -27,7 +27,7 @@ Het dorpje Dun-les-Places (ca. 360 inwoners) ligt op tien minuten lopen. Hier vi
 
 De Morvan is een gebied voor **rustzoekers en natuurliefhebbers**. Het is er stil en zeer vogel-, vlinder- en plantenrijk. Ook de kans dat je een ree, das, wild zwijn of vos ziet tijdens je wandelingen is groot. 's Nachts geniet je van de sterrenhemel en zie je duidelijk de Melkweg. Het klimaat is te vergelijken met dat van Nederland, met wat meer uitersten.
 
-Omdat er geen industrie is, heeft de Morvan een heel zuivere lucht. Je kunt er heerlijke wandelingen maken door de bossen en de velden. De (gehoorzame) hond mag er los lopen, ook op het eigen terrein. Er zijn veel wandel- en mountainbikeroutes uitgezet. De **talloze stuwmeren** (Lac des Settons, Lac de Chaumeçon, Lac de Panneciére) nodigen uit tot een duik en ook kajakken en forelvissen in de rivier de Cure behoren tot de mogelijkheden.
+Omdat er geen industrie is, heeft de Morvan een heel zuivere lucht. Je kunt er heerlijke wandelingen maken door de bossen en de velden. De (gehoorzame) hond mag er los lopen, ook op het eigen terrein. Er zijn veel wandel- en mountainbikeroutes uitgezet. De **talloze stuwmeren** (Lac des Settons, Lac de Chaumeçon, Lac de Pannecière) nodigen uit tot een duik en ook kajakken en forelvissen in de rivier de Cûre behoren tot de mogelijkheden.
 
 ## Bezienswaardigheden
 
