@@ -11,25 +11,23 @@ rightColumnImages:
 bottomImages:
   - /images/gite-herfst.jpg
 ---
-# *Nog enkele weken beschikbaar, zie 'contact'*
-
-
+# *Nog 1 week in aug en 1 week in sept vrij, zie 'contact'*
 
 # Honden welkom
 
-In Regional Natuurpark 'Le Morvan', op 700 km van Utrecht, staat dit sfeervolle stenen huisje met WiFi-verbinding en laadpaal op een flinke lap grond. Het ligt op ruime afstand van de hoofdwoning in een eigen omheinde boomgaard, op het hoogste punt van de streek (600 m). Bekijk het filmpje:
+In Regional Natuurpark 'Le Morvan', op 700 km van Utrecht, staat dit sfeervolle stenen huisje met WiFi-verbinding en laadpaal op een flinke lap grond. Het ligt op ruime afstand van de hoofdwoning in een **eigen omheinde boomgaard**, op het hoogste punt van de streek (600 m). Bekijk het filmpje:
 
 <https://www.youtube.com/watch?v=JnK0PpgrLhA&rel=0>
 
 Op het zuiden en westen kun je heerlijk op het terras zitten of onder de bomen in het gras. Het huisje is in de rug beschut door een strookje bos. Vóór heb je een mooi uitzicht over de vallei, waar tussen de meertjes zomer en winter de charolais-koeien grazen.
 
-Het dorpje Dun-les-Places (ca. 360 inwoners) ligt op tien minuten lopen. Hier vind je een **kruidenierswinkeltje** en een **bakkerij** met vers brood en patisserie, verder is er een restaurant met een authentiek Bourgondische keuken. In de omliggende plaatsen vind je nog veel meer goede eetgelegenheden.
+Het dorpje Dun-les-Places (ca. 360 inwoners) ligt op tien minuten lopen. Hier vind je een **kruidenierswinkeltje** en een **bakkerij** met vers brood en patisserie. Er zijn restaurants in de omgeving.
 
 ## Rust en natuur
 
 De Morvan is een gebied voor **rustzoekers en natuurliefhebbers**. Het is er stil en zeer vogel-, vlinder- en plantenrijk. Ook de kans dat je een ree, das, wild zwijn of vos ziet tijdens je wandelingen is groot. 's Nachts geniet je van de sterrenhemel en zie je duidelijk de Melkweg. Het klimaat is te vergelijken met dat van Nederland, met wat meer uitersten.
 
-Omdat er geen industrie is, heeft de Morvan een heel zuivere lucht. Je kunt er heerlijke wandelingen maken door de bossen en de velden. De (gehoorzame) hond mag er los lopen, ook op het eigen terrein. Er zijn veel wandel- en mountainbikeroutes uitgezet. De **talloze stuwmeren** (Lac des Settons, Lac de Chaumeçon, Lac de Panneciére) nodigen uit tot een duik en ook kajakken en forelvissen in de rivier de Cure behoren tot de mogelijkheden.
+Omdat er geen industrie is, heeft de Morvan een heel zuivere lucht. Je kunt er heerlijke wandelingen maken door de bossen en de velden. De (gehoorzame) hond mag er los lopen, ook op het eigen terrein. Er zijn veel wandel- en mountainbikeroutes uitgezet. De **talloze stuwmeren** (Lac des Settons, Lac de Chaumeçon, Lac de Pannecière) nodigen uit tot een duik en ook kajakken en forelvissen in de rivier de Cûre behoren tot de mogelijkheden.
 
 ## Bezienswaardigheden
 
