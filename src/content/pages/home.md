@@ -1,7 +1,8 @@
 ---
 title: Honden welkom!
 headerImage: /images/hondmorvan-header1.png
-description: Vakantiehuis gastenhuis huisje hond honden welkom in de Morvan, Frankrijk
+description: Vakantiehuis gastenhuis huisje huren hond honden welkom in de
+  Morvan Frankrijk natuur rust
 leftColumnImages:
   - /images/hondmorvan-homelinks1.png
 rightColumnImages:
