@@ -43,6 +43,15 @@ galleryImages:
   - /images/IMG_7294.webp
   - /images/gite-herfst.jpg
   - /images/gite-beeldje.jpg
+  - /images/p1020065.jpg
+  - /images/20260429_114612.jpg
+  - /images/20260416_124301.jpg
+  - /images/20260416_123912.jpg
+  - /images/20260702_171154.jpg
+  - /images/20260606_103135.jpg
+  - /images/20260602_200050.jpg
+  - /images/20260513_171139.jpg
+  - /images/20260510_144748.jpg
 rightColumnImages: []
 ---
 .
