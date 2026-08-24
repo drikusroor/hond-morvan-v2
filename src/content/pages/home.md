@@ -12,7 +12,7 @@ rightColumnImages:
 bottomImages:
   - /images/gite-herfst.jpg
 ---
-# *Dit jaar nog vrij: 22-29 aug. en 12-19 sept.*
+# *Dit jaar nog vrij: 12-19 sept.*
 
 # Honden welkom!
 
@@ -22,7 +22,7 @@ In Regional Natuurpark 'Le Morvan', op 700 km van Utrecht, staat dit sfeervolle 
 
 Op het zuiden en westen kun je heerlijk op het terras zitten of onder de bomen in het gras. Het huisje is in de rug beschut door een strookje bos. Vóór heb je een mooi uitzicht over de vallei, waar tussen de meertjes zomer en winter de charolais-koeien grazen.
 
-Het dorpje Dun-les-Places (ca. 360 inwoners) ligt op tien minuten lopen. Hier vind je een **kruidenierswinkeltje** en een **bakkerij** met vers brood en patisserie. Er zijn restaurants in de omgeving.
+Het dorpje Dun-les-Places (ca. 360 inwoners) ligt op tien minuten lopen. Hier vind je een **kruidenierswinkeltje** en een **bakkerij** met vers brood en patisserie. Er zijn restaurants in de omgeving. Er staat **oplader** (22Kwh) voor elektrische auto's in het dorp.
 
 ## Rust en natuur
 
