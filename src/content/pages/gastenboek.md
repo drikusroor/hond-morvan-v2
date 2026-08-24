@@ -8,5 +8,6 @@ leftColumnImages:
 rightColumnImages:
   - /images/gastenboek-1.jpg
   - /images/gite5.webp
+  - /images/quispel-tekening.png
 ---
 .
