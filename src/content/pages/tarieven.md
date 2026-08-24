@@ -35,7 +35,7 @@ Eventuele extra energiekosten worden achteraf verrekend.
 
 **Inbegrepen** in de huurprijs zijn bij normaal gebruik water, gas, elektriciteit (4kWh per dag), brandhout voor het eenvoudig te bedienen houtkacheltje en Wifi.
 
-**Niet inbegrepen** zijn eventueel gebruik van linnengoed, kosten van de eindschoonmaak, laadkosten van uw auto (11 kWh-lader aanwezig) en gebruik van elektra boven de 4 kWh per dag.
+**Niet inbegrepen** zijn eventueel gebruik van linnengoed, kosten van de eindschoonmaak, laadkosten van uw auto (11 kWh-lader op oprit en een 22kWh-lader in het dorp) en gebruik van elektra boven de 4 kWh per dag.
 
 Het huisje is eenvoudig maar gezellig en compleet ingericht. Zo is er een koelkast met apart vriesgedeelte, radio/cd-speler, oven/grill, magnetron, mixer, senseo, waterkoker, tv met dvd-speler en ontvangst van de commerciële zenders van de Astra-schotel. Verder zijn er specerijen, suiker, thee e.d. Er liggen (wandel)kaarten en er is allerlei toeristische informatie; evenals tientallen boeken (detectives, romans, natuur). Buiten staan tuinstoelen, tafels en ligbanken met kussens.
 
@@ -55,7 +55,7 @@ Er zijn schoonmaakmiddelen in het huis aanwezig. De eindschoonmaak kan door uzel
 
 ## Annulering door de huurder
 
-Annuleringen dienen telefonisch en schriftelijk te worden bevestigd. Bij annulering langer dan 3 maanden voor ingang van de oorspronkelijke huurdatum wordt 90% van het reeds ontvangen bedrag door de verhuurder gerestitueerd. Bij annulering korter dan 3 maanden voor de huurdatum wordt 50% van het reeds ontvangen bedrag gerestitueerd.
+Onverhoopte annuleringen dienen telefonisch en schriftelijk/app te worden bevestigd. Bij annulering langer dan 4 maanden voor ingang van de oorspronkelijke huurdatum wordt 90% van het reeds ontvangen bedrag door de verhuurder gerestitueerd. Bij annulering korter dan 4 maanden voor de huurdatum wordt 50% van het reeds ontvangen bedrag gerestitueerd. **Opties gelden tot 15 december in het jaar voorafgaand aan de voorlopige boeking en dienen dan definitief bevestigd/geannuleerd te worden.**
 
 ## Annulering door de verhuurder
 
