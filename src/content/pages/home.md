@@ -22,7 +22,7 @@ In Regional Natuurpark 'Le Morvan', op 700 km van Utrecht, staat dit sfeervolle 
 
 Op het zuiden en westen kun je heerlijk op het terras zitten of onder de bomen in het gras. Het huisje is in de rug beschut door een strookje bos. Vóór heb je een mooi uitzicht over de vallei, waar tussen de meertjes zomer en winter de charolais-koeien grazen.
 
-Het dorpje Dun-les-Places (ca. 360 inwoners) ligt op tien minuten lopen. Hier vind je een **kruidenierswinkeltje** en een **bakkerij** met vers brood en patisserie. Er zijn restaurants in de omgeving. Er staat **oplader** (22Kwh) voor elektrische auto's in het dorp.
+Het dorpje Dun-les-Places (ca. 355 inwoners) ligt op tien minuten lopen. Hier vind je een **kruidenierswinkeltje** en een **bakkerij** met vers brood en patisserie. Er zijn restaurants in de omgeving. Er staat een **laadpaal** (22Kwh) voor elektrische auto's in het dorp en bij ons op de oprit (11Kwh).
 
 ## Rust en natuur
 
@@ -46,7 +46,7 @@ Huisdieren zijn welkom op de benedenverdieping. In de directe omgeving is een **
 
 ## Boodschappen
 
-**Boodschappen** kun je nog doen als je op zaterdag aankomt, want de kruidenier is open tot 19 uur, evenals de supermarkten in de omligende plaatsjes. Op zondagochtend kun je bij de bakker terecht voor verse croissants en een stokbroodje, bovendien is er dan een markt(je) in het buurdorp Quarré-les-Tombes met zijn gezellige terrasjes.
+**Boodschappen** kun je nog doen als je op zaterdag aankomt, want de kruidenier is open tot 19 uur, evenals de supermarkten in de omliggende plaatsjes. Op zondagochtend kun je bij de bakker terecht voor verse croissants en een stokbroodje, bovendien is er dan een markt(je) in het buurdorp Quarré-les-Tombes met zijn gezellige terrasjes.
 
 Veel mensen, met en zonder hond(en), hebben intussen al genoten van dit heerlijke huisje en de schitterende omgeving. Zie het [gastenboek](/gastenboek).
 
