@@ -20,6 +20,9 @@ const testimonials = defineCollection({
 	schema: z.object({
 		name: z.string(),
 		date: z.coerce.date(),
+		// Original period label from the old site (e.g. "augustus/september 2025").
+		// Shown instead of the exact date when the source only recorded a month.
+		period: z.string().optional(),
 		location: z.string().optional(),
 		rating: z.number().min(1).max(5).default(5),
 		photo: z.string().optional(),

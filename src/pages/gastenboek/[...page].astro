@@ -58,14 +58,15 @@ const { Content } = await pageData.render();
                             </div>
                             <div class="meta">
                                 <p class="date">
-                                    {testimonial.data.date.toLocaleDateString(
-                                        "nl-NL",
-                                        {
-                                            year: "numeric",
-                                            month: "long",
-                                            day: "numeric",
-                                        },
-                                    )}
+                                    {testimonial.data.period ??
+                                        testimonial.data.date.toLocaleDateString(
+                                            "nl-NL",
+                                            {
+                                                year: "numeric",
+                                                month: "long",
+                                                day: "numeric",
+                                            },
+                                        )}
                                 </p>
                             </div>
                         </div>

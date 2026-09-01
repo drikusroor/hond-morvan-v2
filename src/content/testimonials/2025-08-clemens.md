@@ -1,6 +1,7 @@
 ---
-name: Clemens
+name: "Clemens"
 date: 2025-08-01
+period: "augustus 2025"
 rating: 5
 ---
 
