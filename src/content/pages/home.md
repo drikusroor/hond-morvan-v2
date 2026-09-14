@@ -12,7 +12,7 @@ rightColumnImages:
 bottomImages:
   - /images/gite-herfst.jpg
 ---
-# *Dit jaar nog vrij: 12-19 sept. en 24-31 oktober*
+# *Dit jaar nog vrij: 24 okt - 7 nov.*
 
 # Honden welkom!
 
