@@ -12,8 +12,6 @@ rightColumnImages:
 bottomImages:
   - /images/gite-herfst.jpg
 ---
-# *Dit jaar nog vrij: 12-19 sept. en 24-31 oktober*
-
 # Honden welkom!
 
 In Regional Natuurpark 'Le Morvan', op 700 km van Utrecht, staat dit sfeervolle stenen huisje met WiFi-verbinding en laadpaal op een flinke lap grond. Het ligt op ruime afstand van de hoofdwoning in een **eigen omheinde boomgaard**, op het hoogste punt van de streek (600 m). Bekijk het filmpje:
